@@ -1,0 +1,26 @@
+{
+  "name":"WxappApiServer",
+  "version":"1.0.0",
+  "description":"api service",
+  "author": "Leibo<252517584@qq.com>",
+  "private": true,
+  "scripts":{
+    "dev":"nodemon -w ./start.js --exec node ./start.js"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "bcrypt": "^3.0.0",
+    "cheerio": "^1.0.0-rc.2",
+    "koa": "^2.5.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.8.2",
+    "mongoose": "^5.2.7",
+    "nodemon": "^1.18.3",
+    "request-promise": "^4.2.2",
+    "sha1": "^1.1.1",
+    "wechat-pay": "^0.3.2",
+    "xml2js": "^0.4.19",
+    "xss": "^1.0.3"
+  }
+}
