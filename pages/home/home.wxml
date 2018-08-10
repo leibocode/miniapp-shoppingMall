@@ -1,0 +1,11 @@
+<view class="container home-container" hidden="{{!loading}}">
+  <swiper indicator-dots="true" autoplay="true" class="swiper">
+    <block wx:for="{{bannerArr}}">
+      <swiper-item>
+          
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<loading hidden="{{loading}}"></loading>

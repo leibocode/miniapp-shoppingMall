@@ -1,6 +1,5 @@
-import Koa from 'koa'
-import { resolve } from 'path'
-import { changeExt } from 'upath';
+const Koa =require('koa')
+const { resolve } =require('path')
 
 const r =path=>resolve(__dirname,path)
 const host =process.env.HOST || '127.0.0.1'
@@ -19,7 +18,7 @@ class Server {
 
     async start(){
         this.app.use(async(ctx,next)=>{
-            
+            ctx.body ='xxx'
         })
 
         this.app.listen(port,host)
