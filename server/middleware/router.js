@@ -10,4 +10,3 @@ export const router =app=>{
 
     router.init()
 }
-
