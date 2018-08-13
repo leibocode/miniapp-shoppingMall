@@ -6,7 +6,10 @@ const ObjectId =Schema.Types.ObjectId
 const BannerSchema = new Schema({
   title:String,
   img:String,
-  productId:ObjectId,
+  products:[{
+    type:ObjectId,
+    ref:'Product'
+  }],
   meta:{
     createdAt: {
       type: Date,

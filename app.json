@@ -1,0 +1,45 @@
+{
+    "pages":[
+        "pages/home/home",
+        "pages/category/category",
+        "pages/my/my",
+        "pages/cart/cart"
+    ],
+    "window":{
+        "navigationBarBackgroundColor": "#479de6",
+        "navigationBarTextStyle": "white",
+        "navigationBarTitleText": "零食1号",
+        "backgroundColor": "#f8f8f8",
+        "backgroundTextStyle": "dark",
+        "enablePullDownRefresh":true
+    },
+    "tabBar":{
+        "color": "#999999",
+        "selectedColor": "#479de6",
+        "borderStyle": "white",
+        "backgroundColor": "#fff",
+        "posution":"bottom",
+        "list": [{
+          "pagePath": "pages/home/home",
+          "iconPath": "images/iconfont-home.png",
+          "selectedIconPath": "images/iconfont-home-active.png",
+          "text": "主页"
+        }, {
+          "pagePath": "pages/category/category",
+          "iconPath": "images/iconfont-list.png",
+          "selectedIconPath": "images/iconfont-list-active.png",
+          "text": "分类"
+        }, {
+          "pagePath": "pages/cart/cart",
+          "iconPath": "images/iconfont-cart.png",
+          "selectedIconPath": "images/iconfont-cart-active.png",
+          "text": "购物车"
+        }, {
+          "pagePath": "pages/my/my",
+          "iconPath": "images/iconfont-user.png",
+          "selectedIconPath": "images/iconfont-user-active.png",
+          "text": "我的"
+        }] 
+    },
+    "debug":true
+}

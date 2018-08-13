@@ -1,0 +1,14 @@
+
+<template name="products">
+    <view class="product-box">
+        <block wx:for="{{productsArr}}">
+            <view class="products-item">
+                <image class="products-image" src="{{item.img}}"/>
+                <view class="products-bottom">
+                    <view class="name">{{item.name}}</view>
+                    <view class="price">{{item.price}}</view>
+                </view>
+            </view>
+        </block>
+    </view>
+</template>

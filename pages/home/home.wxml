@@ -1,11 +1,32 @@
-<view class="container home-container" hidden="{{!loading}}">
+<import src="../../template/products/products-tpl.wxml"/>
+<view class="container home-container">
   <swiper indicator-dots="true" autoplay="true" class="swiper">
     <block wx:for="{{bannerArr}}">
-      <swiper-item>
-          
+      <swiper-item class="banner-item">
+          <image class="item-image" src="{{item.img}}" mode="aspectFill"/>
       </swiper-item>
     </block>
   </swiper>
+  <view class="home-main">
+    <view class="home-main-theme">
+      <!--主题精选-->
+      <view class="home-main-header">精选主题</view>
+      <view class="theme-box">
+        <block wx:for="{{themeArr}}">
+           <view wx:if="{{index==2}}" class="theme-item big">
+              <image src="{{item.img}}"/>
+           </view>
+           <view wx:else class="theme-item">
+              <image src="{{item.img}}"/>
+           </view>
+        </block>
+      </view>
+   </view>
+   <view class="home-main-products">
+      <view class="home-main-header">最近新品</view>
+      <template is="products" data="{{productsArr:products}}"></template>
+   </view>
+</view>
 </view>
 
-<loading hidden="{{loading}}"></loading>
+<!-- <loading hidden="{{loading}}"></loading> -->
