@@ -13,7 +13,7 @@ class Server {
         this.useMiddleWares(this.app)
     }
     useMiddleWares(app){
-       // database(app)
+       database(app)
         router(app)
     }
 

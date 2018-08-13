@@ -4,7 +4,6 @@ const Mixed =Schema.Types.Mixed
 const ObjectId =Schema.Types.ObjectId
 
 const CategorySchema = new Schema({
-  _id:ObjectId,
   name:String,
   children:[{
       type:ObjectId,
