@@ -1,35 +1,15 @@
-import {
-    Controller,
-    Get,
-    Post,
- } from '../decorator/router'
+const {controller, get, post, put } = require('../decorator/router')
 
- import BannerService from '../service/banner'
 
- @Controller('/api/v1/banner')
- export class BannerController {
-     @Get()
-     async test(ctx,next){
-         console.log("test");
-         ctx.body= 'text'
-     }
+@controller('api/v1/banner')
+export class BannerController {
+  @get('/')
+  async getMovies (ctx, next) {
+    ctx.body  ='111'
+  }
 
-     @Get('/:_id')
-     async getBanner (ctx,next){
-         const { params } =ctx
-         const { _id } =params
-         
-         if(_id){
-             //错误
-         }
-         let service =new BannerService()
-         const data =await service.getBanner(_id)
-         
-         ctx.body ={
-             data:data,
-             success:true,
-             code:0
-         }
-     }
-     
- }
+  @get('/:id')
+  async getMovieDetail (ctx, next) {
+   
+  }
+}

@@ -13,8 +13,8 @@ class Server {
         this.useMiddleWares(this.app)
     }
     useMiddleWares(app){
-       database(app)
-        router(app)
+       //database(app)
+       router(app)
     }
 
     async start(){

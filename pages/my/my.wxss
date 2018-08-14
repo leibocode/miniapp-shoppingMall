@@ -1,0 +1,32 @@
+.my-header{
+    display:flex;
+    flex-direction:column;
+    align-content:center;
+    justify-content:center;
+    background-color:#479de6;
+}
+
+.my-header image {
+    width:128rpx;
+    height:128rp;
+    margin:20rpx;
+    border-radius:50%;
+}
+
+.my-header text {
+    color:#fff;
+}
+
+.info_list {
+    display:flex;
+    margin-top:40rpx;
+    background-color: #FFFFFF;
+}
+
+.list-cells{
+    flex:1;
+    height:40rpx;
+    padding:15rpx 15rpx;
+    border-top:1rpx solid #d9d9d9;
+    border-bottom:1rpx solid #D9D9D9;
+}

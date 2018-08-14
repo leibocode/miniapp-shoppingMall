@@ -1,6 +1,6 @@
 
 <template name="products">
-    <view class="product-box">
+    <view class="products-box">
         <block wx:for="{{productsArr}}">
             <view class="products-item">
                 <image class="products-image" src="{{item.img}}"/>

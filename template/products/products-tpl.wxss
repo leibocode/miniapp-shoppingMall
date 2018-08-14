@@ -3,16 +3,16 @@
     display:flex;
     flex-wrap:wrap;
     justify-content:space-between;
+    flex-direction:row;
 }
 
 .products-item {
-    display:inline-block;
     min-height:425rpx;
     width:48%;
     border-radius:10rpx;
     background:#F5F6F5;
     text-align:center;
-    margin:0 8rpx 8rpx 8rpx;
+    margin:8rpx 8rpx 8rpx 0rpx;
 }
 
 .products-image{

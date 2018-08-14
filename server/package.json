@@ -16,6 +16,7 @@
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "koa-session": "^5.8.2",
+    "lodash": "^4.17.10",
     "mongoose": "^5.2.7",
     "nodemon": "^1.18.3",
     "ramda": "^0.25.0",

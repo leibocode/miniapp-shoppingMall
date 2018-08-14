@@ -1,88 +1,128 @@
-import { resolve } from 'path'
-import KoaRouter from 'koa-router'
-import glob from 'glob'
-import R from 'ramda'
+const glob = require('glob')
+const Router = require('koa-router')
+const { resolve } = require('path')
+const _ = require('lodash')
+const symbolPrefix = Symbol('prefix')
+const routerMap = new Map()
+const R = require('ramda')
 
-const pathPrefix = Symbol('pathPrefix')
-const routeMap = []
-let logTimes = 0
 
-const resolvePath = R.unless(
-  R.startsWith('/'),
-  R.curryN(2, R.concat)('/')
-)
+const isArray = c => _.isArray(c) ? c : [c]
+
+export class Route {
+  constructor (app, apiPath) {
+    this.app = app
+    this.apiPath = apiPath
+    this.router = new Router()
+  }
+
+  init () {
+    
+    glob.sync(resolve(this.apiPath, './**/*.js')).forEach(require)
+    for (let [conf, controller] of routerMap) {
+      let controllers = isArray(controller)
+      let prefixPath = conf.target[symbolPrefix]
+      if (prefixPath) prefixPath = normalizePath(prefixPath)
+      const routerPath = prefixPath + conf.path
+      this.router[conf.method](routerPath, ...controllers)
+    }
+
+    this.app.use(this.router.routes())
+    this.app.use(this.router.allowedMethods())
+  }
+}
+
+const normalizePath = path => {
+  return path.startsWith('/') ? path : `/${path}`
+}
+
+const router = conf => (target, key, descriptor) => {
+  conf.path = normalizePath(conf.path)
+
+  routerMap.set({
+    target: target,
+    ...conf
+  }, target[key])
+}
+
+export const controller = path => target => (target.prototype[symbolPrefix] = path)
+
+export const get = path => router({
+  method: 'get',
+  path: path
+})
+
+export const post = path => router({
+  method: 'post',
+  path: path
+})
+
+export const put = path => router({
+  method: 'put',
+  path: path
+})
+
+export const del = path => router({
+  method: 'del',
+  path: path
+})
+
+export const use = path => router({
+  method: 'use',
+  path: path
+})
+
+export const all = path => router({
+  method: 'get',
+  path: path
+})
 
 const changeToArr = R.unless(
-  R.is(Array),
+  R.is(isArray),
   R.of
 )
 
-export default class Route {
-  constructor (app, routesPath) {
-    this.app = app
-    this.router = new KoaRouter()
-    this.routesPath = routesPath
-  }
+const decorate = (args, middleware) => {
+  let [ target, key, descriptor ] = args
 
-  init(){
-    const { app, router, routesPath } = this
+  target[key] = isArray(target[key])
+  target[key].unshift(middleware)
 
-    glob.sync(resolve(routesPath, './*.js')).forEach(require)
+  return descriptor
+}
 
-    R.forEach(
-      ({ target, method, path, callback }) => {
-        const prefix = resolvePath(target[pathPrefix])
-        router[method](prefix + path, ...callback)
+const convert = middleware => (...args) => decorate(args, middleware)
+
+export const auth = convert(async (ctx, next) => {
+  if (!ctx.session.user) {
+    return (
+      ctx.body = {
+        success: false,
+        code: 401,
+        err: '登陆信息失效，请重新登陆'
       }
-    )(routeMap)
-
-    app.use(router.routes())
-    app.use(router.allowedMethods())
+    )
   }
-}
-
-export const convert = middleware => (target, key, descriptor) => {
-  target[key] = R.compose(
-    R.concat(
-      changeToArr(middleware)
-    ),
-    changeToArr
-  )(target[key])
-  return descriptor
-}
-
-export const setRouter = method => path => (target, key, descriptor) => {
-  routeMap.push({
-    target,
-    method,
-    path: resolvePath(path),
-    callback: changeToArr(target[key])
-  })
-  return descriptor
-}
-
-export const Controller = path => target => (target.prototype[pathPrefix] = path)
-
-export const Get = setRouter('get')
-
-export const Post = setRouter('post')
-
-export const Put = setRouter('put')
-
-export const Delete = setRouter('delete')
-
-export const Log = convert(async (ctx, next) => {
-  logTimes++
-  console.time(`${logTimes}: ${ctx.method} - ${ctx.url}`)
   await next()
-  console.timeEnd(`${logTimes}: ${ctx.method} - ${ctx.url}`)
+  
 })
 
-/**
- * @Required({
- *   body: ['name', 'password']
- * })
- */
+export const admin = roleExpected => convert(async (ctx, next) => {
+  const {role} = ctx.session.user
+
+  if (!role || role !== roleExpected) {
+    return (
+      ctx.body = {
+        success: false,
+        code: 403,
+        err: '你没有权限操作'
+      }
+    )
+  }
+  await next()
+  
+})
+
 export const Required = paramsObj => convert(async (ctx, next) => {
   let errs = []
 
@@ -102,19 +142,6 @@ export const Required = paramsObj => convert(async (ctx, next) => {
         success: false,
         errCode: 412,
         errMsg: `${R.join(', ', errs)} is required`
-      }
-    )
-  }
-  await next()
-})
-
-export const Auth = convert(async (ctx, next) => {
-  if (!ctx.session.user) {
-    return (
-      ctx.body = {
-        success: false,
-        errCode: 401,
-        errMsg: '登陆信息已失效, 请重新登陆'
       }
     )
   }

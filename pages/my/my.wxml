@@ -1,0 +1,18 @@
+<view class="container my-container">
+  <view class="my-header">
+     <image src ="{{userinfo.avatarUrl}}"/>
+     <text class="name">{{userinfo.nickName}}</text>
+  </view>
+  <!--地址管理-->
+  <view class="info_list">
+     <view class="list-cells">
+        <block>
+           <view class="cell-left">
+              <image src="" />
+              <text class=""></text>
+           </view>
+           <view class="cell-right"></view>
+        </block>
+     </view>
+  </view>
+</view>
