@@ -1,0 +1,45 @@
+<view class="container detail-container" hidden="loading">
+   <view class="detail-header-box">
+      <view class="fixed-btns-box" bindtap="onCartTap">
+        <view class="fixed-cart-box">
+           <view class="fiexd-cart">
+              <image src="../../images/cart@top.png"></image>
+              <view wx:if="{{cartTotalCounts}}">{{cartTotalCounts}}</view>
+           </view>
+        </view>
+      </view>
+      <view class="detail-topic-img">
+        <image src="{{product.url}}" mode="aspectFit"></image>
+      </view>
+      <view class="cart-box">
+        <view class="product-counts">
+          <picker class="{{product.stock>0?'disabled':''}}"
+          bindChange="bindPickerChange" value="{{index}}"
+          range="{{countArray}}">
+            <view>
+               
+            </view>
+          </picker>
+        </view> 
+        <view class="middle-border"></view>
+        <view class="add-cart-btn" bindtap="onAddingToCartTap">
+           <text>加入购物车</text>
+           <!-- <image style="{{translateStyle}}" mode="aspectFill" id="samll-top-img" class="samll-top-img {{isFly?:'animate':''}}" src="">
+           </image> -->
+        </view>
+      </view>
+      <view class="basic-info-box">
+         <view class="stock" wx:if="{{product.stock>0}}">库存:{{product.stock}}</view>
+         <view class="stock no" wx:else>缺货</view>
+         <view class="name">{{product.name}}</view>
+         <view class="price">￥{{product.price}}</view>
+      </view>
+   </view>
+   <view class="dateil-bottom-box">
+     <view class="tabs-box">
+       <block wx:for="{{tabs}}">
+       </block>
+     </view>
+   </view>
+</view>
+<loading hidden="{{loading}}">加载中...</loading>

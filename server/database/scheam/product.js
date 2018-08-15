@@ -14,6 +14,15 @@ const ProductSchema =new Schema({
     category:{
         type:ObjectId,
         ref:'ChildCateGory'
+    },
+    comments:{
+        type:ObjectId,
+        ref:'Comment'
+    },
+    meta:{
+        updateAt:{
+            
+        }
     }
 })
 

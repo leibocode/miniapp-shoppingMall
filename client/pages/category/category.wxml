@@ -1,0 +1,14 @@
+<view class="container category-container">
+  <view class="category-box">
+    <view class="let-box">
+       <block wx:for="{{categoryTypeArr}}">
+          <view class="menu-item">
+             {{item.name}}
+          </view>
+       </block>
+    </view>
+    <view class="right-box">
+      
+    </view>
+  </view>
+</view>

@@ -4,7 +4,17 @@ const Mixed =Schema.Types.Mixed
 const ObjectId =Schema.Types.ObjectId
 
 const UserSchema =new Schema({
-    name:String
+    openid:[String],
+    avatarUrl:String,
+    name:String,
+    address:[{
+        type:ObjectId,
+        ref:'Address'
+    }],
+    comments:[{
+        type:ObjectId,
+        ref:'Comment'
+    }]
 })
 
 mongoose.model('User',UserSchema)

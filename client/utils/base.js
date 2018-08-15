@@ -1,8 +1,8 @@
-import { config } from '../config'
 
-export default class Http {
+
+export default class Base {
     constructor () {
-        this.baseRestUrl =config
+      this.baseRestUrl = 'http://127.0.0.1:3001'
     }
     request(params){
         var that =this

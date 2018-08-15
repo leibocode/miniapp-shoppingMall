@@ -1,6 +1,6 @@
-import Http  from '../utils/http.js'
+import Base  from '../utils/base.js'
 
-export default class Home extends Http {
+export default class Home extends Base {
     constructor(){
         super();
     }
@@ -8,7 +8,7 @@ export default class Home extends Http {
     getBannerData(callback){
         var that =this
         var params = {
-            url:'banner',
+            url:'/api/v1/banner',
             sCallback:function(data){
                 data =data.item
                 callback && callback(data)
@@ -26,8 +26,15 @@ export default class Home extends Http {
         }
         this.request(param)
     }
-
+    /*商品部分商品*/
     getProductData(callback){
-        
+      var param ={
+        url:'/api/v1/product',
+        sCallback:function(data){
+          callback && callback(data)
+        }
+      }
+      this.request(param)
+      
     }
 }
