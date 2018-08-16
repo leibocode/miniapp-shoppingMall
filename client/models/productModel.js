@@ -6,12 +6,8 @@ export default class Project extends Base {
 
     getDetailInfo(id,callback){
         var param ={
-            url:`/api/v1/product/${id}`, 
-            sCallback:function(data){
-                callback && callback(data);
-            }
+            url:`/api/v1/product/${id}`,
         }
-        
         this.request(param)
-    } 
-}
+    }
+} 

@@ -123,7 +123,7 @@ export const admin = roleExpected => convert(async (ctx, next) => {
   
 })
 
-export const Required = paramsObj => convert(async (ctx, next) => {
+export const required = paramsObj => convert(async (ctx, next) => {
   let errs = []
 
   R.forEachObjIndexed(

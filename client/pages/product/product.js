@@ -1,4 +1,4 @@
-import Product from '../../models/productModel'
+import Product from '../../models/productModel.js'
 
 let product =new Product()
 
@@ -10,7 +10,7 @@ Page({
         productCounts:1,
         currentTabsIndex:0,
         cartTotalCounts:0,
-        id:"5b710cea2bd9b92e94dfeb59"
+        id:"5b72dcc564328b182444a30c"
     },
     onLoad:function(options){
         var id =options.id
