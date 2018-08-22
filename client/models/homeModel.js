@@ -10,31 +10,34 @@ export default class Home extends Base {
         var params = {
             url:'/api/v1/banner',
             sCallback:function(data){
-                data =data.item
+                data = data.data
                 callback && callback(data)
             }
         }
-        this.request(param)
+        this.request(params)
     }
 
     getThemeData(callback){
-        var param ={
-            url:'',
+        var params ={
+            url:'/api/v1/special',
             sCallback:function(data){
+                data =data.data
                 callback && callback(data)
             }
         }
-        this.request(param)
+        this.request(params)
     }
     /*商品部分商品*/
-    getProductData(callback){
-      var param ={
+    getProductData(getParam,callback){
+      var params ={
         url:'/api/v1/product',
+        data:getParam,
         sCallback:function(data){
+          data=data.data
           callback && callback(data)
         }
       }
-      this.request(param)
+      this.request(params)
       
     }
 }

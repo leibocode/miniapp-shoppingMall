@@ -1,8 +1,8 @@
 {
     "pages":[
-        "pages/product/product",
+      "pages/category/category",
         "pages/home/home",
-        "pages/category/category",
+       
         "pages/my/my",
         "pages/cart/cart"
     ],
@@ -10,7 +10,7 @@
         "navigationBarBackgroundColor": "#479de6",
         "navigationBarTextStyle": "white",
         "navigationBarTitleText": "零食1号",
-        "backgroundColor": "#f8f8f8",
+        "backgroundColor": "#479de6",
         "backgroundTextStyle": "dark",
         "enablePullDownRefresh":true
     },

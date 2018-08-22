@@ -1,0 +1,59 @@
+.category-box{
+    display:flex;
+    height:100vh;
+    overflow:hidden;
+}
+
+.left-box{
+
+    border-right:1rpx solid #d8d8d8;
+}
+
+.menu-item{
+    height:50rpx;
+    padding:20rpx 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28rpx;
+    border:6rpx solid #fff;
+}
+
+.menu-item.selected{
+    color: #479de6;
+    border-left-color:#479de6;
+}
+
+.right-box {
+    flex:1;
+    transition: all 500ms ease-in-out;
+}
+
+.tanslate0{
+    transform:translate(0,0);
+}
+.tanslate1{
+    transform:translate(0,-100vh);
+}
+.tanslate2{
+    transform:translate(0,-200vh);
+}
+.tanslate3{
+    transform:translate(0,-300vh);
+}
+.tanslate4{
+    transform:translate(0,-400vh);
+}
+.tanslate5{
+    transform:translate(0,-500vh);
+}
+.tanslate6{
+    transform:translate(0,-600vh);
+}
+
+.tanslate7{
+    transform:translate(0,-700vh);
+}
+
+
+

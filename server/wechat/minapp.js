@@ -1,5 +1,5 @@
 import rp from 'request-promise'
-import config from '../config'
+import config from '../config/config'
 import crypto from 'crypto'
 
 export const openidAndSessionKey =async code=>{

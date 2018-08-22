@@ -86,11 +86,9 @@
     display:flex;
     height:60rpx;
     color:#AB956D;
-    background-color:#fff;
+    background-color:#f7f7f7;
     font-size:32rpx;
     align-content:center;
     justify-content:center;
     margin:20rpx 0;
 }
-
-

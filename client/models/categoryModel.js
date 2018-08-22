@@ -5,10 +5,11 @@ export default class Category extends Base {
         super();
     }
     
-    getCategoryType(callback){
+    getCategory(callback){
         var param ={
-            url:'/api/category/getCategories',
-            sCallback:function(){
+            url:'/api/v1/category',
+            sCallback:function(data){
+                data =data.data
                 callback && callback(data)
             }
         }
@@ -16,10 +17,12 @@ export default class Category extends Base {
         this.request(param)
     }
 
-    getProjectsCategory(id,callback){
+    getProjectsCategory(_id,callback){
         var params={
-            url:`/api/category/getCategories/${id} `, 
-            sCallback:function(){
+            url:`/api/v1/category/${_id} `, 
+            sCallback:function(data){
+                data =data.data
+                console.log('毁掉')
                 callback && callback(data)
             }
         }

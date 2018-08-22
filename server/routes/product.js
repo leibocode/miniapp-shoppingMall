@@ -8,14 +8,19 @@ import { getProduct,getProducts  } from '../service/product'
 
 @controller('/api/v1/product')
 export class ProductController{
+    //http://127.0.0.1:3001/api/v1/product?page=4&size=10
     @get('/')
-    async getProduct(ctx,next){
-        const { page,size,order } =ctx.query
+    async getProducts(ctx,next){
+        let { page,size,order } =ctx.query
+        page=parseInt(page)
+        size =parseInt(size)
+        order =parseInt(order)
         let params ={
             page,
             size,
             order
         }
+		
         const data =await getProducts(params)
         ctx.body ={
             success:true,
@@ -25,6 +30,7 @@ export class ProductController{
 
     @get('/:_id') 
     async getProduct(ctx,next){
+		console.log('111')
         const { _id } =ctx.params
         if(!_id){
             //容错     

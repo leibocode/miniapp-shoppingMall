@@ -1,4 +1,4 @@
-import config from '../config'
+import config from '../config/config'
 import mongoose from 'mongoose'
 import {
     openidAndSessionKey,

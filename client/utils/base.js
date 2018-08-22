@@ -1,8 +1,9 @@
-
+import config from './config.js'
 
 export default class Base {
     constructor () {
       this.baseRestUrl = 'http://127.0.0.1:3001'
+      //this.baseRestUrl ='https://minshopping.imtudou.cn'
     }
     request(params){
         var that =this
@@ -11,6 +12,7 @@ export default class Base {
         if(!params.method){
             params.method ='GET'
         }
+        
         wx.request({
             url:url,
             method:params.method,
@@ -22,14 +24,18 @@ export default class Base {
                 var code =res.statusCode.toString()
                 var startChar =code.charAt(0)
                 if(startChar=='2'){
-                    params.success && params.success(res.data)
+                    params.sCallback && params.sCallback(res.data)
                 }else {
-                    params.error && params.error(res)
+                    params.eCallback && params.eCallback(res)
                 }
             },
-            fail:function(){
+            fail:function(err){
                 params.fail && params.fail()
             }
         })
+    }
+
+    getDataSet(event,key){
+        return event.currentTarget.dataset[key]
     }
 }

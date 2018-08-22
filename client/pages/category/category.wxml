@@ -1,14 +1,17 @@
 <view class="container category-container">
   <view class="category-box">
     <view class="let-box">
-       <block wx:for="{{categoryTypeArr}}">
-          <view class="menu-item">
+       <block wx:for="{{categoryArr}}">
+          <view class="menu-item {{currentMenuIndex==index?'selected':''}}" 
+          data-index="{{index}}" data-title-name="{{item.name}}" bindtap="changeCategory">
              {{item.name}}
           </view>
        </block>
     </view>
     <view class="right-box">
-      
+       <view class="foods-type-box">
+         
+       </view>
     </view>
   </view>
 </view>
