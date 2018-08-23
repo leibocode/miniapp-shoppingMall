@@ -4,7 +4,7 @@ const Special  =mongoose.model('Special')
 
 
 export const getSpecials =async()=>{
-    const data =await Special.find({}).exec()
+    const data =await Special.find({}).skip(1).exec()
     return data
 }
 

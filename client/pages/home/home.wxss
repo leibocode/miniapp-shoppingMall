@@ -29,25 +29,53 @@
     font-size:32rpx;
     align-items:center;
     justify-content:center;
-    margin:20rpx 0;
 }
 
 .theme-box{
     display:flex;
     flex-wrap:wrap;
-    align-content:space-between;
+    background:#f6f6f6;
+    width:100%;
+    padding-left:20rpx;
+    flex-direction:row;
 }
 
 .theme-item {
-    display:flex;
     height:270rpx;
-    width:50%;
-    border-bottom:4rpx solid #fff;
+    width:100%;
+    border-radius:10px;
+    padding-top:10rpx;
+    background:#fff;
     position:relative;
+    padding-right:29rpx;
     box-sizing:border-box;
 }
 
 
+.theme-item .theme-img {
+    width:100%;
+    height:100%;
+}
+
+.theme-item .theme-text{
+    position: absolute; 
+    left:0rpx;
+    bottom:0rpx;
+    width:100%;
+    text-align:center;
+    height:40rpx;
+    color:#fff;
+    padding-bottom:20rpx;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-image: -webkit-linear-gradient(top, rgba(255,255, 255, 0) 0%, rgba(0,0, 0, 0.6) 100%);
+}
+
+.theme-box .theme-img image{
+    width:100%;
+    height:100%;
+    border-radius:10rpx;
+}
 
 .theme-box:first-child{
     border-right:4rpx solid #fff;

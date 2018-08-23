@@ -9,15 +9,16 @@
   </swiper>
   <view class="home-main">
     <view class="home-main-theme">
-    
       <view class="home-main-header">精选主题</view>
       <view class="theme-box">
         <block wx:for="{{themeArr}}">
-           <view wx:if="{{index==2}}" class="theme-item big">
-              <image src="{{item.poster}}"/>
-           </view>
-           <view wx:else class="theme-item">
-              <image src="{{item.poster}}"/>
+           <view class="theme-item">
+              <view class="theme-img">
+                 <image src="{{item.poster}}" mode="aspectFill"/>
+              </view>
+              <view class="theme-text">
+                {{item.title}}
+              </view>
            </view>
         </block>
       </view>

@@ -47,8 +47,11 @@ Page({
     },
 
     //跳转到商品详情
-    onProductItemTap:function(){
-
+    onProductItemTap:function(event){
+        var id =model.getDataSet(event,'id')
+        wx.navigateTo({
+            url:'../product/product?id='+id
+        })
     },
 
     //banner详情
