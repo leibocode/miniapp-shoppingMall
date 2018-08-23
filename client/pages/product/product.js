@@ -10,26 +10,72 @@ Page({
         productCounts:1,
         currentTabsIndex:0,
         cartTotalCounts:0,
-        properties:[{"name":"111"}],
+        properties:[
+            {"name":"产地","detail":"广西"}, 
+            {"name":"保质期","detail":"12个月"},
+            {"name":"口味","detail":"你懂的,那是相当的好哇"},
+            {"name":"描述","detail":"取材于天山之巅,味道好极了,亲,赶快下单吧"}
+        ],
         tabs:['商品详情','产品参数','售后保障'],
-        product:{"detailImgs" : [ "/upload/c4/0.940308001371787108_150x150.jpg" ], "title" : "狗牙儿 天津锅巴 130g", "img" : "http://www.enanji.com//FCKeditorUpload/xiaotuguoba.jpg", "price" : 5, "summary" : "天津市龙康食品有限责任公司，前身是天津市龙康食品厂，始建于1995年6月。2003年4月18日改制为股份制公司，2004年7月迁入新址-- 天津市独流莲花工业园，占地面积6万平方米，标准厂房22000平方米，更新、改造生产设备150台套，总投资8000万元，现有职工450人，是一家经营多年，有现代食品工业经营理念的食品企业，产品形成10大系列，40多种规格，行销全国36多个省市、地区，年销售额1.6亿 余元。地址： 天津市静海县独流镇莲花工业区 ", "rate" : 0, "categoryText" : "锅巴/虾条", "__v" : 0 }
+        product:null,
+        id:0,
+        images:null
     },
     onLoad:function(options){
         var id =options.id
+        this.data.id =id;
         this._loadData()
     },
     
     _loadData:function(callback){
         var that = this
+        product.getDetailInfo(this.data.id,(data)=>{
+             var detail =[]
+             data.detailImgs.forEach((item)=>{
+                console.log('11')
+                if(item.indexOf('http')==-1){
+                    console.log('优质')
+                    var  url = 'http://www.enanji.com' +item
+                    console.log(url)
+                    detail.push(url)
+                }
+            })
+            console.log(data)
+            that.setData({
+                product:data,
+                loading:true, 
+                images:detail
+            })
+        })
     },
     //选择购买数目
-    bindPickerChange:function(){
-        
+    bindPickerChange:function(e){
+        this.setData({
+            productCounts:this.data.countArray[e.detail.value]
+        })
     },
 
     onTabsItemTap:function(event){
-       // var index =product.getda
+       var index =product.getDataSet(event,'index')
+       this.setData({
+           currentTabsIndex:index
+       })
     },
+    //添加购物车 
+    onAddingToCartTap:function(){
+
+    },
+
+    preview:function(){
+        wx.previewImage({
+            urls:this.data.images
+        })
+    }, 
+
+    onPullDownRefresh:function(){
+
+    }, 
+    
     onShareAppMessage:function(){
         return{
             title:'零食1号',

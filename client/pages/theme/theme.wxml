@@ -1,0 +1,33 @@
+<view class="container theme-container">
+   <view class="theme-header">
+      <view class="theme-header-img"></view>
+      <view class="theme-header-content">
+        <view class="theme-header-title">
+          <view class="title-i">专题</view>
+          <view class="title-name">{{}}</view>
+        </view>
+        <view class="theme-header-info">
+        </view>
+      </view>
+   </view>
+   <view class="theme-main">
+      <view class="theme-items">
+         <block wx:for="{{}}">
+             <view class="theme-item">
+                <view class="theme-item-num">
+                  <view>
+                    
+                  </view>
+                </view>
+                <view class="theme-item-title"></view>
+                <view class="theme-item-info"></view>
+                <view class="theme-item-box">
+                   <view class="item-content">
+
+                   </view>
+                </view>
+             </view>
+         </block>
+      </view>
+   </view>
+</view>

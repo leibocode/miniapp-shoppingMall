@@ -183,16 +183,19 @@
     border-bottom: 2px solid #479de6;
 }
 .product-detail-box{
-    padding-bottom: 20rpx; 
+    
+}
+.product-detail-imgs {
+    display:flex;
+    flex-direction:row;
 }
 .product-detail-imgs image{
     width: 100%;
-    height:400rpx;
     float: left;
 }
 
-.product-detail-properties,.product-detail-protect{
-    min-height: 80vh;
+.product-detail-properties,.product-detail-product{
+    min-height: 60vh;
 }
   
 .properties-item{

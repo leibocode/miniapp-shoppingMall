@@ -11,6 +11,11 @@ const ProductSchema =new Schema({
     detailImgs:[String],
     summary:String,
     categoryText:String,
+    //1 最近新品
+    state:{
+        type:Number,
+        default:0
+    },
     category:{
         type:ObjectId,
         ref:'ChildCateGory'

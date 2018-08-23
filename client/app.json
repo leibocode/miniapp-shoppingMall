@@ -1,10 +1,16 @@
 {
     "pages":[
         "pages/home/home",
+        "pages/theme/theme",
         "pages/product/product",
         "pages/category/category",
         "pages/my/my",
-        "pages/cart/cart"
+        "pages/cart/cart",
+        "pages/order/order",
+        "pages/orderDetail/orderDetail",
+        "pages/search/search",
+        "pages/list/list",
+        "pages/address/address"
     ],
     "window":{
         "navigationBarBackgroundColor": "#479de6",

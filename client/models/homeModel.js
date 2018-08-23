@@ -40,4 +40,6 @@ export default class Home extends Base {
       this.request(params)
       
     }
+
+    
 }

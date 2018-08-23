@@ -30,8 +30,10 @@ export class ProductController{
 
     @get('/:_id') 
     async getProduct(ctx,next){
-		console.log('111')
+        console.log('111')
+       
         const { _id } =ctx.params
+        console.log(_id)
         if(!_id){
             //容错     
         }

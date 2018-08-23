@@ -1,10 +1,10 @@
-<view class="container detail-container">
+<view class="container detail-container" hidden="{{!loading}}">
    <view class="detail-header-box">
       <view class="fixed-btns-box" bindtap="onCartTap">
         <view class="fixed-cart-box">
            <view class="fiexd-cart">
               <image src="../../images/cart@top.png"></image>
-              <view>0</view>
+              <view wx:if="{{cartTotalCounts>0}}">{{cartTotalCounts}}</view>
            </view>
         </view>
       </view>
@@ -19,7 +19,7 @@
             <view>
                <view>
                   <text class="counts-tips">数量</text>
-                  <text class="counts-data">{{}}</text>
+                  <text class="counts-data">{{productCounts}}</text>
                   <image class="counts-icon" src="../../images/arrow@down.png"></image>
                </view>
             </view>
@@ -36,7 +36,7 @@
       <view class="basic-info-box">
          <view class="stock" wx:if="{{product.stock>0}}">库存:{{product.stock}}</view>
          <view class="stock no" wx:else>缺货</view>
-         <view class="name">{{product.name}}</view>
+         <view class="name">{{product.title}}</view>
          <view class="price">￥{{product.price}}</view>
       </view>
    </view>
@@ -49,8 +49,8 @@
      </view>
      <view class="product-detail-box">
         <view class="product-detail-imgs" hidden="{{currentTabsIndex!=0}}">
-          <block wx:for="{{product.detailImgs}}">
-             <image src="{{item}}" mode="aspectFill"/>
+          <block wx:for="{{images}}">
+             <image src="{{item}}" mode="widthFix" bindtap="preview"/>
           </block>
         </view>
         <view class="product-detail-properties" hidden="{{currentTabsIndex !=1}}">
@@ -67,4 +67,4 @@
      </view>
    </view>
 </view>
-<!-- <loading hidden="{{loading}}">加载中...</loading> -->
+<loading hidden="{{loading}}"></loading>

@@ -2,7 +2,7 @@
 <view class="container home-container" hidden="{{!loading}}">
   <swiper indicator-dots="true" autoplay="true" class="swiper">
     <block wx:for="{{bannerArr}}">
-      <swiper-item class="banner-item">
+      <swiper-item class="banner-item" data-id="{{item._id}}" bindtap="onBannerItemTap">
           <image class="item-image" src="{{item.img}}" mode="aspectFill"/>
       </swiper-item>
     </block>
@@ -12,7 +12,7 @@
       <view class="home-main-header">精选主题</view>
       <view class="theme-box">
         <block wx:for="{{themeArr}}">
-           <view class="theme-item">
+           <view class="theme-item" data-id="{{item._id}}" bindtap="onThemeItemTap">
               <view class="theme-img">
                  <image src="{{item.poster}}" mode="aspectFill"/>
               </view>
@@ -29,6 +29,15 @@
    </view>
 </view>
 </view>
-
+<view class="loadmore" hidden="{{isHideLoadMore}}">
+  <view class="loading"></view>
+  <view class="loadmore__tips">正在加载..</view>
+</view>
+<view class="footer" hidden="{{isShowFooter}}">
+   <view class="footer-text">
+      <text>哇,我的底线被你知道啦！</text>
+   </view>
+</view>
 <loading hidden="{{loading}}"></loading>
+
 
