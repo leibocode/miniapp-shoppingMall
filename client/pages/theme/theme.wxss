@@ -11,36 +11,122 @@
 }
 
 .theme-header-title{
-    margin:20rpx 0rpx;
+    margin:10rpx 0rpx;
     display:flex;
     height:60rpx;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    font-size:32rpx;
+    flex-direction:row;
 }
 
 .theme-header-title .title-i{
     border: 1rpx solid #ea2929;
     color: #ea2929;
     border-radius: 5px;
-    height:30rpx;
-    width:40rpx;
+    height:50rpx;
+    width:80rpx;
+    font-size:24rpx;
+    text-align:center;
+    line-height:50rpx;
+    margin-right:18rpx;
 }
-
-.theme-header-title .title-name{
-    
+.title-name{
+    font-size:38rpx;
+    margin-right:20rpx;
 }
 .theme-header-content .theme-header-info{
     color:#686868;
+    font-size:24rpx;
+    line-height:45rpx;
 }
+
+.theme-header-content{
+    padding: 0rpx 15rpx;
+}
+
 
 .theme-main{
     margin-top:40rpx;
-    padding:21rpx 0 16rpx;
+    padding: 0rpx 15rpx;
 }
-.theme-item .theme-item-num{
-    height:10rpx;
-    border-bottom:1rpx solid #3abe58;
+.theme-item .theme-item-num,.theme-footer{
+    height:20rpx;
+    margin-bottom:29px;
+    border-bottom:1rpx solid #479de6;
+    margin:30rpx 30rpx;
+}
+.theme-item .theme-item-num .topic{
+    display:block;
+    margin:0 auto;
+    width:48rpx;
+    padding:0 26rpx;
+    background:#fff;
+}
+
+.theme-item .theme-item-num .topic .num{
+    display:block;
+    width:48rpx;
+    height:48rpx;
+    border-radius:50%;
+    text-align: center;
+    background-color: #479de6;
+    color:#fff;
 
 }
+
+.theme-footer .topic{
+    display:block;
+    margin:0 auto;
+    width:180rpx;
+    padding:0 26rpx;
+    background:#fff;
+}
+.theme-footer .topic .theme-item-text{
+    font-size:26rpx;
+}
+
+.theme-item-title{
+    font-size:38rpx;
+    text-align:center;
+    margin:40rpx 40rpx;
+    display:block;
+}
+
+.theme-item-box{
+    border:1px solid #d9d9d9;
+    min-height:475rpx;
+    margin-top:20rpx;
+    border-radius:5rpx;
+    width:100%;
+}
+
+
+
+.item-content{
+    width:100%;
+    height:100%;
+}
+.theme-item-box .item-text{
+    height:60rpx;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+}
+
+.theme-item-box .item-text view {
+    flex:1;
+    text-align:center;
+    font-size:24rpx;
+}
+
+.theme-item-box image{
+    width:100%;
+    height:475rpx;
+}
+.theme-footer .theme-item-text{
+    text-align: center;
+}
+
+
+
+
+

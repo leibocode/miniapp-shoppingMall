@@ -9,12 +9,12 @@
         </view>
       </view>
       <view class="detail-topic-img">
-        <image src="{{product.img}}" mode="aspectFit"></image>
+        <image src="{{product.img}}" bindtap="preview" mode="aspectFit"></image>
       </view>
       <view class="cart-box">
         <view class="product-counts">
           <picker class="{{product.stock>0?'disabled':''}}"
-          bindChange="bindPickerChange" value="{{index}}"
+          bindchange="bindPickerChange" value="{{index}}"
           range="{{countArray}}">
             <view>
                <view>
@@ -29,8 +29,8 @@
         <view class="add-cart-btn" bindtap="onAddingToCartTap">
            <text>加入购物车</text>
            <image class="cart-icon" src="../../images/cart.png"></image>
-                <!-- <image id="small-top-img" class="small-top-img {{isFly?'animate':''}}"
-                       src="{{product.main_img_url}}" mode="aspectFill" style="{{translateStyle}}"></image> -->
+           <image id="small-top-img" class="small-top-img {{isFly?'animate':''}}"
+           src="{{product.img}}" model="aspectFit" style="{{translateStyle}}"></image>
         </view>
       </view>
       <view class="basic-info-box">

@@ -1,6 +1,8 @@
 import Product from '../../models/productModel.js'
+import Cart from '../../models/cartModel.js'  
 
 let product =new Product()
+let cart =new Cart()
 
 Page({
     data:{
@@ -11,7 +13,7 @@ Page({
         currentTabsIndex:0,
         cartTotalCounts:0,
         properties:[
-            {"name":"产地","detail":"广西"}, 
+            {"name":"产地","detail":"天山"}, 
             {"name":"保质期","detail":"12个月"},
             {"name":"口味","detail":"你懂的,那是相当的好哇"},
             {"name":"描述","detail":"取材于天山之巅,味道好极了,亲,赶快下单吧"}
@@ -46,35 +48,94 @@ Page({
                 loading:true, 
                 images:detail
             })
+            callback && callback()
         })
     },
     //选择购买数目
     bindPickerChange:function(e){
+        console.log(e)
         this.setData({
             productCounts:this.data.countArray[e.detail.value]
         })
     },
 
+    //切换面板
     onTabsItemTap:function(event){
        var index =product.getDataSet(event,'index')
        this.setData({
            currentTabsIndex:index
        })
     },
-    //添加购物车 
-    onAddingToCartTap:function(){
 
+    //添加到购物车
+    onAddingToCartTap:function(event){
+        if(this.data.isFly){
+            return;
+        }
+        this._flyToCartEffect(event)
+        this.addCart()
+    },
+
+    //购物车
+    addCart:function(){
+        let tempObj ={}
+        let keys =['_id','title','img','price']
+        for(let key in this.data.product){
+            tempObj[key] =this.data.product[key]
+        }
+
+        cart.add(tempObj,this.data.productCounts)
+    },
+
+    //动画
+    _flyToCartEffect:function(event){
+        let touches =event.touches[0]
+        let diff ={
+            x:'25px',
+            y:25-touches.clientY +'px'
+        }
+        let style='display: block;-webkit-transform:translate('+diff.x+','+diff.y+') rotate(350deg) scale(0)';  //移动距离
+        this.setData({
+            isFly:true,
+            translateStyle:style
+        })
+        let that =this
+        setTimeout(() => {
+            that.setData({
+                isFly:false,
+                translateStyle:'-webkit-transform: none;',  //恢复到最初状态
+                isShake:true
+            })
+            setTimeout(()=>{
+                let counts =that.data.cartTotalCounts +that.data.productCounts
+                that.setData({
+                    isShake:false,
+                    cartTotalCounts:counts
+                })
+            },200)
+        },1000);
     },
 
     preview:function(){
+        let imgs =[]
+        imgs.push(this.data.product.img)
         wx.previewImage({
-            urls:this.data.images
+            urls:imgs
         })
     }, 
 
     onPullDownRefresh:function(){
-
-    }, 
+        this._loadData(()=>{
+            wx.stopPullDownRefresh()
+        });
+    },
+    
+    //跳转到购物车
+    onCartTap:function(){
+        wx.switchTab({
+            url:'/pages/cart/cart'
+        })
+    },
     
     onShareAppMessage:function(){
         return{

@@ -1,0 +1,7 @@
+<view class="container cart-container">
+   <block wx:if="{{cartData.length>0}}">
+      <view class="cart-box"></view>
+   </block>
+   
+</view>
+<loading hidden="{{loading}}"></loading>

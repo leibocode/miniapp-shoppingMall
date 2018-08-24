@@ -1,3 +1,4 @@
 {
-    "navigationBarTitleText": "零食1号"
+    "navigationBarTitleText": "购物车",
+    "enablePullDownRefresh":false
 }

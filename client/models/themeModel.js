@@ -8,7 +8,8 @@ export default class Theme extends Base {
     getThemeDataById(id,callback){
         var param ={
             url:`/api/v1/special/${id}`,
-            sCallback:function(){
+            sCallback:function(data){
+                data =data.data
                 callback && callback(data)
             }
         }

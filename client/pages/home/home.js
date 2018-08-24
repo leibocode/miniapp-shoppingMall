@@ -82,6 +82,9 @@ Page({
     onThemeItemTap(event){
         var id =model.getDataSet(event,'id')
         console.log(id);
+        wx.navigateTo({
+            url:'../theme/theme?id='+id
+        })
     },
 
     //下拉刷新
