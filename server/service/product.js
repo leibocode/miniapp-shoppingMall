@@ -24,5 +24,11 @@ export const getProduct =async(_id)=>{
     return data
 }
 
+export const getSearch = async(params)=>{
+    const count = params.size * (params.page-1)
+    const data =await product.find({
+        
+    })
+}
 
 

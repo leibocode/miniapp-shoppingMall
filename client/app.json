@@ -1,5 +1,7 @@
 {
     "pages":[
+       "pages/search/search",
+        "pages/order-list/order-list",
         "pages/home/home",
         "pages/theme/theme",
         "pages/product/product",
@@ -8,9 +10,8 @@
         "pages/cart/cart",
         "pages/order/order",
         "pages/orderDetail/orderDetail",
-        "pages/search/search",
-        "pages/list/list",
-        "pages/address/address"
+     
+        "pages/list/list"
     ],
     "window":{
         "navigationBarBackgroundColor": "#479de6",
@@ -32,6 +33,11 @@
           "selectedIconPath": "images/iconfont-home-active.png",
           "text": "主页"
         }, {
+          "pagePath":"pages/search/search",
+          "iconPath":"images/search.png",
+          "selectedIconPath":"images/search-selected.png",
+          "text":"发现"
+        },{
           "pagePath": "pages/category/category",
           "iconPath": "images/iconfont-list.png",
           "selectedIconPath": "images/iconfont-list-active.png",

@@ -1,3 +1,4 @@
+<import src="../../template/category/category.wxml"/>
 <view class="container category-container">
   <view class="category-box">
     <view class="let-box">
@@ -8,10 +9,32 @@
           </view>
        </block>
     </view>
-    <view class="right-box">
+    <view class="right-box {{transClassArr[currentMenuIndex]}}">
        <view class="foods-type-box">
-         
+          <template is="categorydetail" data="{{categoryInfo:categoryInfo0}}"></template>
+       </view>
+        <view class="foods-type-box">
+          <template is="categorydetail" data="{{categoryInfo:categoryInfo1}}"></template>
+       </view>
+        <view class="foods-type-box">
+          <template is="categorydetail" data="{{categoryInfo:categoryInfo2}}"></template>
+       </view>
+        <view class="foods-type-box">
+          <template is="categorydetail" data="{{categoryInfo:categoryInfo3}}"></template>
+       </view>
+        <view class="foods-type-box">
+          <template is="categorydetail" data="{{categoryInfo:categoryInfo4}}"></template>
+       </view>
+        <view class="foods-type-box">
+          <template is="categorydetail" data="{{categoryInfo:categoryInfo5}}"></template>
+       </view>
+        <view class="foods-type-box">
+          <template is="categorydetail" data="{{categoryInfo:categoryInfo6}}"></template>
+       </view>
+        <view class="foods-type-box">
+          <template is="categorydetail" data="{{categoryInfo:categoryInfo7}}"></template>
        </view>
     </view>
   </view>
 </view>
+<loading hidden="{{loading}}"></loading>

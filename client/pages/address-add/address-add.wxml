@@ -1,0 +1,11 @@
+<view class="container add-address-container">
+    <form bindsubmit="">
+        <view class="form-box">
+
+        </view>
+        <button type="warn" class="save-btn" formType="submit">保存</button>
+        <button class="primary" wx:if="{{!addressData}}" class="save-btn"
+        bindtap="readFromWx">从微信读取</button>
+        
+    </form>
+</view>

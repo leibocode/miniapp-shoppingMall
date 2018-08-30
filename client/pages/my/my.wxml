@@ -1,18 +1,83 @@
-<view class="container my-container">
-  <view class="my-header">
-     <image src ="{{userinfo.avatarUrl}}"/>
-     <text class="name">{{userinfo.nickName}}</text>
+<view class="container">
+  <view class='userbox' style='background: -webkit-linear-gradient(top, rgba({{bgRed}},{{bgGreen}},{{bgBlue}}, 1), rgba({{bgRed}},{{bgGreen}},{{bgBlue}}, 0.3))'>
+    <view wx:if="{{userInfo}}" class="userinfo">
+      <wxc-avatar class="userinfo-avatar" src="{{ userInfo.avatarUrl }}"> </wxc-avatar>
+      <view style='width:30rpx;'></view>
+      <view class='userinfo-text'>
+        <text class="userinfo-nickname">{{ userInfo.nickName }}</text>
+        <view style='height:10rpx;'></view>
+      </view>
+    </view>
+    <view wx:else class="userinfo">
+      <!-- <wxc-avatar class="userinfo-avatar-no" mold="square" src="https://cdn.it120.cc/apifactory/2018/06/10/527a0d6e3b3f1ffc32748193d743da26.jpg" bindtap="relogin"> </wxc-avatar> -->
+      <view class='userinfo-text'>
+        <text class="userinfo-nickname"> 欢迎您 ，👆 点我登陆 </text>
+        <view style='height:10rpx;'></view>
+      </view>
+    </view>
+    <view class='userInfoMask'></view>
+    <wxc-button class='my-sign' wx:if="{{score_sign_continuous == 0}}" size="small" type="beauty" value="每日签到" bindclick="scoresign"></wxc-button>
+    <wxc-button class='my-sign' wx:if="{{score_sign_continuous > 0}}" size="small" type="secondary" value="已连续签到 {{score_sign_continuous}} 天" bindclick="scoresign"></wxc-button>
   </view>
-  <!--地址管理-->
-  <view class="info_list">
-     <view class="list-cells">
-        <block>
-           <view class="cell-left">
-              <image src="" />
-              <text class=""></text>
-           </view>
-           <view class="cell-right"></view>
-        </block>
-     </view>
+  <view class="user-menu">
+    <view class="item">
+      <navigator url="/pages/ucenter/order-list/index" hover-class="none" class="a">
+        <wxc-icon type='feedback' size='{{iconSize}}' color='{{iconColor}}' style='margin:15rpx 0 10rpx 0;'></wxc-icon>
+        <text class="txt">订单管理</text>
+      </navigator>
+    </view>
+    <view class="item">
+      <navigator url="/pages/select-address/index" hover-class="none" class="a">
+        <wxc-icon type='address' size='{{iconSize}}' color='{{iconColor}}' style='margin:15rpx 0 10rpx 0;'></wxc-icon>
+        <text class="txt">收货地址</text>
+      </navigator>
+    </view>
+    <view class="item no-border-right">
+      <navigator url="/pages/ucenter/location/location" hover-class="none" class="a">
+        <wxc-icon type='location' size='{{iconSize}}' color='{{iconColor}}' style='margin:15rpx 0 10rpx 0;'></wxc-icon>
+        <text class="txt">到店里</text>
+      </navigator>
+    </view>
+    <view class="item">
+      <navigator url="/pages/ucenter/mycoupons/index" hover-class="none" class="a">
+        <wxc-icon type='coupon' size='{{iconSize}}' color='{{iconColor}}' style='margin:15rpx 0 10rpx 0;'></wxc-icon>
+        <text class="txt">优惠券</text>
+      </navigator>
+    </view>
+    <view class="item">
+      <navigator url="" hover-class="none" class="a">
+        <wxc-icon type='rate' size='{{iconSize}}' color='lightgray' style='margin:15rpx 0 10rpx 0;'></wxc-icon>
+        <text class="txt" style='color:lightgray;text-decoration: line-through;'>积分兑换</text>
+      </navigator>
+    </view>
+    <view class="item no-border-right">
+      <navigator url="/pages/target/index" hover-class="none" class="a">
+        <wxc-icon type='footprint' size='{{iconSize}}' color='lightgray' style='margin:15rpx 0 10rpx 0;'></wxc-icon>
+        <text class="txt" style='color:lightgray;text-decoration: line-through;'>足迹</text>
+      </navigator>
+    </view>
+    <view class="item item-bottom" bindtap='makePhoneCall'>
+      <navigator url="" hover-class="none" class="a">
+        <wxc-icon type='group' size='{{iconSize}}' color='{{iconColor}}' style='margin:15rpx 0 10rpx 0;'></wxc-icon>
+        <text class="txt">联系客服</text>
+      </navigator>
+    </view>
+    <view class="item item-bottom" bindtap="aboutUs">
+      <navigator url="url" hover-class="none" class="a">
+        <wxc-icon type='help' size='{{iconSize}}' color='{{iconColor}}' style='margin:15rpx 0 10rpx 0;'></wxc-icon>
+        <text class="txt">关于我</text>
+      </navigator>
+    </view>
+    <view class="item no-border-bottom">
+      <navigator url="/pages/ucenter/feedback/feedback" hover-class="none" class="a">
+        <wxc-icon type='comment' size='{{iconSize}}' color='{{iconColor}}' style='margin:15rpx 0 10rpx 0;'></wxc-icon>
+        <text class="txt">意见反馈</text>
+      </navigator>
+    </view>
   </view>
+  <view style="height:20rpx;width:100%;"></view>
+  <view class="my-item" style='border:none;padding:0rpx;margin:0rpx;background:none;border:none;height:auto;line-height:auto;'>
+    <wxc-button type="danger" value="重新授权登录" bindclick="relogin"></wxc-button>
+  </view>
+
 </view>

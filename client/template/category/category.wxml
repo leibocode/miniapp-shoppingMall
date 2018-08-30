@@ -1,0 +1,13 @@
+
+<template name="categorydetail">
+  <view class="category-detail-box" hidden="{{!categoryInfo}}">
+    <view class="category-main">
+      <block wx:for="{{categoryInfo.cate}}">
+        <view class="category-goods-items" data-id="{{item._id}}" bindtap="onProductsItemTap">
+          <image src="http://www.hehe168.com/public/upload/images/201505/01/554328ef45dcc.jpg"></image>
+          <view>{{item.name}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+</template>

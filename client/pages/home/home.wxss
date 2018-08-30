@@ -1,4 +1,30 @@
 @import "../../template/products/products-tpl.wxss";
+.search-box{
+    display:flex;
+    height:80rpx;
+    background:#fff;
+    position:fixed;
+    left:0;
+    top:0;
+    width:100%;
+    padding:10rpx 20rpx;
+    box-sizing:border-box;
+    z-index:1;
+}
+.search-box .search {
+    flex:1;
+    color:#fff;
+    font-size:30rpx;
+    line-height:50rpx;
+    border-radius:30rpx;
+    background:#d4d4d4;
+}
+.search-box .search .img {
+
+}
+.search-input {
+
+}
 .swiper{
     height:400rpx;
     width:100%;

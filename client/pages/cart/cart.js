@@ -28,8 +28,16 @@ Page({
     },
     //更新购物车商品数据
     _resetCartData:function(){
-        
+        let newData =this._calcTotalAccountAndCounts(this.data.cartData)
+        console.log(newData)
+        this.setData({
+            account: newData.account,
+            selectedCounts:newData.selectedCounts,
+            selectedTypeCounts:newData.selectedTypeCounts,
+            cartData:this.data.cartData
+        })
     },
+
     //计算总金额和选择的商品总数
     _calcTotalAccountAndCounts:function(data){
         let len = data.length,
@@ -53,7 +61,7 @@ Page({
     },
 
     //调整商品数目
-    changeCoounts:function(event){
+    changeCounts :function(event){
         let id =cart.getDataSet(event,'id')
         let type =cart.getDataSet(event,'type')
         let index = this._getProductIndexById(id),
@@ -69,24 +77,55 @@ Page({
         this._resetCartData()
     },
 
-    _getProductIndexById:function(){
-
+    //获取商品坐所咋的下标
+    _getProductIndexById:function(id){
+        let data = this.data.cartData
+        let len = data.length
+        for(let i =0;i<len;i++){
+           if(data[i].id===id){
+               return i
+           }
+        }
     },
 
-    delete:function(){
-
+    //删除商品
+    delete:function(event){
+        let id =cart.getDataSet(event,'id'), 
+            index =this._getProductIndexById(id)
+        this.data.cartData.splice(index,i)
+        this._resetCartData();
     },
 
-    toggleSelect:function(){
-
+    //选择商品 
+    toggleSelect:function(event){
+        let id =cart.getDataSet(event,'id'),
+            status =cart.getDataSet(event,'status'),
+            index =this._getProductIndexById(id);
+        this.data.cartData[index].selectStatus !=status;
+        console.log()
+        this._resetCartData();
     },
 
     //全选
-    toggleSelectAll:function(){
+    toggleSelectAll:function(event){
+        let status =cart.getDataSet(event,'status')==='true'
+        let data=this.data.cartData,
+            len=data.length;
+        for(let i=0;i<len;i++) {
+            data[i].selectStatus=!status;
+        }
+        this._resetCartData();
+    },
+
+    //提交订单
+    submitOrder:function(){
 
     },
 
-    submitOrder:function(){
-
+    onProductSItemTap:function(event){
+        let id  =cart.getDataSet(event,'id')
+        wx.navigateTo({
+            url:"../product/product?id="+id
+        })
     }
 })

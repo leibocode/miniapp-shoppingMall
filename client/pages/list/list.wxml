@@ -1,0 +1,21 @@
+<view class="container list-container">
+  <view class="order-box">
+    <view class="order_sort_u clearfix">
+      <view class="tabslist">
+         
+      </view>
+      <view class="tabslist">
+         
+      </view>
+      <view class="tabslist">
+         
+      </view>
+      <view class="tabslist">
+         
+      </view>
+    </view>
+  </view>
+  <view class="list-mian">
+    
+  </view>
+</view>

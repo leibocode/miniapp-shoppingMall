@@ -16,25 +16,45 @@ Page({
         category.getCategory((data)=>{
             that.setData({
                 categoryArr:data,
-                loading:true
+                loading:true,
+                categoryInfo0:{
+                    cate:data[0].children
+                }
             })
         })
     },
     //
     changeCategory:function(event){
         var index =category.getDataSet(event,'index')
+        this.data.categoryInfo0 =[]
         this.setData({
-            currentMenuIndex:index 
+            currentMenuIndex:index,
+            categoryInfo0:{
+                cate:this.data.categoryArr[index].children
+            }
+           
         })
+        
     },
 
-    //商品详情
+    //列表页面
     onProductItem:function(){
 
     },
 
+    isLoadedData:function(){
+        if(this.data['categoryInfo'+index]){
+            return true
+        }else {
+            return false
+        }
+    },
+
     //下拉刷新
     onPullDownRefresh:function(){
+        this._loadData(()=>{
+            wx.stopPullDownRefresh()
+        })
 
     },
     onShareAppMessage:function(){
