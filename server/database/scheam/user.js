@@ -4,9 +4,11 @@ const Mixed =Schema.Types.Mixed
 const ObjectId =Schema.Types.ObjectId
 
 const UserSchema =new Schema({
-    openid:[String],
+    openid:String,
+    unionid:String,
     avatarUrl:String,
     name:String,
+    phoneNumber:Number,
     address:[{
         type:ObjectId,
         ref:'Address'
@@ -14,6 +16,10 @@ const UserSchema =new Schema({
     comments:[{
         type:ObjectId,
         ref:'Comment'
+    }],
+    payments:[{
+        type:ObjectId,
+        ref:'Payment'
     }]
 })
 

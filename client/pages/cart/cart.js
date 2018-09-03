@@ -65,7 +65,10 @@ Page({
         let id =cart.getDataSet(event,'id')
         let type =cart.getDataSet(event,'type')
         let index = this._getProductIndexById(id),
-        counts=1
+            counts=1;
+        console.log(id)
+
+        
         if(type=='add'){
             cart.addCounts(id)
         }else{
@@ -91,8 +94,11 @@ Page({
     //删除商品
     delete:function(event){
         let id =cart.getDataSet(event,'id'), 
-            index =this._getProductIndexById(id)
-        this.data.cartData.splice(index,i)
+            index =this._getProductIndexById(id);
+        console.log(id)
+        console.log(index)
+        this.data.cartData.splice(index,1)
+
         this._resetCartData();
     },
 
@@ -119,13 +125,21 @@ Page({
 
     //提交订单
     submitOrder:function(){
-
+        wx.navigateTo({
+            url:'../order/order'
+        })
     },
 
     onProductSItemTap:function(event){
         let id  =cart.getDataSet(event,'id')
         wx.navigateTo({
             url:"../product/product?id="+id
+        })
+    },
+
+    toListPage:function(){
+        wx.navigateTo({
+            url:'../list/list'
         })
     }
 })

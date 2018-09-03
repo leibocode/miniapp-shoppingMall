@@ -3,12 +3,12 @@
         <view class="cart-box">
             <block wx:for="{{cartData}}">
                 <view class="cart-item {{deleteFlag&&index==currentIndex?'showDeleteBtn':'hideDeleteBtn'}}">
-                    <view class="cart-item-main" data-id="{{item.id}}" data-index="{{index}}">
+                    <view class="cart-item-main" data-id="{{item._id}}" data-index="{{index}}">
                         <view   class="cart-item-checkbox" ontap="toggleSelect" data-id="{{item.id}}" data-status="{{item.selectStatus}}">
                             <image wx:if="{{item.selectStatus}}" src="../../images/circle@selected.png"></image>
                             <image wx:else src="../../images/circle@noselected.png"></image>
                         </view>
-                        <view class="cart-item-img" bindtap="onProductsItemTap" data-id="{{item.id}}">
+                        <view class="cart-item-img" bindtap="onProductsItemTap" data-id="{{item._id}}">
                             <image class="good-image" src="{{item.img}}"></image>
                         </view>
                         <view class="cart-item-word">
@@ -18,11 +18,11 @@
                             </view>
                             <view class="bottom-box">
                                 <view class="cart-item-counts">
-                                    <view class="btns {{item.counts==1?'disabled':''}}" bindtap="changeCounts" data-id="{{item.id}}" data-type="cut">-</view>
-                                    <view class="counts">{{item.counts}}</view>
-                                    <view class="btns" bindtap="changeCounts" data-id="{{item.id}}" data-type="add">+</view>
+                                    <view class="btns {{item.counts==1?'disabled':''}}" bindtap="changeCounts" data-id="{{item._id}}" data-type="cut">-</view>
+                                    <input type="number" value="{{item.counts}}" disabled/>
+                                    <view class="btns-add" bindtap="changeCounts" data-id="{{item._id}}" data-type="add">+</view>
                                 </view>
-                                <view class="delete" data-id="{{item.id}}" bindtap="delete">×</view>
+                                <view class="delete-btn" data-id="{{item._id}}" bindtap="delete">删除</view>
                             </view>
                         </view>
                     </view>
@@ -32,8 +32,8 @@
         <view class="footer-account-box all-accounts-box">
             <view class="all-select" ontap="toggleSelectAll" data-status="{{selectedTypeCounts==cartData.length?'true':'false'}}">
                 <image wx:if="{{selectedTypeCounts==cartData.length}}"
-                       class="title-icon" src="../../images/all@selected.png"></image>
-                <image wx:else class="title-icon" src="../../images/all.png"></image>
+                       class="title-icon" src="../../images/circle@selected.png"></image>
+                <image wx:else class="title-icon" src="../../images/all@selected.png"></image>
                 <text>全选({{selectedCounts}})</text>
             </view>
             <view class="all-price-submit {{account==0?'disabled':''}}" bindtap="submitOrder">
@@ -47,7 +47,13 @@
         </view>
     </block>
     <view  wx:else class="no-data">
-        您还没有添加任何商品
+        <view class="title-box">
+            <text>购物车空空如也~</text>
+            <image src="https://cdn.it120.cc/images/weappshop/icon-cart.png"/>
+        </view>
+        <view class="to-index-btn" bindtap="toListPage">
+            去逛逛
+        </view>
     </view>
     <loading hidden="{{loading}}">
         加载中...

@@ -30,6 +30,7 @@
 
 .name{
     font-size:28rpx;
+    height:70rpx;
 }
 
 .price{

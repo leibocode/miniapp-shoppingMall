@@ -29,10 +29,5 @@ export default class address extends Base {
         }
         this.request(params)
     }
-
-    deleteaddress(id,callback){
-        var params ={
-            
-        }
-    }
+    
 }

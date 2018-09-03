@@ -30,7 +30,7 @@
 }
 .title-name{
     font-size:38rpx;
-    margin-right:20rpx;
+    margin-right:0;
 }
 .theme-header-content .theme-header-info{
     color:#686868;

@@ -69,20 +69,44 @@
 }
 
 .cart-item-counts{
-    width:220rpx;
+    width: 164rpx;
+    height: 48rpx;
+    line-height: 48rpx;
     display: flex;
-    justify-content: space-between;
-    text-align: center;
+    /*justify-content: space-between;*/
+    font-size: 24rpx;
+    text-align: center
 }
 .cart-item-counts>view{
     display: flex;
     justify-content: center;
     align-items: center;
 }
+.cart-item-counts input{
+    width: 68rpx;
+    height: 48rpx;
+    min-height: 48rpx;
+    text-align: center;
+    font-size: 24rpx;
+    border: 1rpx solid #ccc;
+}
 .cart-item-counts .btns{
-    color: #454553;
-    font-size: 50rpx;
-    padding: 0 10rpx;
+    width: 48rpx;
+    height: 100%;
+    border-left: 1rpx solid #ccc;
+    border-bottom: 1rpx solid #ccc;
+    border-top: 1rpx solid #ccc;
+    border-bottom-left-radius: 6rpx;
+    border-top-left-radius: 6rpx;
+}
+.cart-item-counts .btns-add{
+    width: 48rpx;
+    height: 100%;
+    border-right: 1rpx solid #ccc;
+    border-bottom: 1rpx solid #ccc;
+    border-top: 1rpx solid #ccc;
+    border-bottom-right-radius: 6rpx;
+    border-top-right-radius: 6rpx;
 }
 .cart-item-counts .btns.disabled{
     color: #D5D5DB;
@@ -93,9 +117,15 @@
     padding-top:12rpx;
     box-sizing: border-box;
 }
-.delete{
-    font-size: 40rpx;
+.delete-btn{
+    font-size:26rpx;
     padding:0 10rpx;
+    width: 120rpx;
+    height:50rpx;
+    line-height:50rpx;
+    text-align: center;
+    background:#e64340;
+    color: #fff;
 }
 
 
@@ -148,5 +178,41 @@
 .arrow-icon image{
     height: 32rpx;
     width: 32rpx;
+}
+
+.no-data {
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    height:100%;
+    justify-content:center;
+    align-items:center;
+}
+
+/* .title-box{
+    width: 100%;
+    padding-top: 330rpx;
+    text-align: center;
+    font-size:28rpx;
+
+    color:#999;
+    background: url(https://cdn.it120.cc/images/weappshop/icon-cart.png) no-repeat center 205rpx;
+    background-size: 100rpx auto;
+    margin-bottom: 50rpx;
+} */
+.to-index-btn{
+    color:#fff;
+    background:#e64340;
+    border-radius:6px;
+    width:300rpx;
+    height:70rpx;
+    line-height: 70rpx;
+    text-align: center;
+    font-size:28rpx;
+}
+.text{
+    text-align:center;
+    display:block;
+    width:100%; 
 }
 

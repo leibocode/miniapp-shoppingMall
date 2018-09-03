@@ -1,7 +1,5 @@
 {
     "pages":[
-       "pages/search/search",
-        "pages/order-list/order-list",
         "pages/home/home",
         "pages/theme/theme",
         "pages/product/product",
@@ -10,8 +8,11 @@
         "pages/cart/cart",
         "pages/order/order",
         "pages/orderDetail/orderDetail",
-     
-        "pages/list/list"
+        "pages/list/list",
+        "pages/address-add/address-add",
+        "pages/select-address/select-address",
+        "pages/search/search",
+        "pages/order-list/order-list"
     ],
     "window":{
         "navigationBarBackgroundColor": "#479de6",

@@ -18,7 +18,8 @@ export default class Base {
             method:params.method,
             data:params.data,
             header:{
-               'content-type':'application/json' 
+               'content-type':'application/json',
+               'Authorization':wx.getStorageSync('token')
             },
             success:function(res){
                 var code =res.statusCode.toString()

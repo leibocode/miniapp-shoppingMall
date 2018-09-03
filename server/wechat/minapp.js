@@ -15,6 +15,9 @@ export const openidAndSessionKey =async code=>{
     opts.qs.js_code =code
     
     let res =await rp(opts)
+
+    console.log('111')
+    console.log(res)
     
     return res 
 }
