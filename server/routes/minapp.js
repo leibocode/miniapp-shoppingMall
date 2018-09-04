@@ -32,6 +32,11 @@ export class MinappController {
         await getUserAsync(ctx.next)
     }
 
+    @get('/address')
+    async getaddressList(){
+        console.log('1111115555')
+    }
+
     @post('/login')
     async login(ctx,next){
         await loginAsync(ctx,next)

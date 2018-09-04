@@ -1,15 +1,16 @@
 <view class="container">
   <form bindsubmit="createOrder" report-submit="true">
     <view class="address-box" wx:if="{{  isNeedLogistics> 0}}">
-      <view class="add-address" wx:if="{{!curAddressData}}">
-        <view class="title" bindtap="addAddress">新增收货地址</view>
-      </view>
-      <view class="show-address" wx:if="{{curAddressData}}" bindtap="selectAddress">
+     
+      <view class="show-address" wx:if="{{curAddressData.length>0}}" bindtap="selectAddress">
         <view style='display: flex;flex-direction: row;'>
           <wxc-icon type='location' size='40' color='#666666' style='padding-left:30rpx;padding-top:20rpx;'></wxc-icon>
           <view class="name-tel">{{curAddressData.linkMan}} {{curAddressData.mobile}}</view>
         </view>
         <view class="addr-text">{{curAddressData.address}}</view>
+      </view>
+      <view class="add-address" wx:else>
+        <view class="title" bindtap="toAddress">新增收货地址</view>
       </view>
     </view>
     <view class="goods-list">

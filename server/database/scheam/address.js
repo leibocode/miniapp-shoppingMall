@@ -4,9 +4,12 @@ const Mixed =Schema.Types.Mixed
 const ObjectId =Schema.Types.ObjectId
 
 const AddressSchema =new Schema({
-    content:String,
+    provinceId:Number,
+    cityId:Number,
+    districtId:Number,
     mobile:Number,
     addressText:String,
+    code:number,
     sex:{
         type:Number,
         default:0

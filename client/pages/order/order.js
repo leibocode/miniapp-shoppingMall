@@ -39,7 +39,7 @@ Page({
         wx.showLoading()
         let remark =""
         if(event){
-            remark = e.detail.value.remark
+            remark = event.detail.value.remark
         }
 
         if(that.data.isNeedLogistics>0){
@@ -59,11 +59,19 @@ Page({
     _initShippingAddress:function(){
         let that =this
         address.getaddressList((data)=>{
+            console.log('111'+data);
+            console.log(data)
             that.setData({
                 curAddressData:data
             })
         })
         
         this.createOrder()
+    },
+
+    toAddress:function(){
+      wx.navigateTo({
+        url: '../select-address/select-address',
+      })
     }
 })

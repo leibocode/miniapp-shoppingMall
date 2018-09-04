@@ -24,7 +24,7 @@ Page({
         })
     },
     onHide:function(){
-        cart.execSetStorageSync(this.cart.data) 
+        cart.execSetStorageSync(this.data.cartData) 
     },
     //更新购物车商品数据
     _resetCartData:function(){

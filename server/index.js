@@ -15,8 +15,11 @@ class Server {
         this.useMiddleWares(this.app)
     }
     useMiddleWares(app){
-       auth(app)
        verifyToken(app) 
+     
+      
+      // auth(app)
+     
        logger(app)
        jwt(app) 
        addBody(app)

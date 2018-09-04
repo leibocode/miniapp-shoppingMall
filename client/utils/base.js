@@ -18,8 +18,8 @@ export default class Base {
             method:params.method,
             data:params.data,
             header:{
-               'content-type':'application/json',
-               'Authorization':wx.getStorageSync('token')
+                'content-type': 'application/json',
+                'authorization': wx.getStorageSync('token')
             },
             success:function(res){
                 var code =res.statusCode.toString()
@@ -35,7 +35,36 @@ export default class Base {
             }
         })
     }
+    ajax(params){
+        var that =this
+        var url = this.baseRestUrl +params.url
 
+        if(!params.method){
+            params.method ='GET'
+        }
+        
+        wx.request({
+            url:url,
+            method:params.method,
+            data:params.data,
+            header:{
+                'content-type': 'application/json',
+                'authorization': wx.getStorageSync('token')
+            },
+            success:function(res){
+                var code =res.statusCode.toString()
+                var startChar =code.charAt(0)
+                if(startChar=='2'){
+                    params.sCallback && params.sCallback(res.data)
+                }else {
+                    params.eCallback && params.eCallback(res)
+                }
+            },
+            fail:function(err){
+                params.fail && params.fail()
+            }
+        })
+    }
     getDataSet(event,key){
         return event.currentTarget.dataset[key]
     }

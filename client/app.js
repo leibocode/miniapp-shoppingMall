@@ -8,18 +8,19 @@ App(
         let loginFlag =wx.getStorageSync('token')
         console.log('缓存中取值')
         console.log(loginFlag)
-        if(loginFlag){
-            wx.checkSession({
-                success:function(){
-                    //session_key 没有过期
-                },
-                fail:function(){
-                    this.sign()
-                }
-            })
-        }else {
-            this.sign()
-        }
+        this.sign()
+        // if(loginFlag){
+        //     // wx.checkSession({
+        //     //     success:function(){
+        //     //         //session_key 没有过期
+        //     //     },
+        //     //     fail:function(){
+        //     //         this.sign()
+        //     //     }
+        //     // })
+        // }else {
+        //     this.sign()
+        // }
     },
     sign:function(){
         wx.login({
