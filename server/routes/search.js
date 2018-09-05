@@ -10,7 +10,7 @@ import {  } from '../service/product'
 export class SearchController {
     @get('/:keyword')
     async search(ctx,next){
-        const { keyword } = ctx.params
+        const { keyword,szie,order,priceNumber, } = ctx.query
 
         if(!keyword){
             

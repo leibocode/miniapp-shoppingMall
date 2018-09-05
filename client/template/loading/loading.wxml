@@ -1,0 +1,4 @@
+<view class="loading">
+  <view class="double-bounce1"></view>
+  <view class="double-bounce2"></view>
+</view>

@@ -1,21 +1,30 @@
+<import src="../../template/products/products-tpl.wxml"/>
 <view class="container list-container">
-  <view class="order-box">
-    <view class="order_sort_u clearfix">
-      <view class="tabslist">
-         
-      </view>
-      <view class="tabslist">
-         
-      </view>
-      <view class="tabslist">
-         
-      </view>
-      <view class="tabslist">
-         
-      </view>
+  <view class="order-sort">
+    <view class="order-sort-i clearfix">
+       <view class="tablist">
+          <view class="tab_swi_a {{searchBy=='sort'?'on':''}}" bindtap="">
+            {{sort}}
+          </view>
+       </view>
+       <view class="tablist">
+          <view class="tab_swi_a {{searchBy=='sort'?'on':''}}" bindtap="">
+            {{sort}}
+          </view>
+       </view>
+       <view class="tablist">
+          <view class="tab_swi_a {{searchBy=='sort'?'on':''}}" bindtap="">
+            {{sort}}
+          </view>
+       </view>
+       <view class="tablist">
+          <view class="tab_swi_a {{searchBy=='sort'?'on':''}}" bindtap="">
+            {{sort}}
+          </view>
+       </view>
     </view>
   </view>
   <view class="list-mian">
-    
+     <template is="products" data="{{productsArr:productsArr}}"></template>
   </view>
 </view>

@@ -13,6 +13,7 @@
       <view class="title">
         <view class="chunk"></view>
         <text>历史搜索</text>
+        <text class="title-right">清空历史</text>
       </view>
       <view class="tags">
         <tag-cmp bind:tapping="onConfirm" wx:for="{{historyKeys}}" text="{{item}}" />
@@ -35,5 +36,5 @@
   </view>
   <loading-cmp class="loading" wx:if="{{loading}}" />
   <loading-cmp class="loading-center" wx:if="{{loadingCenter}}" />
-  <text wx:if="{{empty}}" class="empty-tip">没有搜索到书籍</text>
+  <text wx:if="{{empty}}" class="empty-tip">没有搜索相关内容</text>
 </view>

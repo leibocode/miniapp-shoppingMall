@@ -9,7 +9,7 @@ const AddressSchema =new Schema({
     districtId:Number,
     mobile:Number,
     addressText:String,
-    code:number,
+    code:Number,
     sex:{
         type:Number,
         default:0
