@@ -1,4 +1,6 @@
-<view class="loading">
-  <view class="double-bounce1"></view>
-  <view class="double-bounce2"></view>
-</view>
+<template name="loading">
+   <view class="loading">
+      <view class="double-bounce1"></view>
+      <view class="double-bounce2"></view>
+  </view>
+</template>

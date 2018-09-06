@@ -34,7 +34,8 @@ export const jwt = app=>{
               /^\/api\/v1\/special/,
               /^\/api\/v1\/category/,
               /^\/api\/v1\/minapp\/login/,
-              /^\/api\/v1\/address/
+              /^\/api\/v1\/address/, 
+              /^\/api\/v1\/search/
             ]
     }));
 

@@ -16,6 +16,22 @@ export default class search extends Base {
         }
     }
 
+    searchProducts(data,callback){
+        let params ={
+            url:'/api/v1/search',
+            data:data,
+            sCallback:function(res){
+                res =res.data
+                callback(res)
+            }
+        }
+        this.request(params)
+    }
+
+    deleteHot(){
+        wx.removeStorageSync(this.key)
+    }
+
     gitHistory(){
         let keywords =wx.getStorageSync(this.key)
         return keywords

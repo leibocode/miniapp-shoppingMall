@@ -4,17 +4,28 @@ import{
     post
 } from '../decorator/router'
 
-import {  } from '../service/product'
+import { getSearch } from '../service/product'
 
 @controller('/api/v1/search')
 export class SearchController {
-    @get('/:keyword')
+    @get('/')
     async search(ctx,next){
-        const { keyword,szie,order,priceNumber, } = ctx.query
+        const { keyword,szie,page,priceNumber } = ctx.query
 
         if(!keyword){
-            
+         //容错
         }
-        
+        let params ={
+            keyword,
+            size:10,
+            page
+        }
+        const data =await getSearch(params)
+
+        ctx.body ={
+            success:true,
+            data:data
+        }
+
     }
 }
