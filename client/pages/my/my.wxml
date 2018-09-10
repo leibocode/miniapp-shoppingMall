@@ -59,7 +59,7 @@
     <view class="item item-bottom" bindtap='makePhoneCall'>
       <navigator url="" hover-class="none" class="a">
         <wxc-icon type='group' size='{{iconSize}}' color='{{iconColor}}' style='margin:15rpx 0 10rpx 0;'></wxc-icon>
-        <text class="txt">联系客服</text>
+        <!-- <contact-button type="default-light" size="30" session-from="weapp" class="guest-button"></con -->
       </navigator>
     </view>
     <view class="item item-bottom" bindtap="aboutUs">

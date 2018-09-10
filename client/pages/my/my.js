@@ -11,6 +11,8 @@ Page({
     score_sign_continuous: 0,
     iconSize: 45,
     iconColor: '#999999'
+  },
+  onLoad:function(){
+    
   }
-  
 })

@@ -1,6 +1,12 @@
 import { parse as urlParse } from 'url'
-import { getTemplateMsg } from '../wechat/wechat'
+import { wechatConfig } from '../wechat/wechat'
 import { addOrder } from '../service/order'
+import Wechat from '../wechat/index'
+import TemeplateMsg from '../wechat/temeplateMsg' 
+
+const wechatClient =new Wechat(wechatConfig.wechat)
+const tplMsg = new TemeplateMsg(wechatConfig.wechat)
+
 function filterTemplate(list,title){
     let res =[]
     list.forEach((data)=>{
@@ -18,7 +24,7 @@ function filterProductTitle(list){
 export async function createOrder(ctx,next){
     const body  =ctx.request.body
     const { openid } =ctx.user
-    const tlist = await getTemplateMsg.getTemplate()
+    const tlist = tplMsg.getTemplate() 
     console.log(tlist)
     const template =filterTemplate(tlist,msgType)
     let form ={
@@ -50,7 +56,7 @@ export async function createOrder(ctx,next){
         }
     }
 
-    const data  = await getTemplateMsg.sendTemplateMessage()
+    const data  = await tplMsg.sendTemplateMessage(opts)
     console.log(data);
 
     ctx.body ={

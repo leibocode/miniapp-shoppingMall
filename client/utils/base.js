@@ -26,13 +26,15 @@ export default class Base {
                 var startChar =code.charAt(0)
                 if(startChar=='2'){
                     console.log('值');
-                    console.log(res);
-                    params.sCallback && params.sCallback(res.data)
-                    if(!res.success){
-                        
-                    }else {
-                      
+                    if(res.err){
+                        if(res.data.err.name=="TokenExpiredError"){
+                            console.log('')
+                            that.sign()
+                            return 
+                        }
                     }
+                    params.sCallback && params.sCallback(res.data)
+
                 }else {
                     params.eCallback && params.eCallback(res)
                 }
@@ -45,10 +47,11 @@ export default class Base {
 
     //token
     sign(){
+        var that =this
         wx.login({
             success:function(res){
                wx.request({
-                   url:`${this.baseRestUrl}/api/v1/minapp/login`,
+                   url:`${that.baseRestUrl}/api/v1/minapp/login`,
                    method:'post',
                    data:{
                        "code":res.code

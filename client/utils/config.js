@@ -1,9 +1,3 @@
-class Config {
-  constructor(){
-  }
+export default {
+  "dev":'http://127.0.0.1:3001'
 }
-
-Config.restUrl ='https://minshopping.imtudou.cn'
-Config.onPay =true
-
-export { Config }

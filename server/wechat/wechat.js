@@ -1,11 +1,11 @@
 import mongoose from 'mongoose'
 import config from '../config/config'
-import Wechat from '../wechat'
+import Wechat from '../wechat/index'
 import TemeplateMsg from '../wechat/temeplateMsg'
 
 const Token =mongoose.model('Token')
 
-const WechatConfig ={
+export const wechatConfig ={
     wechat:{
         appID:config.minapp.appid,
         appSecret:config.minapp.secret,
@@ -14,14 +14,15 @@ const WechatConfig ={
     }
 }
 
-export const getWechat = ()=>{
-    const wechatClient = Wechat(WechatConfig.wechat)
-    return wechatClient
-}
+// export const getWechat = ()=>{
+//     const wechatClient = new Wechat(wechatConfig.wechat)
+//     return wechatClient
+// }
 
-export const getTemplateMsg =()=>{
-    const templateClient =new TemeplateMsg(WechatConfig.wechat)
-    return templateClient
-}
+// export const getTemplateMsg =()=>{
+//     const templateClient =new TemeplateMsg(wechatConfig.wechat)
+
+//     return templateClient
+// }
 
 
