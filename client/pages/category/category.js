@@ -4,7 +4,6 @@ const category =new Category()
 
 Page({
     data:{
-        transClassArr:['tanslate0','tanslate1','tanslate2','tanslate3','tanslate4','tanslate5','tanslate6','tanslate7'],
         currentMenuIndex:0,
         loading:false
     },
@@ -17,7 +16,8 @@ Page({
             that.setData({
                 categoryArr:data,
                 loading:true,
-                categoryInfo0:{
+                categoryInfo:{
+                    title:data[0].name,
                     cate:data[0].children
                 }
             })
@@ -29,7 +29,8 @@ Page({
         this.data.categoryInfo0 =[]
         this.setData({
             currentMenuIndex:index,
-            categoryInfo0:{
+            categoryInfo:{
+                title:this.data.categoryArr[index].name,
                 cate:this.data.categoryArr[index].children
             }
            

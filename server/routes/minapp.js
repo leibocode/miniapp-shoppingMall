@@ -9,7 +9,7 @@ import {
     WXBizDataCrypt
 } from '../wechat/minapp'
 import {
-
+    createOrder
 } from '../controller/wechat'
 import { loginAsync, getUserAsync } from '../controller/user'
 
@@ -39,6 +39,13 @@ export class MinappController {
 
     @post('/login')
     async login(ctx,next){
+        console.log('login')
         await loginAsync(ctx,next)
+    }
+
+    @post('/order')
+    async Order(ctx,next){
+        console.log(ctx.request.body);
+        await createOrder(ctx,next)
     }
 }

@@ -5,9 +5,7 @@ const r =path=>resolve(__dirname,path)
 
 export const router =app=>{
     const apiPath =r('../routes')
-    console.log("打印");
-    console.log(apiPath)
-
+    
     const router =new Route(app,apiPath)
 
     router.init()

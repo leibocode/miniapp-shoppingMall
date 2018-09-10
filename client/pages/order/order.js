@@ -28,13 +28,36 @@ Page({
         })
     },
     onShow:function(){
+        let products =cart.getCartDataFromLocal(true)
         this.setData({
-            productsArr:cart.getCartDataFromLocal(true)
+            productsArr:products,
+            account:this._calcTotalAccountAndCounts(products).account,
         })
 
         this._initShippingAddress()
     },
+    _calcTotalAccountAndCounts:function(data){
+        let len = data.length,
+            account =0,
+            selectedCounts=0,
+            selectedTypeCounts =0;
+        let multiple =100;
+        for(let i=0;i<len;i++){
+            if(data[i].selectStatus){
+                account += data[i].counts * multiple *Number(data[i].price) * multiple;
+                selectedCounts += data[i].counts
+                selectedTypeCounts++
+            }
+
+        }
+        return {
+            selectCounts:selectedCounts,
+            selectedTypeCounts:selectedCounts,
+            account:account/(multiple* multiple)
+        }
+    },
     createOrder:function(event){
+        console.log('订单')
         let that =this
         wx.showLoading()
         let remark =""
@@ -55,18 +78,52 @@ Page({
             }
         }
 
+        let formId = event.detail.formId
+        console.log(formId);
+        order.doOrder({
+            total:that.data.account,
+            product:that.filterProduct(),
+            address_id:that.data.curAddressData[0]._id
+        },(data)=>{
+            console.log(data);
+        })
+        
+
+    },
+    filterProduct:function(){
+        let res =[]
+        let products = this.data.productsArr
+        products.forEach((item)=>{
+            res.push({
+                _id:item._id,
+                name:item.name,
+                count:item.count,
+                img:item.img
+            })
+        }) 
+
+        return res 
     },
     _initShippingAddress:function(){
         let that =this
         address.getaddressList((data)=>{
             console.log('111'+data);
             console.log(data)
-            that.setData({
-                curAddressData:data
-            })
+            if(data.length>0){
+                var isNeedLogistics =1
+                that.setData({
+                    curAddressData:data
+                })
+            }
         })
         
-        this.createOrder()
+        if(this.data.isNeedLogistics>0){
+            wx.showModal({
+                title:'错误',
+                content:'请先设置您的收货地址',
+                showCancel:false
+            })
+        }
     },
 
     toAddress:function(){

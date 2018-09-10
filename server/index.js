@@ -1,6 +1,5 @@
 import Koa from 'koa'
 const { resolve } =require('path')
-const koajwt =require('koa-jwt')
 
 const r =path=>resolve(__dirname,path)
 const host =process.env.HOST || '127.0.0.1'
@@ -15,15 +14,11 @@ class Server {
         this.useMiddleWares(this.app)
     }
     useMiddleWares(app){
-       verifyToken(app) 
-     
-      
-      // auth(app)
-     
+       verifyToken(app)
        logger(app)
-       jwt(app) 
        addBody(app)
        database(app)
+       jwt(app)
        router(app)
        
     }

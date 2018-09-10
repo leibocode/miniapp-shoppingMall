@@ -1,22 +1,62 @@
+import List from '../../models/listModel'
+import Search from '../../models/searchModel'
+const list =new List()
+const search =new Search()
 
 Page({
     data:{
-        sort:[]
+        id:0,
+        sortArr:[],
+        page:1,
+        loading:false,
+        loadingCenter:false,
+        q:''
     },
-
-    onLoad:function(){
+    onLoad:function(options){
+        let that = this
         let sortArr =[
-            {classname: 'icon_bg_1', name: '智能排序', sortType: '1'},
-            {classname: 'icon_bg_2', name: '离我最近', sortType: '2'},
-            {classname: 'icon_bg_3', name: '人气最高', sortType: '3'},
-            {classname: 'icon_bg_4', name: '老师好评', sortType: '4'},
-            {classname: 'icon_bg_5', name: '价格最高', sortType: '5'},
-            {classname: 'icon_bg_6', name: '价格最低', sortType: '6'}
+            {classname: 'icon_bg_1', name: '价格升序', sortType: '1'},
+            {classname: 'icon_bg_2', name: '价格降序', sortType: '2'}
         ]
+        let id =options.id
+        let q =options.q
+        this.q =q
+        if(id){
+            list.getProducts({
+                id,size,page
+            },(data)=>{
+                that.setData({
+                    productsArr:data.products,
+                    sortArr:sortArr
+                })
+            })
+        }
 
-        this.setData({
-            sort:sortArr
+        if(q){
+            search.searchProducts({
+                keyword:q,
+                size:10,
+                page:that.data.page
+            },(data)=>{
+                if(data.length>0){
+                    search.addToHistory(q)
+                }
+                that.setData({
+                    productsArr:data,
+                    q:q,
+                    loadingCenter:false
+                })
+            })
+        }
+       
+    },
+    onPullDownRefresh:function(){
+        
+    },
+    onProductItemTap:function(event){
+        const id = list.getDataSet(event,'id')
+        wx.navigateTo({
+            url:'../product/product?id='+id
         })
     }
-    
 })

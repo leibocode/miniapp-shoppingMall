@@ -26,13 +26,18 @@ export const add =async(params)=>{
     const u =await user.findOne({
         openid:params.openid
     })
+    if(u==null){
+        //容错
+    }
+    console.log(u)
     const entity =new address({
         provinceId:params.provinceId,
         cityId:params.cityId,
         districtId:params.districtId,
         mobile:params.mobile,
         addressText:params.address,
-        code:mobile,
+        code:params.mobile,
+        name:params.name,
         user:u._id
     })
 
@@ -45,5 +50,16 @@ export const getOne =async(_id)=>{
     })
 
     return entity
+}
+
+export const setState =async(openid,_id)=>{
+    const userinfo = await user.findOne({
+        openid:openid
+    })
+    const entity =await address.findOne({
+        user:userinfo._id
+    })
+    entity.defaultCode = 1 
+    await entity.save()
 }
 

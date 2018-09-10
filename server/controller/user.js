@@ -37,6 +37,7 @@ export async function getUserAsync(ctx,next){
 }
 
 export async function loginAsync(ctx,next) {
+    console.log('命中')
     const { code } =ctx.request.body
     console.log('code为+'+code) 
     try{
@@ -63,7 +64,7 @@ export async function loginAsync(ctx,next) {
             openid:openid,
             session_key:session_key
         },'wechat_min_token',{expiresIn:'2h'})
-
+        console.log('生成的token')
         console.log(token)
 
         ctx.body ={
@@ -76,6 +77,7 @@ export async function loginAsync(ctx,next) {
         }
 
     }catch(err){
+        console.log('不服就是干');
         ctx.body ={
             success:true,
             err:err

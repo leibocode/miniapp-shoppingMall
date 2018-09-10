@@ -3,5 +3,6 @@ export default {
     "minapp":{
         "appid":"wx9f9204fb6351cfba",
         "secret":"77ebfa04257a79da09501d24d4e5e5bd"
-    }
+    },
+    "secret":"wechat_min_token"
 }

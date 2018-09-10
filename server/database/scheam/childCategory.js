@@ -9,6 +9,7 @@ const ChildCateGorySchema =new Schema({
         type:ObjectId,
         ref:'Product'
     }],
+    img:String,
     meta:{
         createdAt: {
           type: Date,

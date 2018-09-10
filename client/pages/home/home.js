@@ -74,7 +74,7 @@ Page({
         var id = model.getDataSet(event,'id')
         console.log(id)
         wx.navigateTo({
-            url:'../banner/banner?id'+id
+            url:'../list/list?id='+id
         })
     },
     

@@ -10,13 +10,16 @@ export default class Order extends Base {
     doOrder(param,callback){
         var that =this
         var allParam ={
-            url:'',
-            type:'',
-            data:{},
+            url:'/api/v1/minapp/order',
+            method:'POST',
+            data:param,
             sCallback:function(data){
-
+                data =data.data
+                callback && callback(data)
             }
         }
+
+        this.request(allParam)
     }
 
     //唤起微信支付

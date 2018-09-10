@@ -27,9 +27,14 @@ export class BannerController {
 
   @get('/:_id')
   async getbanner (ctx, next) {
-    const { _id } =ctx.params
+    const { _id,size,page } =ctx.params
     //let _id ="5b711706499c4c3e04f3392a"
-    const data = await getBanner(_id)
+    let params ={
+      _id,
+      size,
+      page
+    }
+    const data = await getBanner(params)
 
     ctx.body ={
       success:true,

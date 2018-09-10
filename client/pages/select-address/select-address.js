@@ -12,10 +12,16 @@ Page({
     },
 
     onShow:function(){
-
+        this._loadData()
     },
+    //获取的地址信息
     _loadData:function(){
-      //获取全部的地址信息  
+        let that = this
+        address.getaddressList((data)=>{
+            this.setData({
+                addressList:data
+            })
+        })
     },
 
     selectTap:function(event){

@@ -93,7 +93,7 @@ Page({
             provinceId: commonCityData.cityData[this.data.selProvinceIndex].id,
             cityId: cityId,
             districtId: districtId,
-            linkMan: linkMan,
+            name:linkMan,
             address: address,
             mobile: mobile,
             code: code,
@@ -102,7 +102,7 @@ Page({
             if(data.success){
                wx.navigateBack({})
             }else {
-
+                
             }
             
         })

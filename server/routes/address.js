@@ -1,9 +1,6 @@
 import {
-    getAll,
-    getOne,
-    del,
-    add
- } from '../service/address'
+    getAll,getOne,del,add,setState
+} from '../service/address'
  const {
      controller,
      get,
@@ -27,7 +24,7 @@ import {
      @get('/')
      async getAddressList(ctx,next){
          //kao-jwt
-         console.log('111212222')
+
          const { openid } = ctx.user 
          const data =await getAll(openid)
          ctx.body = {
@@ -36,10 +33,21 @@ import {
          }
      }
 
+     @put('/:_id')
+     async setAddressSatte(ctx,next){
+         const { openid } =ctx.user
+         const { _id  } = ctx.params
+         await setState(openid,_id)
+     }
+
     @post('/')
     async createAddress(ctx,next){
         let data =ctx.request.body
-        data.openod =ctx.user.openid
+        data.openid =ctx.user.openid
+        const addressList =await getAll(data.openid)
+        if(addressList.length==0){
+            data.state =1
+        }
         const result =await add(data)
 
         ctx.body ={

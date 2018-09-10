@@ -71,21 +71,24 @@ Page({
         })
 
         let q =event.detail.value || event.detail.text
-        console.log(q)
-        search.searchProducts({
-            keyword:q,
-            size:10,
-            page:that.data.page
-        },(data)=>{
-            if(data.length>0){
-                search.addToHistory(q)
-            }
-            that.setData({
-                productsArr:data,
-                q:q,
-                loadingCenter:false
-            })
+        wx.navigateTo({
+            url:'../list/list?q='+q
         })
+        console.log(q)
+        // search.searchProducts({
+        //     keyword:q,
+        //     size:10,
+        //     page:that.data.page
+        // },(data)=>{
+        //     if(data.length>0){
+        //         search.addToHistory(q)
+        //     }
+        //     that.setData({
+        //         productsArr:data,
+        //         q:q,
+        //         loadingCenter:false
+        //     })
+        // })
     },
     onPullDownRefresh:function(){
 
@@ -113,11 +116,5 @@ Page({
         },(data)=>{
 
         })
-    }, 
-    onProductItemTap:function(event){
-        var id =model.getDataSet(event,'id')
-        wx.navigateTo({
-            url:'../product/product?id='+id
-        })
-    }
+    },
 })

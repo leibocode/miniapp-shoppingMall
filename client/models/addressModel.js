@@ -8,13 +8,13 @@ export default class address extends Base {
     getaddressList(callback){
         var that =this
         var params ={
-          url: '/api/v1/address',
+            url: '/api/v1/address',
             sCallback:function(data){
                 data =data.data
                 callback && callback(data)
             }
         }
-        this.ajax(params)
+        this.request(params)
     }
 
     postaddress(data,callback){
@@ -28,6 +28,17 @@ export default class address extends Base {
             }
         }
         this.request(params)
+    }
+
+    setState(id,callback){
+        var that =this
+        var params ={
+            url:`/api/v1/address/${id}`,
+            method:'put',
+            sCallback:function(res){
+                callback && callback(res)
+            }
+        }
     }
     
 }

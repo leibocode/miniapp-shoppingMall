@@ -14,6 +14,10 @@ const AddressSchema =new Schema({
         type:Number,
         default:0
     },
+    defaultCode:{
+        type:Number,
+        default:0
+    },
     name:String,
     user:{
         type:ObjectId,
