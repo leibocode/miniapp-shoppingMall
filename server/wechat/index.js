@@ -2,7 +2,6 @@ import request from 'request-promise'
 import fs from 'fs'
 import * as _ from 'lodash'
 import path from 'path'
-import { throws } from 'assert';
 
 const base ='https://api.weixin.qq.com/cgi-bin/'
 const api ={
@@ -12,10 +11,11 @@ const api ={
 
 export default class Wechat{
     constructor(opts){
+        console.log(opts)
         this.opts =Object.assign({},opts)
         this.appID = opts.appID,
         this.appSecret =opts.appSecret
-        this.getAssessToken =opts.getAssessToken
+        this.getAssessToken =opts.getAccessToken
         this.saveAssessToken =opts.saveAssessToken
 
         this.fetchAccessToken()
@@ -45,8 +45,12 @@ export default class Wechat{
 
     async updateAccessToken(){
         const url = api.accessToken + '&appid=' + this.appID + '&secret=' + this.appSecret
-
          const data = await this.request({url:url})
+
+         if(!data){
+             return false;
+         }
+
          const now =(new Date().getTime())
          const expiresIn = now +(data.expires_in-20) *1000
 
@@ -55,7 +59,7 @@ export default class Wechat{
     }
 
     isValidToken (data, name) {
-        if (!data || !data[name] || !data.expires_in) {
+        if (!data || !data[name]) {
           return false
         }
     

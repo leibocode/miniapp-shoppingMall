@@ -112,23 +112,28 @@ Page({
             if(data.length>0){
                 var isNeedLogistics =1
                 that.setData({
-                    curAddressData:data
+                    curAddressData:data,
+                    isNeedLogistics:1
+                })
+            }else {
+                wx.showCancel({
+                    title:'错误',
+                    content:'请先设置您的收货地址',
+                    showCancel:false 
                 })
             }
         })
-        
-        if(this.data.isNeedLogistics>0){
-            wx.showModal({
-                title:'错误',
-                content:'请先设置您的收货地址',
-                showCancel:false
-            })
-        }
     },
 
     toAddress:function(){
-      wx.navigateTo({
-        url: '../select-address/select-address',
-      })
+        wx.navigateTo({
+            url: '../select-address/select-address'
+        })
+    },
+
+    selectAddress:function(){
+        wx.navigateTo({
+            url: '../select-address/select-address'
+        })
     }
 })

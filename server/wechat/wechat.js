@@ -14,15 +14,12 @@ export const wechatConfig ={
     }
 }
 
-// export const getWechat = ()=>{
-//     const wechatClient = new Wechat(wechatConfig.wechat)
-//     return wechatClient
-// }
+export const getWechat = ()=>{
+    const wechatClient = new Wechat(wechatConfig.wechat)
+    
+    return wechatClient
+}
 
-// export const getTemplateMsg =()=>{
-//     const templateClient =new TemeplateMsg(wechatConfig.wechat)
 
-//     return templateClient
-// }
 
 

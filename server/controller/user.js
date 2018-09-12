@@ -9,7 +9,15 @@ const jwt =require('jsonwebtoken')
 const User =mongoose.model('User')
 
 export const decryptUserAsync =async(code,userInfo)=>{
+    const res = await openidAndSessionKey(code)
+    const { openid,session_key } = JSON.parse(res)
+    let user = await User.findOne({
+        openid:openid
+    }).exec()
     
+    if(!user){
+        
+    }
 }
 
 export async function getUserAsync(ctx,next){

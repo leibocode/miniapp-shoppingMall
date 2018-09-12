@@ -9,16 +9,17 @@ Page({
     
     onLoad:function(){
         console.log('onLoad')
+        this._loadData()
     },
 
     onShow:function(){
-        this._loadData()
+        
     },
     //获取的地址信息
     _loadData:function(){
         let that = this
         address.getaddressList((data)=>{
-            this.setData({
+            that.setData({
                 addressList:data
             })
         })

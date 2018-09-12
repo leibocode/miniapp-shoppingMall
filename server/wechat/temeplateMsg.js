@@ -1,7 +1,25 @@
 import request from 'request-promise'
-import { getWechat } from '../wechat/wechat'
+import { getWechat } from './wechat'
+import Wechat from '../wechat/index'
+import mongoose from 'mongoose'
+import config from '../config/config'
+
+const Token = mongoose.model('Token')
+
+const token =new Token()
 
 
+
+const wechatConfig ={
+    wechat:{
+        appID:config.minapp.appid,
+        appSecret:config.minapp.secret,
+        getAccessToken
+    }
+}
+
+const client =new Wechat(wechatConfig.wechat)
+ 
 const base ='https://api.weixin.qq.com/cgi-bin'
 const api ={
     getTmp:base +'wxopen/template/list?',
@@ -25,7 +43,7 @@ export default class SendTemplateMsg{
     }
 
     async getTemplate(){
-        const data = await getWechat.fetchAccessToken()
+        const data = await client.fetchAccessToken() 
 
         const url =`${api.getTmp}access_token=${data.access_token}`
 
@@ -44,7 +62,7 @@ export default class SendTemplateMsg{
 
 
     async sendTemplateMessage(options){
-        const data =await getWechat.fetchAccessToken()
+        const data =await client.fetchAccessToken()
 
         const url =`${api.sendTmp}access_token=${data.access_token}`
 

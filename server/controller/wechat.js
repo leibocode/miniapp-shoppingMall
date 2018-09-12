@@ -26,7 +26,7 @@ export async function createOrder(ctx,next){
     const { openid } =ctx.user
     const tlist = tplMsg.getTemplate() 
     console.log(tlist)
-    const template =filterTemplate(tlist,msgType)
+    const template =filterTemplate(tlist,'待付款')
     let form ={
         openid:openid,
         address:body.address_id,

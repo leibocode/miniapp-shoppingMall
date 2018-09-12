@@ -4,10 +4,10 @@
      
       <view class="show-address" wx:if="{{curAddressData.length>0}}" bindtap="selectAddress">
         <view style='display: flex;flex-direction: row;'>
-          <wxc-icon type='location' size='40' color='#666666' style='padding-left:30rpx;padding-top:20rpx;'></wxc-icon>
-          <view class="name-tel">{{curAddressData.linkMan}} {{curAddressData.mobile}}</view>
+          <!-- <wxc-icon type='location' size='40' color='#666666' style='padding-left:30rpx;padding-top:20rpx;'></wxc-icon> -->
+          <view class="name-tel">{{curAddressData[0].name}} {{curAddressData[0].mobile}}</view>
         </view>
-        <view class="addr-text">{{curAddressData.address}}</view>
+        <view class="addr-text">{{curAddressData[0].addressText}}</view>
       </view>
       <view class="add-address" wx:else>
         <view class="title" bindtap="toAddress">新增收货地址</view>
@@ -77,7 +77,7 @@
       <view class="left-price">
         <view class="total">合计：¥ {{account}}</view>
       </view>
-      <button class="to-pay-btn" formType="submit">支付</button>
+      <!-- <button class="to-pay-btn" formType="submit">支付</button> -->
       <button class="to-pay-btn" formType="submit">提交订单</button>
     </view>
   </form>

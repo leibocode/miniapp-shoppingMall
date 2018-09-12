@@ -66,6 +66,10 @@ export class MinappController {
 
     @post('/wechat-pay')
     async wechatPay(ctx,next){
+    }
 
+    @get('/user')
+    async getUser(ctx,next){
+        await getUserAsync(ctx,next)
     }
 }
