@@ -4,9 +4,10 @@ export default class List extends Base {
         super();
     }
 
-    getProducts(id,callback){
+    getProducts(params,callback){
         var param ={
-            url:`/api/v1/banner/${id}`,
+            url:`/api/v1/banner/${params._id}`,
+            data:params,
             sCallback:function(data){
                 data =data.data
                 callback && callback(data)

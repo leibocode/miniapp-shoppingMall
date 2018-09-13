@@ -13,12 +13,16 @@ Page({
         productsArr:[],
         page:1
     },
-    Load:function(){
+    onLoad:function(){
+        let hist = search.gitHistory()
+        console.log('缓存中的值')
+        console.log(hist)
         this.setData({
-            historyKeys:search.gitHistory()
+            historyKeys:hist
         })
 
         search.getHot((data)=>{
+            console.log(data)
             this.setData({
                 hotKeys:data
             })
@@ -26,7 +30,7 @@ Page({
     }, 
     onCancel:function(){
         wx.navigateTo({
-            url:'../page/home/home'
+            url:'../search/search'
         })
     },
     ondeleteHis:function(){
@@ -57,7 +61,6 @@ Page({
             success:function(res){
                 if(res.confirm){
                     search.deleteHot();
-                    
                 }
             }
         })
@@ -117,4 +120,10 @@ Page({
 
         })
     },
+    onTap:function(event){
+        let q = search.getDataSet(event,'text')
+        wx.navigateTo({
+            url:'../list/list?q='+q
+        })
+    }
 })

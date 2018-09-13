@@ -29,6 +29,7 @@ TokenSchema.pre('save', function (next) {
   next()
 })
 
+
 TokenSchema.statics = {
   async getAccessToken() {
     const token = await this.findOne({
@@ -51,11 +52,14 @@ TokenSchema.statics = {
       token.token = data.access_token
       token.expires_in = data.expires_in
     } else {
-      token = new Token({
-        name: 'access_token',
-        token: data.access_token,
-        expires_in: data.expires_in
-      })
+      if(data){
+        token = new Token({
+          name: 'access_token',
+          token: data.access_token,
+          expires_in: data.expires_in
+        })
+      }
+     
     }
 
     await token.save()

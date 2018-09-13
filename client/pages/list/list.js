@@ -10,7 +10,8 @@ Page({
         page:1,
         loading:false,
         loadingCenter:false,
-        q:''
+        q:'',
+        productsArr:[]
     },
     onLoad:function(options){
         let that = this
@@ -23,8 +24,11 @@ Page({
         this.q =q
         if(id){
             list.getProducts({
-                id,size,page
+                _id:id,
+                size:10,
+                page:that.data.page
             },(data)=>{
+                console.log(data);
                 that.setData({
                     productsArr:data.products,
                     sortArr:sortArr

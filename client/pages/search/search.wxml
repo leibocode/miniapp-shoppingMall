@@ -17,11 +17,14 @@
       </view>
       <view class="tags">
         <!-- <tag-cmp bind:tapping="onConfirm" wx:for="{{historyKeys}}" text="{{item}}" /> -->
-        <view bind:tap="onTap" class="tag-class">
-          <text>{{item.name}}</text>
-          <view class="after"></view>
-        </view>
+        <block class="tags-container" wx:for="{{historyKeys}}">
+          <view bind:tap="onTap" data-text="{{item}}" class="tag-class">
+            <text>{{item}}</text>
+            <view class="after"></view>
+          </view>
+        </block>
       </view>
+      <view></view>
     </view>
     <view class="history hot-search">
       <view class="title">
@@ -29,7 +32,12 @@
         <text>热门搜索</text>
       </view>
         <view class="tags">
-          <tag-cmp bind:tapping="onConfirm" wx:for="{{hotKeys}}" text="{{item}}" />
+          <block class="tags-container" wx:for="{{hotKeys}}">
+            <view bind:tap="onTap" data-text="{{item.name}}" class="tag-class">
+              <text>{{item.text}}</text>
+              <view class="after"></view>
+            </view>
+          </block>
         </view>
     </view>
   </view>

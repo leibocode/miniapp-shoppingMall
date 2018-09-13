@@ -22,7 +22,7 @@
     "koa-session": "^5.8.2",
     "lodash": "^4.17.10",
     "log4js": "^3.0.5",
-    "mongoose": "^5.2.7",
+    "mongoose": "4.11.0",
     "nodemon": "^1.18.3",
     "ramda": "^0.25.0",
     "raw-body": "^2.2.0",

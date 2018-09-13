@@ -6,7 +6,7 @@ import config from '../config/config'
 
 const Token = mongoose.model('Token')
 
-const token =new Token()
+
 
 
 
@@ -14,7 +14,8 @@ const wechatConfig ={
     wechat:{
         appID:config.minapp.appid,
         appSecret:config.minapp.secret,
-        getAccessToken
+        getAccessToken:async()=> await Token.getAccessToken(),
+        saveAccessToken:async(data)=> await Token.saveAccessToken()
     }
 }
 
@@ -24,7 +25,6 @@ const base ='https://api.weixin.qq.com/cgi-bin'
 const api ={
     getTmp:base +'wxopen/template/list?',
     sendTmp:base +'message/wxopen/template/send?'
-    
 }
 
 export default class SendTemplateMsg{
@@ -44,7 +44,8 @@ export default class SendTemplateMsg{
 
     async getTemplate(){
         const data = await client.fetchAccessToken() 
-
+        console.log('tokne')
+        console.log(data)
         const url =`${api.getTmp}access_token=${data.access_token}`
 
         const res =await this.request({

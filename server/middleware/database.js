@@ -37,16 +37,29 @@ export const database =app=>{
       const ChildCategory =mongoose.model('ChildCateGory')
       const Special =mongoose.model('Special')
       const User =mongoose.model('User')
+      const Search =mongoose.model('Search')
 
       let existBanners  = await Banner.find({}).exec()
       let existProduct =await Product.find({}).exec() 
       let existCatelgory =await Cate.find().exec()
       let existChildCategory =await ChildCategory.find({}).exec()
       let existSpecial =await Special.find({}).exec()
+      let existSearch =await Search.find({}).exec()
 
       let user =await User.findOne({
         name:'icode'
       })
+
+      let search = await Search.findOne({
+         text:'三只松鼠'
+      })
+
+      if(!search){
+         search =new Search({
+            text:'三只松鼠'
+         })
+         await search.save()
+      }
 
       if(!user){
          user =new User({

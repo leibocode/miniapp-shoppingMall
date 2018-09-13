@@ -19,6 +19,17 @@ export const getBanner =async (params)=>{
     //   .exec()
     // return data
     
+    const count = params.size * (params.page-1)
+    const data =await Banner.find({
+        _id:params._id
+    }).populate({
+        path:'products'
+    }).limit(params.size)
+    .skip(count)
+    .exec();
+
+    return data 
+    
 }
 
 

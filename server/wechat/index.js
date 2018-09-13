@@ -16,7 +16,7 @@ export default class Wechat{
         this.appID = opts.appID,
         this.appSecret =opts.appSecret
         this.getAssessToken =opts.getAccessToken
-        this.saveAssessToken =opts.saveAssessToken
+        this.saveAccessToken =opts.saveAccessToken
 
         this.fetchAccessToken()
     }
@@ -33,12 +33,12 @@ export default class Wechat{
 
     async fetchAccessToken(){
         let data =await this.getAssessToken()
-
+        console.log(data)
         if(!this.isValidToken(data,'access_token')){
             data =await this.updateAccessToken()
         }
 
-        await this.saveAssessToken(data)
+        await this.saveAccessToken(data)
 
         return data
     }

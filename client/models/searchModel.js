@@ -14,6 +14,8 @@ export default class search extends Base {
                 callback && callback(data)
             }
         }
+
+        this.request(param)
     }
 
     searchProducts(data,callback){
@@ -34,6 +36,7 @@ export default class search extends Base {
 
     gitHistory(){
         let keywords =wx.getStorageSync(this.key)
+        console.log(keywords)
         return keywords
     }
 
