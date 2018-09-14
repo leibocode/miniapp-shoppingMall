@@ -4,7 +4,8 @@ export default {
         "appid":"wx9f9204fb6351cfba",
         "secret":"77ebfa04257a79da09501d24d4e5e5bd",
         "token":"minappshppingmall",
-        "encodingAESKey":"q3MsXhytCnLiixOEoHqBunwbHw1qtJK6Ax07unslxv2"
+        "encodingAESKey":"q3MsXhytCnLiixOEoHqBunwbHw1qtJK6Ax07unslxv2", 
+        "sendMessageId":"OWQiV5wQ3FhCAveVlPetnDWuSqMRd8uSyJmLKMIKQ6A"
     },
     "secret":"wechat_min_token"
 }

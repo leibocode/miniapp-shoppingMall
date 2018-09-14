@@ -3,6 +3,7 @@ import { wechatConfig } from '../wechat/wechat'
 import { addOrder } from '../service/order'
 import Wechat from '../wechat/index'
 import TemeplateMsg from '../wechat/temeplateMsg' 
+import config from '../config/config'
 
 const wechatClient =new Wechat(wechatConfig.wechat)
 const tplMsg = new TemeplateMsg(wechatConfig.wechat)
@@ -24,44 +25,45 @@ function filterProductTitle(list){
 export async function createOrder(ctx,next){
     const body  =ctx.request.body
     const { openid } =ctx.user
-    const tlist = tplMsg.getTemplate() 
-    console.log('模板')
-    console.log(tlist)
-    // const template =filterTemplate(tlist,'待付款')
-    // let form ={
-    //     openid:openid,
-    //     address:body.address_id,
-    //     product:body.product,
-    //     total:body.total
-    // }
 
-    // const payment = await addOrder(form)
+    let form ={
+        openid:openid,
+        address:body.address_id,
+        product:body.product,
+        total:body.total
+    }
 
-    // console.log(template);
-    // let opts ={
-    //     touser:openid,
-    //     template_id:template.template_id,
-    //     form_id:body.formId,
-    //     data:{
-    //         "keyword1":{
-    //             "value": payment.total,
-    //             "color": "#1d1d1d"
-    //         },
-    //         "keyword2":{
-    //             "value": param.meta.createdAt,
-    //             "color": "#1d1d1d"
-    //         },
-    //         "keyword3":{
-    //             "value":param.product[0].title
-    //         }
-    //     }
-    // }
+    const payment = await addOrder(form)
+    let opts ={
+        touser:openid,
+        template_id:config.minapp.sendMessageId,
+        form_id:body.formId,
+        data:{
+            "keyword1":{
+                "value": body.total,
+                "color": "#1d1d1d"
+            },
+            "keyword2":{
+                "value": Date.now(),
+                "color": "#1d1d1d"
+            }
+        }
+    }
+    console.log(opts)
 
-    // const data  = await tplMsg.sendTemplateMessage(opts)
-    // console.log(data);
+    const data  = await tplMsg.sendTemplateMessage(opts)
 
-    // ctx.body ={
-    //     success:true,
-    //     data:data
-    // }
+    if(data.errmsg==='ok'){
+
+        ctx.body ={
+            success:true,
+            data:data
+        }
+    }else {
+        ctx.body ={
+            success:false
+        }
+    }
+
+    
 }

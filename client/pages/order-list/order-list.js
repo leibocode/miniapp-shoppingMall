@@ -13,8 +13,28 @@ Page({
         loadingStatus: false,
     },
 
+    onLoad:function(){
+
+    },
+
     handlerTabTap(e) {
         console.log('handlerTapTap', e.currentTarget.dataset.index)
         this._updateSelectedPage(e.currentTarget.dataset.index);
+    },
+
+    onShow:function(){
+
+    },
+
+    onOrderDetail:function(event){
+
+    },
+
+    cancelOrderTap:function(event){
+
+    },
+
+    toPay:function(){
+        
     }
 })

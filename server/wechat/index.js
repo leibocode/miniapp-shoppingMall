@@ -8,7 +8,7 @@ const api ={
     accessToken: base + 'token?grant_type=client_credential',
 }
 
-
+//https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET
 export default class Wechat{
     constructor(opts){
         console.log(opts)
@@ -25,7 +25,8 @@ export default class Wechat{
         options =Object.assign({},options,{json:true})
 
         try{
-            const respone =await request()
+            const respone =await request(options)
+            return respone
         }catch(error){
 
         }
@@ -45,17 +46,20 @@ export default class Wechat{
 
     async updateAccessToken(){
         const url = api.accessToken + '&appid=' + this.appID + '&secret=' + this.appSecret
-         const data = await this.request({url:url})
-
+        
+        console.log(url)
+        const data = await this.request({url:url})
+        console.log('token值')
+        console.log(data)
          if(!data){
              return false;
          }
 
-         const now =(new Date().getTime())
-         const expiresIn = now +(data.expires_in-20) *1000
+        const now =(new Date().getTime())
+        const expiresIn = now +(data.expires_in-20) *1000
 
-         data.expires_in =expiresIn 
-         return data
+        data.expires_in =expiresIn 
+        return data
     }
 
     isValidToken (data, name) {

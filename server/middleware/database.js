@@ -18,7 +18,7 @@ let specials =require(resolve(__dirname,'../crawler/special.json'))
 export const database =app=>{
     mongoose.set('debug',true)
 
-    mongoose.connect(config.db,{useNewUrlParser:true})
+    mongoose.connect(config.db)
 
     mongoose.connection.on('disconnected',()=>{
       mongoose.connect(config.db)

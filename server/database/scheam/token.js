@@ -1,9 +1,7 @@
 import mongoose from 'mongoose'
-
 const Schema = mongoose.Schema
 
-
-const TokenSchema = new Schema({
+const TokenSchema = new mongoose.Schema({
   name: String,
   token: String,
   expires_in: Number,
@@ -29,7 +27,6 @@ TokenSchema.pre('save', function (next) {
   next()
 })
 
-
 TokenSchema.statics = {
   async getAccessToken() {
     const token = await this.findOne({
@@ -44,28 +41,26 @@ TokenSchema.statics = {
   },
 
   async saveAccessToken(data) {
-    let token = await this.findOne({
-      name: 'access_token'
-    }).exec()
+    // let token = await this.findOne({
+    //   name: 'access_token'
+    // }).exec()
 
-    if (token) {
-      token.token = data.access_token
-      token.expires_in = data.expires_in
-    } else {
-      if(data){
-        token = new Token({
-          name: 'access_token',
-          token: data.access_token,
-          expires_in: data.expires_in
-        })
-      }
-     
-    }
+    // if (token) {
+    //   token.token = data.access_token
+    //   token.expires_in = data.expires_in
+    // } else {
+    //   token = new Token({
+    //     name: 'access_token',
+    //     token: data.access_token,
+    //     expires_in: data.expires_in
+    //   })
+    // }
 
-    await token.save()
+    // await token.save()
 
-    return data
+    // return data
   }
 }
 
-const Token = mongoose.model('Token', TokenSchema)
+mongoose.model('Token', TokenSchema)
+

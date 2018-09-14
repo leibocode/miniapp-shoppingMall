@@ -25,16 +25,7 @@ export default class Base {
                 var code =res.statusCode.toString()
                 var startChar =code.charAt(0)
                 if(startChar=='2'){
-                    console.log('值');
-                    if(res.err){
-                        if(res.data.err.name=="TokenExpiredError"){
-                            console.log('')
-                            that.sign()
-                            return 
-                        }
-                    }
                     params.sCallback && params.sCallback(res.data)
-
                 }else {
                     params.eCallback && params.eCallback(res)
                 }

@@ -6,6 +6,8 @@ import config from '../config/config'
 
 const Token = mongoose.model('Token')
 
+const s =mongoose.model('Special')
+
 
 
 
@@ -15,13 +17,33 @@ const wechatConfig ={
         appID:config.minapp.appid,
         appSecret:config.minapp.secret,
         getAccessToken:async()=> await Token.getAccessToken(),
-        saveAccessToken:async(data)=> await Token.saveAccessToken()
+        saveAccessToken:async(data)=>{
+            let token =await Token.findOne({
+                name:'access_token'
+            }).exec()
+            console.log('data')
+            console.log(data)
+
+            if(token){
+                token.token = data.access_token
+                token.expiress_in =data.expiress_in
+            }else {
+                token =new Token({
+                    name:'access_token',
+                    token: data.access_token,
+                    expires_in: data.expires_in
+                })
+            }
+            await token.save()
+
+            return data
+        }
     }
 }
 
 const client =new Wechat(wechatConfig.wechat)
  
-const base ='https://api.weixin.qq.com/cgi-bin'
+const base ='https://api.weixin.qq.com/cgi-bin/'
 const api ={
     getTmp:base +'wxopen/template/list?',
     sendTmp:base +'message/wxopen/template/send?'
@@ -37,6 +59,7 @@ export default class SendTemplateMsg{
 
         try{
             const response =await request(options)
+            return response
         }catch(error){
             console.log(error)
         }
@@ -56,6 +79,7 @@ export default class SendTemplateMsg{
                 "count":20
             }
         })
+        console.log(res)
         return res
     }
 
@@ -66,7 +90,7 @@ export default class SendTemplateMsg{
         const data =await client.fetchAccessToken()
 
         const url =`${api.sendTmp}access_token=${data.access_token}`
-
+        console.log(url)
 
 
         let res =await this.request({
@@ -74,6 +98,8 @@ export default class SendTemplateMsg{
             method:'POST',
             body:options
         })
+
+        console.log(res)
 
         return res
     }

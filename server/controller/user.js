@@ -16,8 +16,18 @@ export const decryptUserAsync =async(code,userInfo)=>{
     }).exec()
     
     if(!user){
+        let pc =new WXBizDataCrypt(res.session_key)
+        let data =pc.decryptData(userInfo.encryptedData,userInfo.iv)
+        console.log(data)
+        // user =new User({
+        //     avatarUrl:data
+        // })
+
+    }else {
         
     }
+
+    
 }
 
 export async function getUserAsync(ctx,next){

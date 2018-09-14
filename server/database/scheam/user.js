@@ -8,6 +8,9 @@ const UserSchema =new Schema({
     unionid:String,
     avatarUrl:String,
     name:String,
+    sex:String,
+    country:String,
+    city:String,
     phoneNumber:Number,
     address:[{
         type:ObjectId,

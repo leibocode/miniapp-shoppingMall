@@ -81,11 +81,16 @@ Page({
         let formId = event.detail.formId
         console.log(formId);
         order.doOrder({
+            formId:formId,
             total:that.data.account,
             product:that.filterProduct(),
             address_id:that.data.curAddressData[0]._id
         },(data)=>{
-            console.log(data);
+            //跳转到
+            wx.hideLoading();
+            wx.navigateTo({
+                page:'../order-list/order-list'
+            })
         })
         
 

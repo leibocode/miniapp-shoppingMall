@@ -36,6 +36,7 @@ export const jwt = app=>{
               /^\/api\/v1\/category/,
               /^\/api\/v1\/minapp\/login/,
               /^\/api\/v1\/minapp\/wechat-hear/,
+              /^\/api\/v1\/minapp\/user/,
               /^\/api\/v1\/search/
             ]
     }));

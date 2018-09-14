@@ -59,7 +59,9 @@
 }
 .title-box{
     display: flex;
-    justify-content:space-between;
+    align-items:center;
+    align-items: center;
+    flex-direction:column;
 }
 .bottom-box{
     font-size: 24rpx;
@@ -189,17 +191,15 @@
     align-items:center;
 }
 
-/* .title-box{
+ .title-box image {
     width: 100%;
     padding-top: 330rpx;
     text-align: center;
     font-size:28rpx;
-
+    display:block;
     color:#999;
-    background: url(https://cdn.it120.cc/images/weappshop/icon-cart.png) no-repeat center 205rpx;
-    background-size: 100rpx auto;
     margin-bottom: 50rpx;
-} */
+}
 .to-index-btn{
     color:#fff;
     background:#e64340;
