@@ -10,9 +10,20 @@ Page({
     score: 0,
     score_sign_continuous: 0,
     iconSize: 45,
-    iconColor: '#999999'
+    iconColor: '#999999',
+    userInfo:null
   },
   onLoad:function(){
-    
+    let that =this
+    let userInfo =wx.getStorageSync('user')
+    if(!userInfo){
+      wx.navigateTo({
+        url: '../authorize/authorize'
+      })
+    }else {
+      this.setData({
+        userInfo:userInfo
+      })
+    }
   }
 })

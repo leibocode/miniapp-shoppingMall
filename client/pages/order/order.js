@@ -88,6 +88,7 @@ Page({
         },(data)=>{
             //跳转到
             wx.hideLoading();
+            
             wx.navigateTo({
                 page:'../order-list/order-list'
             })

@@ -1,7 +1,9 @@
 import List from '../../models/listModel'
 import Search from '../../models/searchModel'
+import Category from '../../models/categoryModel' 
 const list =new List()
 const search =new Search()
+const category =new Category()
 
 Page({
     data:{
@@ -21,6 +23,7 @@ Page({
         ]
         let id =options.id
         let q =options.q
+        let cid =options.cid
         this.q =q
         if(id){
             list.getProducts({
@@ -48,7 +51,18 @@ Page({
                 that.setData({
                     productsArr:data,
                     q:q,
-                    loadingCenter:false
+                    sortArr:sortArr
+                })
+            })
+        }
+
+        if(cid){
+            console.log(cid)
+            category.getProjectsCategory(cid,(data)=>{
+                console.log(data)
+                that.setData({
+                    productsArr:data[0].products,
+                    sortArr:sortArr
                 })
             })
         }

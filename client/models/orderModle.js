@@ -30,9 +30,28 @@ export default class Order extends Base {
 
     }
 
-    getOrders(page,callback){
+    getOrders(callback){
+        var param = {
+            url:'/api/v1/order',
+            method:'GET',
+            sCallback:function(data){
+                data =data.data
+                callback && callback(data)
+            }
+        }
 
+        this.request(param)
     }
 
-    
+    deleteOrder(){
+        var param ={
+            url:'',
+            method:'delete',
+            sCallback:function(data){
+                callback && callback(data)
+            }
+        }
+
+        this.request(param)
+    }
 }

@@ -15,23 +15,18 @@ page {
   height: 300rpx;
   align-items: center;
   justify-content: center;
+  background:#479de6;
 }
 .userbox .userinfo {
-	display: flex;
-	flex-direction: column;
-  width: 750rpx;
-  z-index: 100;
-  margin-top: 100rpx;
-	align-items: center;
-  justify-content: center;
+  
 }
 
-.userbox .userinfo .userinfo-avatar {
+.userinfo-avatar {
   display: block;
 	width: 160rpx;
-	height: 160rpx;
-  margin: 20rpx 0;
-  border: 5rpx solid #eee;
+	height:160rpx;
+  margin:20rpx 0;
+  border:5rpx solid #eee;
   border-radius: 50%;
 }
 
@@ -137,6 +132,7 @@ page {
   width: 100%;
   height: auto;
   background: #FFF;
+  
 }
 
 .user-menu .item{

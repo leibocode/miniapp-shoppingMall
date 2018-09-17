@@ -14,7 +14,7 @@
         <wxc-elip wx:if='{{goodsListCurrent.goods.length != 0}}'>{{goodsListCurrent.type}}</wxc-elip>
       </view> -->
       <view>
-        <view class="goods" wx:for="{{categoryInfo.cate}}" wx:key="id" wx:for-item="item" data-id='{{item._id}}' bindtap="toDetailsTap">
+        <view class="goods" bindtap="onProductList" wx:for="{{categoryInfo.cate}}" wx:key="id" wx:for-item="item" data-id='{{item._id}}'>
           <view class="pic"></view>
           <view class="name ellipsis">{{item.name}}</view>
           <view class='soldInfo'>

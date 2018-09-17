@@ -4,6 +4,8 @@ const Category = mongoose.model('Category')
 
 const ChildCategory =mongoose.model('ChildCateGory')
 
+const Product = mongoose.model('Product')
+
 export const getCategorys =async ()=>{
     const data =await Category.find({
     }).populate({
@@ -13,7 +15,7 @@ export const getCategorys =async ()=>{
 }
 
 export const getChildrens =async (_id)=>{
-    const data =await ChildCategory.find({
+    const data =await ChildCategory.findOne({
         _id:_id
     }).populate({
         path:'products'

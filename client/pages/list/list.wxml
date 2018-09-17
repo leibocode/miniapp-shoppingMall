@@ -24,15 +24,21 @@
        </view>
     </view>
   </view> -->
-  <view class="list-mian">
-     <template is="products" data="{{productsArr:productsArr}}"></template>
+  <view wx:if="{{productsArr.length>0}}">
+    <view class="list-mian">
+       <template is="products" data="{{productsArr:productsArr}}"></template>
+    </view>
+    <view class="loadingData loading" wx:if="{{loading}}" >
+        <view class="double-bounce1"></view>
+        <view class="double-bounce2"></view>
+    </view>
+    <view class="loadingData loading-center" wx:if="{{loadingCenter}}">
+        <view class="double-bounce1"></view>
+        <view class="double-bounce2"></view>
+    </view>
   </view>
-  <view class="loadingData loading" wx:if="{{loading}}" >
-      <view class="double-bounce1"></view>
-      <view class="double-bounce2"></view>
-  </view>
-  <view class="loadingData loading-center" wx:if="{{loadingCenter}}">
-      <view class="double-bounce1"></view>
-      <view class="double-bounce2"></view>
+  <view wx:else>
+    没有数据
+    
   </view>
 </view>

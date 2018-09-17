@@ -8,25 +8,34 @@ import {
 const jwt =require('jsonwebtoken')
 const User =mongoose.model('User')
 
-export const decryptUserAsync =async(code,userInfo)=>{
+const decryptUserAsync =async(code,userInfo)=>{
+    let u = JSON.parse(userInfo)
+    console.log(u.encryptedData)
     const res = await openidAndSessionKey(code)
     const { openid,session_key } = JSON.parse(res)
+    console.log('sessionkey'+session_key)
     let user = await User.findOne({
         openid:openid
     }).exec()
-    
+    let pc =new WXBizDataCrypt(session_key)
+    let data =pc.decryptData(u.encryptedData,u.iv)
+    let _userData = u.userInfo
     if(!user){
-        let pc =new WXBizDataCrypt(res.session_key)
-        let data =pc.decryptData(userInfo.encryptedData,userInfo.iv)
-        console.log(data)
-        // user =new User({
-        //     avatarUrl:data
-        // })
-
+       
+        console.log(_userData)
+        console.log('usering的值')
+        user =new User({
+            avatarUrl: _userData.avatarUrl,
+            name:_userData.nickName,
+        })
     }else {
-        
+        user.name = _userData.nickName
+        user.avatarUrl =_userData.avatarUrl
     }
 
+    await user.save()
+
+    return user
     
 }
 
@@ -47,7 +56,7 @@ export async function getUserAsync(ctx,next){
     ctx.body ={
         success:true,
         data:{
-            nickname:user.nickname,
+            nickname:user.name,
             avatarUrl:user.avatarUrl,
             sex:user.sex
         }
@@ -55,7 +64,7 @@ export async function getUserAsync(ctx,next){
 }
 
 export async function loginAsync(ctx,next) {
-    console.log('命中')
+    console.log('命中路由')
     const { code } =ctx.request.body
     console.log('code为+'+code) 
     try{
@@ -82,15 +91,17 @@ export async function loginAsync(ctx,next) {
             openid:openid,
             session_key:session_key
         },'wechat_min_token',{expiresIn:'2h'})
-        console.log('生成的token')
-        console.log(token)
 
+        let expir = new Date()
+       // expir.setHours(expir.getHours()+2)
+        console.log('时间')
+        console.log(expir)
+        console.log(new Date())
         ctx.body ={
             success:true,
             data:{
                 token:token,
-                nickname:user.nickname,
-                avatarUrl:user.avatarUrl
+                
             }
         }
 

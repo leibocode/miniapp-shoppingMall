@@ -35,13 +35,21 @@ export const add =async(params)=>{
         cityId:params.cityId,
         districtId:params.districtId,
         mobile:params.mobile,
-        addressText:params.address,
+        addressText:params.addressText,
         code:params.mobile,
         name:params.name,
         user:u._id
     })
 
+    if((await getAll()).length>0){
+        entity.defaultCode =0
+    }else {
+        entity.defaultCode =1
+    }
+
     await entity.save()
+
+    
 }
 
 export const getOne =async(_id)=>{

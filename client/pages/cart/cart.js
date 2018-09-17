@@ -67,7 +67,7 @@ Page({
         let index = this._getProductIndexById(id),
             counts=1;
         console.log(id)
-
+        console.log(index)
         
         if(type=='add'){
             cart.addCounts(id)
@@ -85,7 +85,7 @@ Page({
         let data = this.data.cartData
         let len = data.length
         for(let i =0;i<len;i++){
-           if(data[i].id===id){
+           if(data[i]._id===id){
                return i
            }
         }
@@ -107,7 +107,10 @@ Page({
         let id =cart.getDataSet(event,'id'),
             status =cart.getDataSet(event,'status'),
             index =this._getProductIndexById(id);
-        this.data.cartData[index].selectStatus !=status;
+        console.log(id)
+        console.log(status)
+        console.log(index)
+        this.data.cartData[index].selectStatus != status;
         console.log()
         this._resetCartData();
     },

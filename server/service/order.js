@@ -19,3 +19,35 @@ export const  addOrder =async(params)=>{
 
     return order 
 }
+
+export const getOrders =async(params)=>{
+    console.log(params)
+    const userinfo = await user.findOne({
+        openid:params.openid
+    })
+
+    console.log(userinfo)
+
+    const orders = await payment.find({
+        user:userinfo._id
+    }).exec()
+
+
+    let orderList =[]
+    for(let i=0;i<5;i++){
+        let tempList =[]
+        for(let j=0;j<orders.length;j++){
+            if(orders[j].success===i){
+                tempList.push(orders[j])
+            }
+        }
+        tempList.push({
+            'status':i,
+            'isnull':tempList.length == 0,
+            'orderList':tempList
+        })
+    }
+
+    return orderList
+
+}

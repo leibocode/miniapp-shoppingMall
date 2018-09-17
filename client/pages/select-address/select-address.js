@@ -9,11 +9,11 @@ Page({
     
     onLoad:function(){
         console.log('onLoad')
-        this._loadData()
+        //this._loadData()
     },
 
     onShow:function(){
-        
+        this._loadData()
     },
     //获取的地址信息
     _loadData:function(){

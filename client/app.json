@@ -4,6 +4,7 @@
         "pages/theme/theme",
         "pages/product/product",
         "pages/category/category",
+        "pages/authorize/authorize",
         "pages/my/my",
         "pages/cart/cart",
         "pages/order/order",

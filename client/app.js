@@ -8,21 +8,22 @@ App(
         
     },
     onShow:function(){
-        let that =this
-        let loginFlag =wx.getStorageSync('token')
-        if(loginFlag){
-            wx.checkSession({
-                success:function(){
-                    //session_key 没有过期
-                    console.log('session没有过期');
-                },
-                fail:function(){
-                   token.sign()
-                }
-            })
-        }else {
+        token.sign()
+        // let that =this
+        // let loginFlag =wx.getStorageSync('token')
+        // if(loginFlag){
+        //     wx.checkSession({
+        //         success:function(){
+        //             //session_key 没有过期
+        //             console.log('session没有过期');
+        //         },
+        //         fail:function(){
+        //            token.sign()
+        //         }
+        //     })
+        // }else {
             
-        }
+        // }
     },
     globalData:{
       user:null,

@@ -27,7 +27,7 @@ class Server {
         // this.app.use(async(ctx,next)=>{
         //     ctx.body ='xxx'
         // })
-
+        console.log(new Date())
         this.app.listen(port,host)
         console.log('Server listening on ' + host + ':' + port)
     }

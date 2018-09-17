@@ -4,7 +4,7 @@
             <block wx:for="{{cartData}}">
                 <view class="cart-item {{deleteFlag&&index==currentIndex?'showDeleteBtn':'hideDeleteBtn'}}">
                     <view class="cart-item-main" data-id="{{item._id}}" data-index="{{index}}">
-                        <view   class="cart-item-checkbox" ontap="toggleSelect" data-id="{{item.id}}" data-status="{{item.selectStatus}}">
+                        <view   class="cart-item-checkbox" ontap="toggleSelect" data-id="{{item._id}}" data-status="{{item.selectStatus}}">
                             <image wx:if="{{item.selectStatus}}" src="../../images/circle@selected.png"></image>
                             <image wx:else src="../../images/circle@noselected.png"></image>
                         </view>

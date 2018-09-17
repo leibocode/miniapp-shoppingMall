@@ -1,10 +1,10 @@
 <view class="container">
-  <view class='userbox' style='background: -webkit-linear-gradient(top, rgba({{bgRed}},{{bgGreen}},{{bgBlue}}, 1), rgba({{bgRed}},{{bgGreen}},{{bgBlue}}, 0.3))'>
+  <view class='userbox'>
     <view wx:if="{{userInfo}}" class="userinfo">
-      <wxc-avatar class="userinfo-avatar" src="{{ userInfo.avatarUrl }}"> </wxc-avatar>
+      <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}"> </image>
       <view style='width:30rpx;'></view>
       <view class='userinfo-text'>
-        <text class="userinfo-nickname">{{ userInfo.nickName }}</text>
+        <text class="userinfo-nickname">{{ userInfo.nickname }}</text>
         <view style='height:10rpx;'></view>
       </view>
     </view>
@@ -21,13 +21,13 @@
   </view>
   <view class="user-menu">
     <view class="item">
-      <navigator url="/pages/ucenter/order-list/index" hover-class="none" class="a">
+      <navigator url="/pages/order-list/order-list" hover-class="none" class="a">
         <wxc-icon type='feedback' size='{{iconSize}}' color='{{iconColor}}' style='margin:15rpx 0 10rpx 0;'></wxc-icon>
         <text class="txt">订单管理</text>
       </navigator>
     </view>
     <view class="item">
-      <navigator url="/pages/select-address/index" hover-class="none" class="a">
+      <navigator url="/pages/select-address/select-address" hover-class="none" class="a">
         <wxc-icon type='address' size='{{iconSize}}' color='{{iconColor}}' style='margin:15rpx 0 10rpx 0;'></wxc-icon>
         <text class="txt">收货地址</text>
       </navigator>
@@ -76,8 +76,4 @@
     </view>
   </view>
   <view style="height:20rpx;width:100%;"></view>
-  <view class="my-item" style='border:none;padding:0rpx;margin:0rpx;background:none;border:none;height:auto;line-height:auto;'>
-    <wxc-button type="danger" value="重新授权登录" bindclick="relogin"></wxc-button>
-  </view>
-
 </view>

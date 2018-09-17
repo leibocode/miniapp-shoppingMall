@@ -94,7 +94,7 @@ Page({
             cityId: cityId,
             districtId: districtId,
             name:linkMan,
-            address: address,
+            addressText:address,
             mobile: mobile,
             code: code,
         },(data)=>{

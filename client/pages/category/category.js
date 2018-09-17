@@ -58,6 +58,15 @@ Page({
         })
 
     },
+    //跳转到列表页面
+    onProductList:function(event){
+        let id  = category.getDataSet(event,'id')
+        console.log(id)
+        wx.navigateTo({
+            url:'../list/list?cid='+id
+        })
+    },
+    //分享
     onShareAppMessage:function(){
         return {
             title:'零食1号',

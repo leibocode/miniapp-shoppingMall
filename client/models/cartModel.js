@@ -150,5 +150,12 @@ export default class Cart extends Base {
      */
     delete(_ids){
 
-    } 
+    }
+    
+    /**
+     * 清空购物车
+     */
+    deleteCart(){
+        
+    }
 }

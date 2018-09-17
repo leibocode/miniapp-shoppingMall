@@ -3,15 +3,15 @@
     <view wx:if="{{addressList.length>0}}">
       <block wx:for="{{addressList}}">
           <view class="a-address">
-            <view data-id="{{item._id}}" class="left-text {{item.isDefault?'active':''}}" bindtap="selectTap">
+            <view data-id="{{item._id}}" class="left-text {{item.defaultCode==1?'active':''}}" bindtap="selectTap">
               <view class="name-tel">
                 {{item.name}} {{item.mobile}}
               </view>
             </view>
             <view class="address-box">
-              {{item.address}}
+              {{item.addressText}}
             </view>
-            <view class="right-edit" bindtap="editAddress" data-id="{{item._id}}"></view>
+            <view class="icon icon--edit right-edit" data-id="{{item._id}}"  bindtap="editAddess" style="font-size:35rpx; color:#999999"></view>
           </view>
       </block>
     </view>

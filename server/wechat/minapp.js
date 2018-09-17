@@ -15,9 +15,6 @@ export const openidAndSessionKey =async code=>{
     opts.qs.js_code =code
     
     let res =await rp(opts)
-
-    console.log('111')
-    console.log(res)
     
     return res 
 }
@@ -29,6 +26,9 @@ export class WXBizDataCrypt {
     }
 
     decryptData (encryptedData, iv) {
+        console.log('解密')
+        console.log(encryptedData)
+        console.log(iv)
         // base64 decode
         let decoded
         let sessionKey = new Buffer(this.sessionKey, 'base64')
@@ -43,6 +43,7 @@ export class WXBizDataCrypt {
           decoded = decipher.update(encryptedData, 'binary', 'utf8')
           decoded += decipher.final('utf8')
           decoded = JSON.parse(decoded)
+          console.log(decoded)
         } catch (err) {
           throw new Error('Illegal Buffer')
         }
