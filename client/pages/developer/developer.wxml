@@ -1,0 +1,8 @@
+<view class="container">
+  <view class="me">
+    <view class="title">关于我</view>
+    <view  class="content">
+       来自上海浦东的一名程序员
+    </view>
+  </view>
+</view>

@@ -46,12 +46,11 @@
             </view>
         </view>
     </block>
-    <view  wx:else class="no-data">
+    <view  wx:else class="no-data" style="margin-top:180rpx;">
         <view class="title-box">
             <text>购物车空空如也~</text>
-            <image src="https://cdn.it120.cc/images/weappshop/icon-cart.png"/>
         </view>
-        <view class="to-index-btn" bindtap="toListPage">
+        <view class="to-index-btn" bindtap="toListPage" style="margin-top:60rpx;">
             去逛逛
         </view>
     </view>

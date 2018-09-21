@@ -30,10 +30,24 @@ export default class Order extends Base {
 
     }
 
-    getOrders(callback){
+    getOrder(id,callback){
+        var param ={
+            url:`/api/v1/order/${id}`,
+            method:'GET',
+            sCallback:function(data){
+                data = data.data
+                callback(data)
+            }
+        }
+        
+        this.request(param)
+    }
+
+    getOrders(parmas,callback){
         var param = {
             url:'/api/v1/order',
             method:'GET',
+            data:parmas,
             sCallback:function(data){
                 data =data.data
                 callback && callback(data)

@@ -14,6 +14,9 @@ Page({
         },
         activeTab: 0,
         loadingStatus: false,
+        size:5,
+        page:1,
+        orderList:[]
     },
 
     onLoad:function(options){
@@ -44,12 +47,21 @@ Page({
 
     getOrderList:function(){
         let that = this
-        order.getOrders((data)=>{
+        order.getOrders({
+            page:that.data.page,
+            size:that.data.size
+        },(data)=>{
             console.log(data.length)
             if(data.length>0){
+                // for(let i =0;i<data.length;i++){
+                //     console.log(i)
+                //     that.data.orderList.push(data[i])
+                // }
                 that.setData({
                     orderList:data
                 })
+
+                //这部分业务放到后端进行完成
                 // //订单分类
                 // let orderList =[]
                 // console.log(that.data.tabs.length)
@@ -75,9 +87,12 @@ Page({
                 //     orderList:orderList
                 // })
             }else {
-                that.setData({
-                    orderList:'null'
-                })
+                if(that.data.orderList.length>0){
+                }else {
+                    that.setData({
+                        orderList:'null'
+                    })
+                }
             }
 
         })
@@ -93,6 +108,7 @@ Page({
 
     orderDetail:function(event){
         let id = order.getDataSet(event,'id')
+        console.log('订单id'+id)
         wx.navigateTo({
             url:'../orderDetail/orderDetail?id='+id
         })

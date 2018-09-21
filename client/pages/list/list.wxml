@@ -1,6 +1,6 @@
 <import src="../../template/products/products-tpl.wxml"/>
 <view class="container list-container">
-  <!-- <view class="order-sort">
+  <view class="order-sort">
     <view class="order-sort-i clearfix">
        <view class="tablist">
           <view class="tab_swi_a {{searchBy=='sort'?'on':''}}" bindtap="">
@@ -23,7 +23,7 @@
           </view>
        </view>
     </view>
-  </view> -->
+  </view>
   <view wx:if="{{productsArr.length>0}}">
     <view class="list-mian">
        <template is="products" data="{{productsArr:productsArr}}"></template>
@@ -38,7 +38,6 @@
     </view>
   </view>
   <view wx:else>
-    没有数据
-    
+    没有对应的零食哦~    
   </view>
 </view>

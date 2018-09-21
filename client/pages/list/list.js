@@ -1,9 +1,12 @@
 import List from '../../models/listModel'
 import Search from '../../models/searchModel'
 import Category from '../../models/categoryModel' 
+import Product from '../../models/productModel'
 const list =new List()
 const search =new Search()
 const category =new Category()
+const product =new Product() 
+
 
 Page({
     data:{
@@ -13,7 +16,8 @@ Page({
         loading:false,
         loadingCenter:false,
         q:'',
-        productsArr:[]
+        productsArr:[],
+        size:10
     },
     onLoad:function(options){
         let that = this
@@ -24,22 +28,34 @@ Page({
         let id =options.id
         let q =options.q
         let cid =options.cid
-        this.q =q
+        let hostKey =options.hostKey
         if(id){
+            this.q =id
             list.getProducts({
                 _id:id,
                 size:10,
                 page:that.data.page
             },(data)=>{
-                console.log(data);
+                console.log(data.products);
                 that.setData({
                     productsArr:data.products,
                     sortArr:sortArr
                 })
             })
+        }else if(hostKey){
+            search.searchProducts({
+                keyword:hostKey,
+                size:10,
+                page:that.data.page
+            },(data)=>{
+                that.setData({
+                    productsArr:data,
+                    q:hostKey,
+                    sortArr:sortArr
+                })
+            })
         }
-
-        if(q){
+        else if(q){
             search.searchProducts({
                 keyword:q,
                 size:10,
@@ -55,14 +71,23 @@ Page({
                 })
             })
         }
-
-        if(cid){
+        else if(cid){
             console.log(cid)
             category.getProjectsCategory(cid,(data)=>{
                 console.log(data)
                 that.setData({
-                    productsArr:data[0].products,
+                    productsArr:data.products,
                     sortArr:sortArr
+                })
+            })
+        }else {
+            let that =this
+            product.getProducts({
+                page:that.data.page,
+                size:that.data.size
+            },(data)=>{
+                this.setData({
+                    productsArr:data,
                 })
             })
         }
@@ -77,4 +102,5 @@ Page({
             url:'../product/product?id='+id
         })
     }
+
 })

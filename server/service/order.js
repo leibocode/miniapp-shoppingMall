@@ -22,6 +22,7 @@ export const  addOrder =async(params)=>{
 
 export const getOrders =async(params)=>{
     console.log(params)
+    const count = (params.size) * (params.page -1)
     const userinfo = await user.findOne({
         openid:params.openid
     })
@@ -30,8 +31,11 @@ export const getOrders =async(params)=>{
 
     const orders = await payment.find({
         user:userinfo._id
-    }).exec()
+    }).limit(params.size)
+      .skip(count)
+      .exec()
 
+    console.log(orders)
 
     let orderList =[]
     for(let i=0;i<5;i++){
@@ -41,13 +45,27 @@ export const getOrders =async(params)=>{
                 tempList.push(orders[j])
             }
         }
-        tempList.push({
+        orderList.push({
             'status':i,
             'isnull':tempList.length == 0,
             'orderList':tempList
         })
     }
 
-    return orderList
+    console.log(orderList)
 
+    return orderList
+}
+
+export const getOrder = async (openid,id)=>{
+    const userinfo = await user.findOne({
+        openid:openid
+    })
+    
+    const  data =await payment.findOne({
+        user:userinfo._id
+    })
+    
+    return data
+    
 }

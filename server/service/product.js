@@ -26,7 +26,7 @@ export const getProduct =async(_id)=>{
 
 export const getSearch = async(params)=>{
     const count = params.size * (params.page-1)
-
+    console.log(params.keyword)
     const data =await product.find({
         title:new RegExp(params.keyword,'i')
     }).limit(params.size)

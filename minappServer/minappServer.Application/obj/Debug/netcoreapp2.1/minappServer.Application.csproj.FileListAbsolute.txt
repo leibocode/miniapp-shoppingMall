@@ -1,0 +1,9 @@
+H:\wechat\小程序\minapp-shoppingMall\minappServer\minappServer.Application\bin\Debug\netcoreapp2.1\minappServer.Application.deps.json
+H:\wechat\小程序\minapp-shoppingMall\minappServer\minappServer.Application\bin\Debug\netcoreapp2.1\minappServer.Application.dll
+H:\wechat\小程序\minapp-shoppingMall\minappServer\minappServer.Application\bin\Debug\netcoreapp2.1\minappServer.Application.pdb
+H:\wechat\小程序\minapp-shoppingMall\minappServer\minappServer.Application\obj\Debug\netcoreapp2.1\minappServer.Application.csprojResolveAssemblyReference.cache
+H:\wechat\小程序\minapp-shoppingMall\minappServer\minappServer.Application\obj\Debug\netcoreapp2.1\minappServer.Application.csproj.CoreCompileInputs.cache
+H:\wechat\小程序\minapp-shoppingMall\minappServer\minappServer.Application\obj\Debug\netcoreapp2.1\minappServer.Application.AssemblyInfoInputs.cache
+H:\wechat\小程序\minapp-shoppingMall\minappServer\minappServer.Application\obj\Debug\netcoreapp2.1\minappServer.Application.AssemblyInfo.cs
+H:\wechat\小程序\minapp-shoppingMall\minappServer\minappServer.Application\obj\Debug\netcoreapp2.1\minappServer.Application.dll
+H:\wechat\小程序\minapp-shoppingMall\minappServer\minappServer.Application\obj\Debug\netcoreapp2.1\minappServer.Application.pdb

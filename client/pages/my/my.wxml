@@ -1,5 +1,5 @@
 <view class="container">
-  <view class='userbox'>
+  <view class='userbox'>sdfs,,sdf55
     <view wx:if="{{userInfo}}" class="userinfo">
       <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}"> </image>
       <view style='width:30rpx;'></view>
@@ -35,7 +35,7 @@
     <view class="item no-border-right">
       <navigator url="/pages/ucenter/location/location" hover-class="none" class="a">
         <wxc-icon type='location' size='{{iconSize}}' color='{{iconColor}}' style='margin:15rpx 0 10rpx 0;'></wxc-icon>
-        <text class="txt">到店里</text>
+        <text class="txt">常见问题</text>
       </navigator>
     </view>
     <view class="item">
@@ -59,11 +59,14 @@
     <view class="item item-bottom" bindtap='makePhoneCall'>
       <navigator url="" hover-class="none" class="a">
         <wxc-icon type='group' size='{{iconSize}}' color='{{iconColor}}' style='margin:15rpx 0 10rpx 0;'></wxc-icon>
+        <contact-button type="default-light" size="30" session-from="weapp" class="guest-button">
+          联系客服
+        </contact-button>
         <!-- <contact-button type="default-light" size="30" session-from="weapp" class="guest-button"></con -->
       </navigator>
     </view>
     <view class="item item-bottom" bindtap="aboutUs">
-      <navigator url="url" hover-class="none" class="a">
+      <navigator url="/pages/developer/developer" hover-class="none" class="a">
         <wxc-icon type='help' size='{{iconSize}}' color='{{iconColor}}' style='margin:15rpx 0 10rpx 0;'></wxc-icon>
         <text class="txt">关于我</text>
       </navigator>
@@ -75,5 +78,6 @@
       </navigator>
     </view>
   </view>
-  <view style="height:20rpx;width:100%;"></view>
+  <view class="version"style='margin-top:10rpx;font-size:18rpx;'>Copyright ©2018.8-2018.10 leibocode(GitHub ID)</view>
+  <view style="height:12rpx;width:100%;"></view>
 </view>

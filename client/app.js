@@ -5,10 +5,9 @@ const token =new Token()
 App(
  {
     onLaunch:function(){
-        
+        token.fetchToken()
     },
     onShow:function(){
-        token.sign()
         // let that =this
         // let loginFlag =wx.getStorageSync('token')
         // if(loginFlag){

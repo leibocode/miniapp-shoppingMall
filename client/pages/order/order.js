@@ -19,7 +19,7 @@ Page({
         hasNoCoupons: true,
         coupons: [],
         youhuijine: 0, //优惠券金额
-        curCoupon: null // 当前选择使用的优惠券
+        curCoupon: null // 当前选择使用的优惠
     },
     onLoad:function(){
         let that = this
@@ -90,7 +90,7 @@ Page({
             wx.hideLoading();
             
             wx.navigateTo({
-                page:'../order-list/order-list'
+                url:'../order-list/order-list'
             })
         })
         
@@ -102,7 +102,7 @@ Page({
         products.forEach((item)=>{
             res.push({
                 _id:item._id,
-                name:item.name,
+                name:item.title,
                 count:item.count,
                 img:item.img
             })

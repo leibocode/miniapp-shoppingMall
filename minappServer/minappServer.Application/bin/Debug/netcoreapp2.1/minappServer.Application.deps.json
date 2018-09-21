@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.1": {
-      "minappServer.Repositories/1.0.0": {
+      "minappServer.Application/1.0.0": {
         "runtime": {
-          "minappServer.Repositories.dll": {}
+          "minappServer.Application.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "minappServer.Repositories/1.0.0": {
+    "minappServer.Application/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

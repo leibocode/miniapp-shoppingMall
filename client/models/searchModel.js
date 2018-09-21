@@ -8,7 +8,7 @@ export default class search extends Base {
 
     getHot(callback){
         let param ={
-            url:'/api/v1/search',
+            url:'/api/v1/search/hot',
             sCallback:function(data){
                 data =data.data
                 callback && callback(data)

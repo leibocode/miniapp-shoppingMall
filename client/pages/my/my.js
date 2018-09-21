@@ -14,6 +14,9 @@ Page({
     userInfo:null
   },
   onLoad:function(){
+    console.log('onload')
+  },
+  onShow:function(){
     let that =this
     let userInfo =wx.getStorageSync('user')
     if(!userInfo){

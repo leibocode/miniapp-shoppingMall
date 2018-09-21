@@ -4,7 +4,8 @@ import{
     post
 } from '../decorator/router'
 
-import { getSearch } from '../service/search'
+import { getSearchHot } from '../service/search'
+import { getSearch } from '../service/product'
 
 @controller('/api/v1/search')
 export class SearchController {
@@ -28,13 +29,38 @@ export class SearchController {
     //     }
 
     // }
-    @get('/')
+    @get('/hot')
     async getSearchs(ctx,next){
-        const data  = await getSearch() 
+
+        const data  = await getSearchHot() 
         
         ctx.body ={
             success:true,
             data:data
         }
     }
+
+    // @get('/')
+    // async getSearchData(ctx,next){
+    //     console.log('命中路由')
+    //     const {keyword,size,page  } = ctx.query
+    //     let params ={
+    //         keyword,
+    //         size,
+    //         page
+    //     }
+    //     console.log(params)
+    //     try{
+    //         const data =await getSearch(params)
+    //         ctx.body ={
+    //             data:data,
+    //             success:true
+    //         }
+    //     }catch(e){
+    //         console.log(e)       
+    //     }
+
+    // }
+
+
 }

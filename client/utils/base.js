@@ -1,5 +1,6 @@
 import config from './config.js'
-
+import Token from './token'
+const token =new Token() 
 export default class Base {
     constructor () {
       this.baseRestUrl = 'http://127.0.0.1:3001'
@@ -12,6 +13,8 @@ export default class Base {
         if(!params.method){
             params.method ='GET'
         }
+
+        let  t = token.fetchToken()
         
         wx.request({
             url:url,
@@ -19,7 +22,7 @@ export default class Base {
             data:params.data,
             header:{
                 'content-type': 'application/json',
-                'authorization':'Bearer '+wx.getStorageSync('token').token
+                'authorization':'Bearer '+t.token
             },
             success:function(res){
                 var code =res.statusCode.toString()

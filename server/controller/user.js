@@ -85,23 +85,27 @@ export async function loginAsync(ctx,next) {
             })
             user = await user.save()
         }
+        console.log('时间')
+        var time =new Date().toLocaleString();
+        console.log(time)
 
+        var expir =new Date();
+        expir.setHours(expir.getHours()+2);
+        
+        console.log(expir.toLocaleString())
+        let expires_in = expir.getTime() 
+        
         //jsonwebtoken 
         const token =jwt.sign({
             openid:openid,
             session_key:session_key
         },'wechat_min_token',{expiresIn:'2h'})
 
-        let expir = new Date()
-       // expir.setHours(expir.getHours()+2)
-        console.log('时间')
-        console.log(expir)
-        console.log(new Date())
         ctx.body ={
             success:true,
             data:{
                 token:token,
-                
+                expires_in:expires_in
             }
         }
 

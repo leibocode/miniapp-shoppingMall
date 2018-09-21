@@ -14,6 +14,9 @@ Page({
         page:1
     },
     onLoad:function(){
+        console.log('onload')
+    }, 
+    onShow:function(){
         let hist = search.gitHistory()
         console.log('缓存中的值')
         console.log(hist)
@@ -27,7 +30,7 @@ Page({
                 hotKeys:data
             })
         })
-    }, 
+    },
     onCancel:function(){
         wx.navigateTo({
             url:'../search/search'
@@ -64,6 +67,7 @@ Page({
                 }
             }
         })
+        this.onShow()
     },
     onConfirm:function(event){
         console.log('11')
@@ -124,6 +128,12 @@ Page({
         let q = search.getDataSet(event,'text')
         wx.navigateTo({
             url:'../list/list?q='+q
+        })
+    },
+    onHostkey:function(event){
+        let hostKey = search.getDataSet(event,'text')
+        wx.navigateTo({
+            url:'../list/list?hostKey='+hostKey
         })
     }
 })

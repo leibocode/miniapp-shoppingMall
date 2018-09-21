@@ -32,7 +32,7 @@
       </view>
         <view class="tags">
           <block class="tags-container" wx:for="{{hotKeys}}">
-            <view bind:tap="onTap" data-text="{{item.name}}" class="tag-class">
+            <view bind:tap="onHostkey" data-text="{{item.text}}" class="tag-class">
               <text>{{item.text}}</text>
               <view class="after"></view>
             </view>

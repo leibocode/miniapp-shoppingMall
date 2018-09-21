@@ -4,37 +4,36 @@ export default class token {
     constructor(){
         
         this.url = config.dev
-
-        this.fetchToken()
     }
     
     fetchToken(){
         let data = wx.getStorageSync('token')
 
         if(!data){
-            //token
-
+            //token 不存在
+          data = this.sign()
         }
-
+        // 存在验证token
         if(!this.isValidToken(data,'token')){
-            this.sign()
-            
+           data = this.sign()
         }
 
-        
-        
+        return data
     }
 
     isValidToken(data,name){
-        if(!data || !data[name] || !data.expires_in){
+        console.log('验证token')
+        if(!data || !data.token || !data.expires_in){
             return false
         }
 
         const expiresIn =data.expires_in
         const now = (new Date()).getTime()
         if(now< expiresIn){
+            console.log('tokne有')
             return true
         }else {
+            console.log('tokeng过期')
             return false 
         }
     }
@@ -55,6 +54,8 @@ export default class token {
                         console.log('token') 
                         console.log(data)
                         wx.setStorageSync('token',data.data.data)
+                        let token = data.data.data
+                        return token
                     },
                     fail:function(err){
                         console.log(err)

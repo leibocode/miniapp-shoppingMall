@@ -14,4 +14,16 @@ export default class Project extends Base {
         }
         this.request(param)
     }
+
+    getProducts(params,callback){
+        var param ={
+            url:'/api/v1/product',
+            data:params,
+            sCallback:function(data){
+                data =data.data
+                callback && callback(data)
+            }
+        }
+        this.request(param) 
+    }
 } 

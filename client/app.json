@@ -13,7 +13,8 @@
         "pages/address-add/address-add",
         "pages/select-address/select-address",
         "pages/search/search",
-        "pages/order-list/order-list"
+        "pages/order-list/order-list",
+        "pages/developer/developer"
     ],
     "window":{
         "navigationBarBackgroundColor": "#479de6",
