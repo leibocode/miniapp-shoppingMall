@@ -50,6 +50,12 @@
     background-size: 40rpx auto;
 }
 
+.address-box {
+  font-size: 24rpx;
+  color: #888;
+  line-height: 36rpx;
+}
+
 
 /*icon*/
 @font-face {

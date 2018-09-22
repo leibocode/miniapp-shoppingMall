@@ -21,6 +21,7 @@ export default class search extends Base {
     searchProducts(data,callback){
         let params ={
             url:'/api/v1/search',
+            method:'POST',
             data:data,
             sCallback:function(res){
                 res =res.data

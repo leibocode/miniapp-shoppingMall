@@ -18,10 +18,6 @@ function filterTemplate(list,title){
     return res;
 }
 
-function filterProductTitle(list){
-    
-}
-
 export async function createOrder(ctx,next){
     const body  =ctx.request.body
     const { openid } =ctx.user
@@ -40,11 +36,19 @@ export async function createOrder(ctx,next){
         form_id:body.formId,
         data:{
             "keyword1":{
-                "value": body.total,
+                "value": body.total+'元',
                 "color": "#1d1d1d"
             },
             "keyword2":{
-                "value": Date.now(),
+                "value": (Date.now()).toString(),
+                "color": "#1d1d1d"
+            },
+            "keyword3":{
+                "value": payment.product[0].title+"等商品",
+                "color": "#1d1d1d"
+            },
+            "keyword4":{
+                "value": "请在30分钟内完成支付",
                 "color": "#1d1d1d"
             }
         }
@@ -63,7 +67,6 @@ export async function createOrder(ctx,next){
         ctx.body ={
             success:false
         }
-    }
-
-    
+    }    
 }
+

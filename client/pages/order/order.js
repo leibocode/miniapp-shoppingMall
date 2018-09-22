@@ -103,7 +103,7 @@ Page({
             res.push({
                 _id:item._id,
                 name:item.title,
-                count:item.count,
+                count:item.counts,
                 img:item.img
             })
         }) 

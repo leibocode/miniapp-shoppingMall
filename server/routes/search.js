@@ -40,27 +40,21 @@ export class SearchController {
         }
     }
 
-    // @get('/')
-    // async getSearchData(ctx,next){
-    //     console.log('命中路由')
-    //     const {keyword,size,page  } = ctx.query
-    //     let params ={
-    //         keyword,
-    //         size,
-    //         page
-    //     }
-    //     console.log(params)
-    //     try{
-    //         const data =await getSearch(params)
-    //         ctx.body ={
-    //             data:data,
-    //             success:true
-    //         }
-    //     }catch(e){
-    //         console.log(e)       
-    //     }
+    @post('/')
+    async getSearchData(ctx,next){
+        let body = ctx.request.body
+        console.log(body)
+        try{
+            const data =await getSearch(body)
+            ctx.body ={
+                data:data,
+                success:true
+            }
+        }catch(e){
+            console.log(e)       
+        }
 
-    // }
+    }
 
 
 }

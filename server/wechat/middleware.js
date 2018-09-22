@@ -28,12 +28,12 @@ export default function (opts,reply){
                 limit:'1mb',
                 encoding:ctx.charset
             })
+            console.log('data值')
+            console.log(data)
+            // const content =await util.parseXML(data)
+            // const message =util.formatMessage(content.xml)
 
-            const content =await util.parseXML(data)
-            const message =util.formatMessage(content.xml)
-
-            console.log(message)
-            ctx.weixin =message
+            ctx.weixin =data
             
             await reply.apply(ctx,[ctx,next])
 
@@ -44,6 +44,9 @@ export default function (opts,reply){
             ctx.status = 200
             ctx.type ='application/xml'
             ctx.body =xml
+
+            //发送到接口
+
         }
     }
 }

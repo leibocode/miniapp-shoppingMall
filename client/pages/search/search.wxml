@@ -9,7 +9,7 @@
     <view class='cancel'  bind:tap="onCancel">取消</view>
   </view>
   <view wx:if="{{!finished}}">
-    <view class="history">
+    <view class="history" wx:if="{{historyKeys.length>0}}">
       <view class="title">
         <view class="chunk"></view>
         <text>历史搜索</text>
@@ -25,7 +25,12 @@
         </block>
       </view>
     </view>
-    <view class="history hot-search">
+    <view wx:else>
+      <view class="no-history">
+         还没有搜索记录哦~
+      </view>
+    </view>
+    <view class="history hot-search" wx:if="{{hotKeys.length>0}}">
       <view class="title">
         <view class="chunk"></view>
         <text>热门搜索</text>
@@ -38,6 +43,11 @@
             </view>
           </block>
         </view>
+    </view>
+    <view wx:else>
+      <view class="no-history">
+            还没有热门搜索词哦~
+      </view>
     </view>
   </view>
   <view class="loadingData loading" wx:if="{{loading}}" >

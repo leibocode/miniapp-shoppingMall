@@ -19,9 +19,9 @@ Page({
         const id =options.id
         this.initCityData(1)
         if(id){
-
-        }else{
-
+            addressModel.getAddressById(id,(data)=>{
+                
+            })
         }
     },
 

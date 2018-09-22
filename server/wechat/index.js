@@ -6,6 +6,7 @@ import path from 'path'
 const base ='https://api.weixin.qq.com/cgi-bin/'
 const api ={
     accessToken: base + 'token?grant_type=client_credential',
+    send:base +'cgi-bin/message/custom/send'
 }
 
 //https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET
@@ -75,5 +76,9 @@ export default class Wechat{
         } else {
           return false
         }
-      }
+    }
+    
+    sendTextMessage(){
+
+    }
 }

@@ -4,7 +4,7 @@
     width: 40rpx;
     height: 40rpx;
     position: relative;
-    /* margin: 100px auto; */
+    margin:30rpx auto;
   }
    
   .double-bounce1, .double-bounce2 {

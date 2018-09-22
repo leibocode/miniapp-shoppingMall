@@ -41,7 +41,7 @@ export const add =async(params)=>{
         user:u._id
     })
 
-    if((await getAll()).length>0){
+    if((await getAll(params.openid)).length>0){
         entity.defaultCode =0
     }else {
         entity.defaultCode =1
@@ -64,10 +64,18 @@ export const setState =async(openid,_id)=>{
     const userinfo = await user.findOne({
         openid:openid
     })
-    const entity =await address.findOne({
+    const adressList =await address.find({
         user:userinfo._id
+    }).exec()
+    adressList.forEach(async(item) => {
+        item.defaultCode =0
+        await item.save()
+    });
+    const entity = await address.findOne({
+        _id:_id
     })
-    entity.defaultCode = 1 
+    entity.defaultCode = 1
+    
     await entity.save()
 }
 

@@ -40,5 +40,28 @@ export default class address extends Base {
             }
         }
     }
-    
+
+    editAddress(data,callback){
+        var that = this
+        var param ={
+            url:`/api/v1/address/${data.id}`,
+            data:data,
+            sCallback:function(data){
+                callback(data)
+            }
+        }
+        this.request(param)
+    }
+
+    getAddressById(id,callback){
+        var that = this
+        var param = {
+            url:`/api/v1/address/${id}`,
+            method:'get',
+            sCallback:function(data){
+                data = data.data
+            }
+        }
+        this.request(param)
+    }
 }

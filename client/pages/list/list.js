@@ -93,8 +93,45 @@ Page({
         }
        
     },
+    _loadData:function(){
+        const that = this
+        let newPage = this.data.page +1
+
+        search.searchProducts({
+            keyword:that.data.q,
+            size:that.data.size,
+            page:newPage
+        },(data)=>{
+            if(data.length>0){
+                let newProducts  =that.data.productsArr
+                data.forEach(item => {
+                    newProducts.push(item)
+                });
+                that.setData({
+                    page:newPage,
+                    loading:false,
+                    productsArr:newProducts
+                })
+            }else {
+                wx.stopPullDownRefresh()
+                that.setData({
+                    loading:false
+                })
+            }
+
+        })
+    },
     onPullDownRefresh:function(){
-        
+        console.log('下拉')
+    },
+    onReachBottom:function(){
+        let that = this
+        this.setData({
+            loading:true
+        })
+        setTimeout(()=>{
+            this._loadData()
+        },1000)
     },
     onProductItemTap:function(event){
         const id = list.getDataSet(event,'id')

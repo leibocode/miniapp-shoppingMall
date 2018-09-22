@@ -12,7 +12,7 @@ import {
  export class AddressController {
      @get('/:_id')
      async getAddress(ctx,next){
-         
+         const { _id } = ctx.params
          //let ipenid = 
          const data =await getOne(_id)
          ctx.body ={

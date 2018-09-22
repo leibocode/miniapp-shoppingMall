@@ -123,11 +123,22 @@ function sign (ticket, url) {
   }
 }
 
+function filterProductName(list){
+  if(list.length<2){
+    return list[0].name
+  }
+  let title
+  list.forEach((item)=>{
+
+  })
+}
+
 export {
   formatMessage,
   parseXML,
   tpl,
-  sign
+  sign,
+  filterProductName
 }
 
 

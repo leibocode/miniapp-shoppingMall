@@ -26,7 +26,11 @@ Page({
     },
 
     selectTap:function(event){
+        console.log('切换状态')
         let id =address.getDataSet(event,'id')
+        address.setState(id,(data)=>{
+            wx.navigateBack({})
+        })
     },
 
     addAddress:function(){
@@ -34,6 +38,14 @@ Page({
             url:'/pages/address-add/address-add'
         })
     },
+
+    editAddess:function(event){
+        let id = address.getDataSet(event,'id')
+        wx.navigateTo({
+            url:'/pages/address-add/address-add?id='+id
+        })
+    },
+
     editAddress:function(event){
         let id =address.getDataSet(event,'id')
         wx.navigateTo({

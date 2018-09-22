@@ -17,12 +17,20 @@ Page({
         console.log('onload')
     }, 
     onShow:function(){
+        let that =this
         let hist = search.gitHistory()
         console.log('缓存中的值')
         console.log(hist)
-        this.setData({
-            historyKeys:hist
-        })
+        if(hist.length>0){
+            that.setData({
+                historyKeys:hist
+            })
+        }else {
+            that.setData({
+                historyKeys:[]
+            })
+        }
+       
 
         search.getHot((data)=>{
             console.log(data)
@@ -64,10 +72,10 @@ Page({
             success:function(res){
                 if(res.confirm){
                     search.deleteHot();
+                    wx.navigateBack({})
                 }
             }
         })
-        this.onShow()
     },
     onConfirm:function(event){
         console.log('11')

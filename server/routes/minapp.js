@@ -54,6 +54,7 @@ export class MinappController {
 
     @post('/wechat-hear')
     async wechatHear(ctx,next){
+        console.log('微信客服消息')
         const middle =wechatMiddle(config.minapp,reply)
         await middle(ctx,next)
     }

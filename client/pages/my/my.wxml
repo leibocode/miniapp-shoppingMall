@@ -1,5 +1,5 @@
 <view class="container">
-  <view class='userbox'>sdfs,,sdf55
+  <view class='userbox'>
     <view wx:if="{{userInfo}}" class="userinfo">
       <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}"> </image>
       <view style='width:30rpx;'></view>
@@ -59,7 +59,7 @@
     <view class="item item-bottom" bindtap='makePhoneCall'>
       <navigator url="" hover-class="none" class="a">
         <wxc-icon type='group' size='{{iconSize}}' color='{{iconColor}}' style='margin:15rpx 0 10rpx 0;'></wxc-icon>
-        <contact-button type="default-light" size="30" session-from="weapp" class="guest-button">
+        <contact-button type="default-light" size="30" session-from="weapp" class="txt guest-button">
           联系客服
         </contact-button>
         <!-- <contact-button type="default-light" size="30" session-from="weapp" class="guest-button"></con -->
@@ -79,5 +79,4 @@
     </view>
   </view>
   <view class="version"style='margin-top:10rpx;font-size:18rpx;'>Copyright ©2018.8-2018.10 leibocode(GitHub ID)</view>
-  <view style="height:12rpx;width:100%;"></view>
 </view>
