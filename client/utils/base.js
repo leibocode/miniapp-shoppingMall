@@ -3,8 +3,8 @@ import Token from './token'
 const token =new Token() 
 export default class Base {
     constructor () {
-      //this.baseRestUrl = 'http://127.0.0.1:3001'
-      this.baseRestUrl ='https://minshopping.imtudou.cn'
+      this.baseRestUrl = 'http://127.0.0.1:3001'
+      //this.baseRestUrl ='https://minshopping.imtudou.cn'
     }
     request(params){
         var that =this

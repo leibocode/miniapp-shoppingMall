@@ -4,10 +4,11 @@
             <block wx:for="{{cartData}}">
                 <view class="cart-item {{deleteFlag&&index==currentIndex?'showDeleteBtn':'hideDeleteBtn'}}">
                     <view class="cart-item-main" data-id="{{item._id}}" data-index="{{index}}">
-                        <view   class="cart-item-checkbox" ontap="toggleSelect" data-id="{{item._id}}" data-status="{{item.selectStatus}}">
+                        <view   class="cart-item-checkbox" ontap="toggleSelect" data-id="{{item._id}}" 
+                        data-status="{{item.selectStatus}}">
                             <image wx:if="{{item.selectStatus}}" src="../../images/circle@selected.png"></image>
                             <image wx:else src="../../images/circle@noselected.png"></image>
-                        </view>
+                        </view> 
                         <view class="cart-item-img" bindtap="onProductsItemTap" data-id="{{item._id}}">
                             <image class="good-image" src="{{item.img}}"></image>
                         </view>
@@ -34,7 +35,7 @@
                 <image wx:if="{{selectedTypeCounts==cartData.length}}"
                        class="title-icon" src="../../images/circle@selected.png"></image>
                 <image wx:else class="title-icon" src="../../images/all@selected.png"></image>
-                <text>全选({{selectedCounts}})</text>
+                <text>全选({{selectedTypeCounts}})</text>
             </view>
             <view class="all-price-submit {{account==0?'disabled':''}}" bindtap="submitOrder">
                 <view class="accounts-btn">下单</view>

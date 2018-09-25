@@ -111,7 +111,7 @@ Page({
         console.log(status)
         console.log(index)
         this.data.cartData[index].selectStatus != status;
-        console.log()
+        console.log(this.data.cartData[index].selectStatus)
         this._resetCartData();
     },
 
