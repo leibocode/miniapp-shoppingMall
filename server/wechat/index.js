@@ -6,7 +6,7 @@ import path from 'path'
 const base ='https://api.weixin.qq.com/cgi-bin/'
 const api ={
     accessToken: base + 'token?grant_type=client_credential',
-    send:base +'cgi-bin/message/custom/send'
+    send:base +'message/custom/send'
 }
 
 //https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET
@@ -78,7 +78,16 @@ export default class Wechat{
         }
     }
     
-    sendTextMessage(){
-
+    async sendMessage(data){
+        const data_ls = await this.fetchAccessToken()
+        console.log('发送send'+data)
+        const url = `${api.send}?access_token=${data_ls.access_token}`
+        console.log(url)
+        const result =await this.request({
+            url:url,
+            body:data
+        })
+        console.log('发送消息结果')
+        console.log(result)
     }
 }

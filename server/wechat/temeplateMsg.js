@@ -21,9 +21,6 @@ const wechatConfig ={
             let token =await Token.findOne({
                 name:'access_token'
             }).exec()
-            console.log('data')
-            console.log(data)
-
             if(token){
                 token.token = data.access_token
                 token.expiress_in =data.expiress_in

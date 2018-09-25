@@ -2,8 +2,8 @@ import ejs from 'ejs'
 
 const tpl = `
   {
-    "touser":<%= opid%>,
-    "msgtype":<%= msgtype%>,
+    "touser":<%= touser%>,
+    "msgtype":<%= msgType%>,
     <% if(msgtype=='text') { %>
       "text":{
         "content":<%= content%>

@@ -13,8 +13,36 @@ import {
 } from '../controller/wechat'
 import { loginAsync, getUserAsync } from '../controller/user'
 import wechatMiddle from '../wechat/middleware'
-import config from '../config/config'
 import reply from '../wechat/reply'
+import config from '../config/config'
+import mongoose from 'mongoose'
+
+const Token = mongoose.model('Token')
+
+
+const wechatConfig = {
+    appID:config.minapp.appid,
+    appSecret:config.minapp.secret,
+    getAccessToken:async()=> await Token.getAccessToken(),
+    saveAccessToken:async(data)=>{
+        let token =await Token.findOne({
+            name:'access_token'
+        }).exec()
+        if(token){
+            token.token = data.access_token
+            token.expiress_in =data.expiress_in
+        }else {
+            token =new Token({
+                name:'access_token',
+                token: data.access_token,
+                expires_in: data.expires_in
+            })
+        }
+        await token.save()
+
+        return data
+    }
+}
 
 @controller('/api/v1/minapp')
 export class MinappController {
@@ -55,13 +83,13 @@ export class MinappController {
     @post('/wechat-hear')
     async wechatHear(ctx,next){
         console.log('微信客服消息')
-        const middle =wechatMiddle(config.minapp,reply)
+        const middle =wechatMiddle(wechatConfig,reply)
         await middle(ctx,next)
     }
 
     @get('/wechat-hear')
     async wechatHear(ctx,next){
-        const middle =wechatMiddle(config.minapp,reply)
+        const middle =wechatMiddle(wechat,reply)
         await middle(ctx,next)
     }
 
