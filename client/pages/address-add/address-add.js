@@ -17,10 +17,11 @@ Page({
     },
     onLoad:function(options){
         const id =options.id
+        let that = this
         this.initCityData(1)
         if(id){
             addressModel.getAddressById(id,(data)=>{
-                
+                console.log(data)
             })
         }
     },

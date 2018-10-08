@@ -26,10 +26,12 @@ Page({
     },
 
     selectTap:function(event){
+        let that =this
         console.log('切换状态')
         let id =address.getDataSet(event,'id')
+        console.log(id)
         address.setState(id,(data)=>{
-            wx.navigateBack({})
+            that.onShow()
         })
     },
 

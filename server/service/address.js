@@ -67,6 +67,7 @@ export const setState =async(openid,_id)=>{
     const adressList =await address.find({
         user:userinfo._id
     }).exec()
+    console.log(`${adressList.length}个地址`)
     adressList.forEach(async(item) => {
         item.defaultCode =0
         await item.save()
@@ -74,6 +75,7 @@ export const setState =async(openid,_id)=>{
     const entity = await address.findOne({
         _id:_id
     })
+    console.log(entity)
     entity.defaultCode = 1
     
     await entity.save()

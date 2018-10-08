@@ -35,9 +35,15 @@ import {
 
      @put('/:_id')
      async setAddressSatte(ctx,next){
+        
          const { openid } =ctx.user
          const { _id  } = ctx.params
+         console.log(`setAddressState函数${_id}`)
          await setState(openid,_id)
+         
+         ctx.body ={
+             success:true
+         }
      }
 
     @post('/')

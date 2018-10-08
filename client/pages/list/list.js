@@ -39,7 +39,8 @@ Page({
                 console.log(data.products);
                 that.setData({
                     productsArr:data.products,
-                    sortArr:sortArr
+                    sortArr:sortArr,
+                    loading:true
                 })
             })
         }else if(hostKey){
@@ -51,7 +52,8 @@ Page({
                 that.setData({
                     productsArr:data,
                     q:hostKey,
-                    sortArr:sortArr
+                    sortArr:sortArr,
+                    loading:true
                 })
             })
         }
@@ -67,7 +69,8 @@ Page({
                 that.setData({
                     productsArr:data,
                     q:q,
-                    sortArr:sortArr
+                    sortArr:sortArr,
+                    loading:true
                 })
             })
         }
@@ -77,7 +80,8 @@ Page({
                 console.log(data)
                 that.setData({
                     productsArr:data.products,
-                    sortArr:sortArr
+                    sortArr:sortArr,
+                    loading:true
                 })
             })
         }else {
@@ -88,6 +92,7 @@ Page({
             },(data)=>{
                 this.setData({
                     productsArr:data,
+                    loading:true
                 })
             })
         }

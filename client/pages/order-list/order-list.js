@@ -123,11 +123,11 @@ Page({
             success:function(res){
                 if(res.confirm){
                     wx.showLoading()
-                    order.deleteOrder((data)=>{
+                    order.deleteOrder(id,(data)=>{
+
+                        console.log(data)
+                        that.onShow()
                         wx.hideLoading()
-                        if(data.success){
-                            that.onShow()
-                        }
                     })
                 }else {
                     wx.showLoading()
@@ -141,8 +141,17 @@ Page({
         })
     },
     //支付
-    toPay:function(){
-        
+    toPayTap:function(){
+        wx.showModal({
+            title:'支付错误',
+            content:'由于个人号拿不到支付权限,支付功能暂时未开放',
+            success:function(res){
+                if(res.confirm){
+                    search.deleteHot();
+                    wx.navigateBack({})
+                }
+            }
+        })
     },
 
     handlerStart(e) {

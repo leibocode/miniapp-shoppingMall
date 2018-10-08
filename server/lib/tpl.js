@@ -2,13 +2,26 @@ import ejs from 'ejs'
 
 const tpl = `
   {
-    "touser":<%= touser%>,
+    "touser":<%= toUserName%>,
     "msgtype":<%= msgType%>,
     <% if(msgtype=='text') { %>
       "text":{
-        "content":<%= content%>
+         "content":<%= content%>
       }
-    <%} %>
+    <%} else if(msgtype=='miniprogrampage'){ %>
+      "miniprogrampage":{ %>
+        "title":<%= content.title%>,
+        "pagepath":<&= content.page&>,
+        "thumb_media_id":<%= content.media_id%>
+      }
+   <%} else if(msgtype=='link'){ %>
+       "link":{
+        "title":<%= content.title%>,
+        "description":<%= content.description%>,
+        "url":<%= content.url%>,
+        "thumb_media_id":<%= content.media_id%>
+       }
+    <% }%>
   }
 `
 

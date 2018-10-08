@@ -1,5 +1,5 @@
 <import src="../../template/products/products-tpl.wxml"/>
-<view class="container list-container" hidden="{{}}>
+<view class="container list-container" hidden="{{!loading}}">
   <view class="order-sort">
     <view class="order-sort-i clearfix">
        <view class="tablist">
@@ -41,4 +41,4 @@
     没有对应的零食哦~    
   </view>
 </view>
-<loading></loading>
+<loading hidden="{{loading}}}"></loading>

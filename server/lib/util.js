@@ -46,7 +46,7 @@ function formatMessage (result) {
   return message
 }
 
-function tpl (openid,content, message) {
+function tpl (content, message) {
   let type = 'text'
 
   // if (Array.isArray(content)) {
@@ -57,16 +57,16 @@ function tpl (openid,content, message) {
     content = 'Empty News'
   }
 
-  // if (content && content.type) {
-  //   type = content.type
-  // }
+  if (content && content.type) {
+    type = content.type
+    
+  }
 
   let info = Object.assign({}, {
-    touser:openid,
     msgType:type,
     content:content,
-    toUserName: message.FromUserName,
-    fromUserName: message.ToUserName
+    toUserName:message.FromUserName,
+    fromUserName:message.ToUserName
   })
 
   return template(info)

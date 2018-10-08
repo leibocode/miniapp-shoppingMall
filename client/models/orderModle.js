@@ -57,9 +57,9 @@ export default class Order extends Base {
         this.request(param)
     }
 
-    deleteOrder(){
+    deleteOrder(id,callback){
         var param ={
-            url:'',
+            url:`/api/v1/order/${id}`,
             method:'delete',
             sCallback:function(data){
                 callback && callback(data)

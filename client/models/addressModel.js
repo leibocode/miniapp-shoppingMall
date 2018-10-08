@@ -39,6 +39,8 @@ export default class address extends Base {
                 callback && callback(res)
             }
         }
+        
+        this.request(params)
     }
 
     editAddress(data,callback){

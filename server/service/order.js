@@ -22,7 +22,8 @@ export const  addOrder =async(params)=>{
 
 export const getOrders =async(params)=>{
     console.log(params)
-    const count = (params.size) * (params.page -1)
+    const count = (params.newSize) * (params.newPage -1)
+    console.log(`越过${count}条数据`)
     const userinfo = await user.findOne({
         openid:params.openid
     })
@@ -31,11 +32,9 @@ export const getOrders =async(params)=>{
 
     const orders = await payment.find({
         user:userinfo._id
-    }).limit(params.size)
+    }).limit(params.newSize)
       .skip(count)
       .exec()
-
-    console.log(orders)
 
     let orderList =[]
     for(let i=0;i<5;i++){
@@ -52,8 +51,6 @@ export const getOrders =async(params)=>{
         })
     }
 
-    console.log(orderList)
-
     return orderList
 }
 
@@ -68,4 +65,12 @@ export const getOrder = async (openid,id)=>{
     
     return data
     
+}
+
+export const delOrder =async (openid,id)=>{
+    const  data =await payment.findOne({
+        _id:id
+    })
+    console.log(`method del data的值${data}`)
+    await data.remove()
 }

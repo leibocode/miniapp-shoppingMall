@@ -78,12 +78,77 @@ export default class Wechat{
         }
     }
     
-    async sendMessage(data){
+    async sendMessage(msg,data){
         const data_ls = await this.fetchAccessToken()
-        console.log('发送send'+data)
         const url = `${api.send}?access_token=${data_ls.access_token}`
-        console.log(url)
+        let msgdata =null
+        if(msg && msg.type){
+            switch(msg.msgtype){
+                case "miniprogrampage":
+                  msgdata = await this.sendminiMessage(msg,data)
+                break;
+                case "link":
+                  msgdata = await this.sendLinkMessage(msg,data)
+                break;
+            }
+        }else {
+            msgdata = await this.sendTextMessage(msg,data)
+        }
+        console.log(msgdata)
         const result =await this.request({
+            method:'post',
+            url:url,
+            body:msgdata
+        })
+        console.log('发送消息结果')
+        console.log(result)
+    }
+
+    async sendTextMessage(msg,data){
+        const msgData ={
+            "touser":data.FromUserName,
+            "msgtype":"text",
+            "text":{
+               "content":msg
+            }
+        }
+
+        return msgData
+    }
+
+    async sendLinkMessage(msg,data){
+        const msgData ={
+            "touser":data.FromUserName,
+            "msgtype":"link",
+            "link":{
+                "title":msg.title,
+                "description":msg.description,
+                "url":msg.url,
+                "thumb_media_id":msg.media_id,
+            }
+        }
+        return msgData;
+    }
+    
+    async sendminiMessage(msg,data){
+        const msgData ={
+             "touser":data.FromUserName,
+             "msgtype":"miniprogrampage",
+             "miniprogrampage":{ 
+                "title":content.title,
+                "pagepath":content.page,
+                "thumb_media_id":content.media_id
+            }
+        }
+        return msgdata;
+    }
+
+     async sendMessageText(data){
+        let type = 'text'
+        const data_ls = await this.fetchAccessToken()
+        const url = `${api.send}?access_token=${data_ls.access_token}`
+        const result =await this.request({
+            method:'post',
             url:url,
             body:data
         })
