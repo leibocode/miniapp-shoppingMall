@@ -20,6 +20,7 @@ export const getBanner =async (params)=>{
     // return data
     
     const count = params.size * (params.page-1)
+    console.log(count+'count')
     const data =await Banner.find({
         _id:params._id
     }).populate({

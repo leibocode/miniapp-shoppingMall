@@ -35,7 +35,8 @@ export class BannerController {
       page
     }
     const data = await getBanner(params)
-
+    console.log('banner')
+    console.log(data)
     ctx.body ={
       success:true,
       data:data

@@ -1,7 +1,7 @@
-### 零食1号小程序
+# 零食1号小程序
 >零食1号贩卖平台,
 ### 技术栈
-1. 前端api服务:node+koa2+mongoodb/mognoose+jwt+es7/8
+1. 前端api服务:node+koa2+mongoodb/mognoose+jwt+es7/8+elasticsearch
 2. 后端管理:asp.net core+DDD+Bootstrap+autofac+ef core
 3. 小程序部分:目前使用的还是原生语法(wxml,wxss),后期打算使用mpvue重构
 ### 项目描述
@@ -12,6 +12,6 @@
 3. 前端体验优化，
 4. 此项目会一直优化
 ### 项目结构
-client 小程序
-minappServer 小程序api服务器
-server 后端管理
+>1. client->小程序,
+ 2. minappServer->小程序api服务器,
+ 3. server->后端管理

@@ -62,6 +62,20 @@ export default class address extends Base {
             method:'get',
             sCallback:function(data){
                 data = data.data
+                callback(data)
+            }
+        }
+        this.request(param)
+    }
+
+    delAddressById(id,callback){
+        var that = this
+        var param ={
+            url:`/api/v1/address/${id}`,
+            method:'delete',
+            sCallback:function(data){
+                data = data
+                callback(data)
             }
         }
         this.request(param)

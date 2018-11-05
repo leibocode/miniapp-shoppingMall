@@ -2,7 +2,9 @@
   <view class="me">
     <view class="title">关于我</view>
     <view  class="content">
-       来自上海浦东的一名程序员
+        <p>来自上海浦东的一名程序员,渴望用技术来改变世界,哪怕一点点,重度痴迷技术,擅长的技术栈,node,vue,react,C#,正在学习java和go</p>
+        <p>gayhub:http://wwww.github.com/leibocode</p>
+        <p>简书:</p>
     </view>
   </view>
 </view>

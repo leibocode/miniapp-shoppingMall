@@ -3,26 +3,21 @@
   <view class="order-sort">
     <view class="order-sort-i clearfix">
        <view class="tablist">
-          <view class="tab_swi_a {{searchBy=='sort'?'on':''}}" bindtap="">
-            {{sort}}
+         <block wx:for="{{tabs}}">
+            <view class="tab_swi_a">
+              <view class="item-text">
+                <view class="item-icon"></view>
+                <view class="item-text-a {{item.selected?'selected':''}}" data-modal="{{item.isModal}}" bindtap="showModal">
+                  {{item.text}}
+                </view>
+              </view>
           </view>
-       </view>
-       <view class="tablist">
-          <view class="tab_swi_a {{searchBy=='sort'?'on':''}}" bindtap="">
-            {{sort}}
-          </view>
-       </view>
-       <view class="tablist">
-          <view class="tab_swi_a {{searchBy=='sort'?'on':''}}" bindtap="">
-            {{sort}}
-          </view>
-       </view>
-       <view class="tablist">
-          <view class="tab_swi_a {{searchBy=='sort'?'on':''}}" bindtap="">
-            {{sort}}
-          </view>
+         </block>
        </view>
     </view>
+  </view>
+  <view class="products-count">
+    <view class="count" wx:if="{{count>0}}">共搜索到{{count}}条数据</view>
   </view>
   <view wx:if="{{productsArr.length>0}}">
     <view class="list-mian">
@@ -42,3 +37,15 @@
   </view>
 </view>
 <loading hidden="{{loading}}}"></loading>
+<!--遮罩及下拉框-->
+<view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+  <view class="commodity_attr_box_content">
+     <block wx:for="{{commodity_attr_boxs}}">
+        <view class="commodity_attr_boxs_item" bind:tap="toggleState">
+           <view class="item-text">{{item.text}}</view>
+           <view class="item-icon" wx:if="{{item.status}}"></view>
+        </view>
+     </block>
+  </view>
+</view>

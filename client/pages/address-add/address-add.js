@@ -16,13 +16,31 @@ Page({
         selDistrictIndex:0
     },
     onLoad:function(options){
+        console.log('address-add')
         const id =options.id
+        console.log(id+'addressid')
         let that = this
         this.initCityData(1)
         if(id){
             addressModel.getAddressById(id,(data)=>{
-                console.log(data)
+                let addressData = data
+                addressData.id = id
+                addressData.linkMan = data.name
+                addressData.address =data.addressText,
+                that.setData({
+                    id:id,
+                    addressData:addressData
+                })
+                that.setDbSaveAddressId(data)
+                return;
             })
+        }
+    },
+
+    setDbSaveAddressId(data){
+        var retSelIdx =0;
+        for(let i=0;i<commonCityData.cityData.length;i++){
+            this.data.selProvinceIndex =i;
         }
     },
 
@@ -147,13 +165,21 @@ Page({
     },
     deleteAddress:function(event){
         let that =this
-        let id  = address.getDataSet(event,'id')
+        let id  = addressModel.getDataSet(event,'id')
         wx.showModal({
             title:'提示',
             content:'确认要删除该收货地址吗?',
             success:function(res){
                 if(res.confirm){
                     //确定删除，调用后但接口
+                    addressModel.delAddressById(id,(data)=>{
+                        console.log(data)
+                        if(data.success){
+                            wx.navigateBack({})
+                        }else {
+                            //服务器出错误了
+                        }
+                    })
                 }else if(res.cancel){
                     console.log('用户点击取消')
                 }

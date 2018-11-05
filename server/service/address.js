@@ -14,7 +14,7 @@ export const getAll = async(openid)=>{
     return addressList
 }
 
-export const del = async(_id)=>{
+export const deleteAddress = async(_id)=>{
     const entity =await address.findOne({
         _id:_id
     })

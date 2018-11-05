@@ -1,11 +1,15 @@
 import {
-    getAll,getOne,del,add,setState
+    getAll,
+    getOne,
+    deleteAddress,
+    add,setState
 } from '../service/address'
  const {
      controller,
      get,
      post,
-     put
+     put,
+     del
  } =require('../decorator/router')
 
  @controller('/api/v1/address')
@@ -60,5 +64,25 @@ import {
             success:true
         }
     }
-     
+
+    @post('/del')
+    async deleteAddress(ctx,next){
+        let { id } =ctx.request.body
+        await del(id)
+        ctx.body ={
+            success:true
+        }
+    }
+
+    @del('/:_id')
+    async deleteAddress(ctx,next){
+        const { openid } =ctx.user
+        const { _id  } = ctx.params
+        console.log(`_id拿到的id是${_id}`)
+        await deleteAddress(_id)
+        
+        ctx.body ={
+            success:true
+        }
+    }
  }
