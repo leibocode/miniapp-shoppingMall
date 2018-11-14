@@ -1,0 +1,27 @@
+
+.user-container{
+    font-size:24rpx;
+    color:#333;
+    background-color:#f1f1f1;
+}
+.me{
+    background-color:#fff;  
+}
+.content{
+    display:flex;
+    flex-direction:column;
+    border-bottom:1rpx solid #f1f1f1;
+    height:180rpx;
+    padding:30rpx;
+}
+.content view {
+    flex:1;
+    margin-top:10rpx;
+}
+.title{
+    height:70rpx;
+    line-height:70rpx;
+    font-size:30rpx;
+    border-bottom:1rpx solid #f1f1f1;
+    padding-left:30rpx;
+}

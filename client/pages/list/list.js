@@ -19,9 +19,11 @@ Page({
         productsArr:[],
         size:10,
         count:0,
+        isHideLoadMore:false,
+        isShowFooter:true,
         commodity_attr_boxs:[{
             text:'价格升序',
-            status:false
+            status:true
         },{
             text:'价格降序',
             status:false
@@ -30,7 +32,8 @@ Page({
         tabs:[{
             text:'排序',
             isModal:true,
-            selected:true
+            selected:false,
+            showIcon:false
         },{
             text:'销量',
             selected:false
@@ -134,44 +137,43 @@ Page({
         }
        
     },
-    _loadData:function(){
+    _loadData:function(q,page,size,callback){
         const that = this
-        let newPage = this.data.page +1
-
         search.searchProducts({
-            keyword:that.data.q,
-            size:that.data.size,
-            page:newPage
+            keyword:q,
+            size:size,
+            page:page
         },(data)=>{
             if(data.length>0){
                 let newProducts  =that.data.productsArr
                 data.forEach(item => {
                     newProducts.push(item)
                 });
-                that.setData({
-                    page:newPage,
-                    loading:false,
-                    productsArr:newProducts
-                })
+                console.log(newProducts)
             }else {
-                wx.stopPullDownRefresh()
-                that.setData({
-                    loading:false
+                console.log('没有数据了')
+                this.setData({
+                    isHideLoadMore:true,
+                    isShowFooter:false
                 })
             }
+            
 
         })
     },
     onPullDownRefresh:function(){
         console.log('下拉')
     },
+     
+    //上拉
     onReachBottom:function(){
-        let that = this
-        this.setData({
-            loading:true
-        })
+        var that = this
+        this.data.isHideLoadMore =false
         setTimeout(()=>{
-            this._loadData()
+            var newPage = this.data.page+1
+            var q = this.data.q
+            var size = this.data.size
+            this._loadData(q,newPage,size,(data)=>{})
         },1000)
     },
     onProductItemTap:function(event){
@@ -203,6 +205,27 @@ Page({
               animationData: animation.export()
             })
           }.bind(this), 200)
+    },
+    //切换状态
+    toggleState:function(event){
+        let commodity_attr_boxs=[{
+            text:'价格升序',
+            status:false
+        },{
+            text:'价格降序',
+            status:false
+        }]
+        let status = search.getDataSet(event,'toggle')
+        let status_z = this.data.commodity_attr_boxs[status].status
+        console.log(status_z)
+        if(status_z){
+        }else {
+            commodity_attr_boxs[status].status = true
+            //
+            this.setData({
+                commodity_attr_boxs:commodity_attr_boxs
+            })
+        }
     },
     hideModal: function () {
         // 隐藏遮罩层

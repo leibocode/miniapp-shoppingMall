@@ -1,7 +1,7 @@
 
 <template name="products">
     <view class="products-box">
-        <block wx:for="{{productsArr}}">
+        <block wx:for="{{productsArr}}" wx:key="index">
             <view class="products-item" data-id="{{item._id}}" bindtap="onProductItemTap">
                 <image class="products-image" src="{{item.img}}"/>
                 <view class="products-bottom">

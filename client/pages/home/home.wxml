@@ -1,7 +1,7 @@
 <import src="../../template/products/products-tpl.wxml"/>
 <view class="container home-container" hidden="{{!loading}}">
   <swiper indicator-dots="true" autoplay="true" class="swiper">
-    <block wx:for="{{bannerArr}}">
+    <block wx:for="{{bannerArr}}" wx:key="index">
       <swiper-item class="banner-item" data-id="{{item._id}}" bindtap="onBannerItemTap">
           <image class="item-image" src="{{item.img}}" mode="aspectFill"/>
       </swiper-item>
@@ -11,7 +11,7 @@
     <view class="home-main-theme">
       <view class="home-main-header">精选主题</view>
       <view class="theme-box">
-        <block wx:for="{{themeArr}}">
+        <block wx:for="{{themeArr}}" wx:key="index">
            <view class="theme-item" data-id="{{item._id}}" bindtap="onThemeItemTap">
               <view class="theme-img">
                  <image src="{{item.poster}}" mode="aspectFill"/>

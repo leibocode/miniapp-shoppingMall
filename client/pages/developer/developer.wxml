@@ -1,10 +1,17 @@
-<view class="container">
+<view class="user-container">
   <view class="me">
     <view class="title">关于我</view>
     <view  class="content">
-        <p>来自上海浦东的一名程序员,渴望用技术来改变世界,哪怕一点点,重度痴迷技术,擅长的技术栈,node,vue,react,C#,正在学习java和go</p>
-        <p>gayhub:http://wwww.github.com/leibocode</p>
-        <p>简书:</p>
+        <text>来自上海浦东的一名程序员,渴望用技术来改变世界,哪怕一点点,
+        重度痴迷技术,擅长的技术栈,node,vue,react,C#,正在学习java和go</text>
+        <view>gayhub:http://wwww.github.com/leibocode</view>
+        <view>简书:</view>
     </view>
+    <view class="title">交流联系</view>
+    <view class="content">
+        <view>qq:252517584</view>
+        <view>wx:ibqzgcs</view>
+    </view>
+    <!-- <view class="title">接单</view> -->
   </view>
 </view>
