@@ -133,7 +133,7 @@ Page({
         })
     },
 
-    onProductSItemTap:function(event){
+    onProductsItemTap:function(event){
         let id  =cart.getDataSet(event,'id')
         wx.navigateTo({
             url:"../product/product?id="+id

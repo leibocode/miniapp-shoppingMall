@@ -29,7 +29,7 @@
     </view>
   </view>
   <view wx:else>
-    没有对应的零食哦~    
+    没有对应的商品哦~    
   </view>
 </view>
 <view class="loadmore" hidden="{{isHideLoadMore}}">

@@ -19,7 +19,7 @@ Page({
         productsArr:[],
         size:10,
         count:0,
-        isHideLoadMore:false,
+        isHideLoadMore:true,
         isShowFooter:true,
         commodity_attr_boxs:[{
             text:'价格升序',
@@ -44,16 +44,13 @@ Page({
     },
     onLoad:function(options){
         let that = this
-        let sortArr =[
-            {classname: 'icon_bg_1', name: '价格升序', sortType: '1'},
-            {classname: 'icon_bg_2', name: '价格降序', sortType: '2'}
-        ]
         let id =options.id
         let q =options.q
         let cid =options.cid
         let bid =options.bid
         let hostKey =options.hostKey
         if(id){
+            console.log('进入id')
             this.q =id
             list.getProducts({
                 _id:id,
@@ -64,7 +61,6 @@ Page({
                 console.log(data.products);
                 that.setData({
                     productsArr:data.products,
-                    sortArr:sortArr,
                     loading:true
                 })
             })
@@ -77,7 +73,6 @@ Page({
                 that.setData({
                     productsArr:data,
                     q:hostKey,
-                    sortArr:sortArr,
                     loading:true
                 })
             })
@@ -94,7 +89,6 @@ Page({
                 that.setData({
                     productsArr:data,
                     q:q,
-                    sortArr:sortArr,
                     loading:true
                 })
             })
@@ -109,7 +103,6 @@ Page({
 
                 that.setData({
                     productsArr:data[0].products,
-                    sortArr:sortArr,
                     loading:true
                 })
             })
@@ -119,7 +112,6 @@ Page({
                 console.log(data)
                 that.setData({
                     productsArr:data.products,
-                    sortArr:sortArr,
                     loading:true
                 })
             })
@@ -144,17 +136,24 @@ Page({
             size:size,
             page:page
         },(data)=>{
+            console.log(data)
             if(data.length>0){
                 let newProducts  =that.data.productsArr
                 data.forEach(item => {
                     newProducts.push(item)
                 });
-                console.log(newProducts)
+                that.setData({
+                    page:page,
+                    loading:true,
+                    productsArr:newProducts,
+                    isHideLoadMore:false
+                })
             }else {
                 console.log('没有数据了')
                 this.setData({
                     isHideLoadMore:true,
-                    isShowFooter:false
+                    isShowFooter:false,
+                    loading:true
                 })
             }
             
@@ -168,13 +167,15 @@ Page({
     //上拉
     onReachBottom:function(){
         var that = this
-        this.data.isHideLoadMore =false
+        this.data.isHideLoadMore =true
         setTimeout(()=>{
             var newPage = this.data.page+1
             var q = this.data.q
             var size = this.data.size
-            this._loadData(q,newPage,size,(data)=>{})
-        },1000)
+            this._loadData(q,newPage,size,(data)=>{
+                console.log('下拉加载结束..')
+            })
+        },1500)
     },
     onProductItemTap:function(event){
         const id = list.getDataSet(event,'id')

@@ -37,8 +37,8 @@
           "text": "主页"
         }, {
           "pagePath":"pages/search/search",
-          "iconPath":"images/search.png",
-          "selectedIconPath":"images/search-selected.png",
+          "iconPath":"images/search-tabs.png",
+          "selectedIconPath":"images/search-tabs-selected.png",
           "text":"发现"
         },{
           "pagePath": "pages/category/category",

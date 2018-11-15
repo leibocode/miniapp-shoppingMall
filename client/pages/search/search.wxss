@@ -40,7 +40,8 @@
     align-items: center;
     background-color: #f5f5f5;
     border-radius: 50px;
-    margin-left: 20rpx;
+    margin-left:70rpx;
+    justify-content:center;
     /* margin-left: */
   }
   

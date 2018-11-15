@@ -9,7 +9,7 @@ Page({
         productsArr:null,
         isLoadMore:false,
         page:1,
-        isHideLoadMore:false,
+        isHideLoadMore:true,
         isShowFooter:true
     },
     onLoad:function(){
