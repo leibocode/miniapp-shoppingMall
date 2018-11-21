@@ -32,7 +32,7 @@ Page({
         console.log(newData)
         this.setData({
             account: newData.account,
-            selectedCounts:newData.selectedCounts,
+            selectedCounts:newData.selectCounts,
             selectedTypeCounts:newData.selectedTypeCounts,
             cartData:this.data.cartData
         })
@@ -107,11 +107,7 @@ Page({
         let id =cart.getDataSet(event,'id'),
             status =cart.getDataSet(event,'status'),
             index =this._getProductIndexById(id);
-        console.log(id)
-        console.log(status)
-        console.log(index)
-        this.data.cartData[index].selectStatus != status;
-        console.log(this.data.cartData[index].selectStatus)
+        this.data.cartData[index].selectStatus = !status;
         this._resetCartData();
     },
 

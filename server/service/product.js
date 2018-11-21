@@ -3,12 +3,25 @@ import mongoose from 'mongoose'
 const product = mongoose.model('Product')
 export const getProducts = async (params)=>{
     const count =params.size * (params.page-1)
-    const data =await product.find({
-        
-                 })
-                 .limit(params.size)
-                 .skip(count)
-                 .exec()
+    let data = null;
+    switch(params.price){
+        case 'asc':
+          data = await product.find({})
+                              .limit(params.size)
+                              .skip(count)
+                              .sort({'price':1});
+        break;
+        case 'desc':
+          data = await product.find({})
+                              .limit(params.size)
+                              .skip(count)
+                              .sort({'price':-1});
+        break;
+        case 'all':
+          data = await product.find({})
+                              .limit(params.size)
+                              .skip(count);
+    }
     return data
 }
 
@@ -35,5 +48,7 @@ export const getSearch = async(params)=>{
       .exec()
     return data
 }
+
+
 
 

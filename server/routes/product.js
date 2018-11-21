@@ -11,14 +11,15 @@ export class ProductController{
     //http://127.0.0.1:3001/api/v1/product?page=4&size=10
     @get('/')
     async getProducts(ctx,next){
-        let { page,size,order } =ctx.query
+        let { page,size,order,price } =ctx.query
         page=parseInt(page)
         size =parseInt(size)
         order =parseInt(order)
         let params ={
             page,
             size,
-            order
+            order,
+            price
         }
 		
         const data =await getProducts(params)
@@ -43,5 +44,10 @@ export class ProductController{
             data:data
         }
         
+    }
+
+    @get('/order')
+    async getproducts(ctx,next){
+
     }
 }

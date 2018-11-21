@@ -22,12 +22,19 @@ Page({
         isHideLoadMore:true,
         isShowFooter:true,
         commodity_attr_boxs:[{
+            text:'综合排序',
+            status:true,
+            price:'all'
+        },{
             text:'价格升序',
-            status:true
+            status:false,
+            price:'asc'
         },{
             text:'价格降序',
-            status:false
+            status:false,
+            price:'desc'
         }],
+        toggleStatus:'all',
         isAsc:false,
         tabs:[{
             text:'排序',
@@ -40,7 +47,11 @@ Page({
         },{
             text:'时间',
             selected:false
-        }]
+        }],
+        list_load_type:{
+           key:'all',
+           value:''
+        }
     },
     onLoad:function(options){
         let that = this
@@ -70,14 +81,20 @@ Page({
                 size:10,
                 page:that.data.page
             },(data)=>{
+                let list_type = {
+                    key:'',
+                    value:''
+                }
+                list_type.key = 'hostKey'
+                list_type.value = hostKey
                 that.setData({
                     productsArr:data,
-                    q:hostKey,
+                    list_load_type:list_type,
                     loading:true
                 })
             })
         }
-        else if(q){
+        else if(q){//q
             search.searchProducts({
                 keyword:q,
                 size:10,
@@ -86,79 +103,116 @@ Page({
                 if(data.length>0){
                     search.addToHistory(q)
                 }
+                let list_type = {
+                    key:'',
+                    value:''
+                }
+                list_type.key = 'q'
+                list_type.value =q
                 that.setData({
                     productsArr:data,
-                    q:q,
+                    list_load_type:list_type,
                     loading:true
                 })
             })
         }
-        else if(bid){
+        else if(bid){//banner
             this.q =bid
             list.getProducts({
                 _id:id,
                 size:10,
                 page:that.data.page
             },(data)=>{
-
+                let list_type = {
+                    key:'',
+                    value:''
+                }
+                list_type.key = 'bid'
+                list_type.value =bid
                 that.setData({
                     productsArr:data[0].products,
+                    list_load_type:list_type,
                     loading:true
                 })
             })
-        }else if(cid){
-            console.log(cid)
+        }else if(cid){//类型cid
             category.getProjectsCategory(cid,(data)=>{
-                console.log(data)
+                let list_type = {
+                    key:'',
+                    value:''
+                }
+                list_type.key = 'cid'
+                list_type.value =cid
                 that.setData({
                     productsArr:data.products,
-                    loading:true
+                    loading:true,
+                    list_load_type:list_type,
                 })
             })
-        }else {
+        }else {//没有什么条件
             let that =this
             product.getProducts({
                 page:that.data.page,
-                size:that.data.size
+                size:that.data.size,
+                price:'all'
             },(data)=>{
+                let list_type = {
+                    key:'',
+                    value:''
+                }
+                list_type.key = 'all'
                 this.setData({
                     productsArr:data,
-                    loading:true
+                    loading:true,
+                    list_load_type:list_type
                 })
             })
         }
        
     },
-    _loadData:function(q,page,size,callback){
-        const that = this
-        search.searchProducts({
-            keyword:q,
-            size:size,
-            page:page
-        },(data)=>{
-            console.log(data)
-            if(data.length>0){
-                let newProducts  =that.data.productsArr
-                data.forEach(item => {
-                    newProducts.push(item)
-                });
-                that.setData({
-                    page:page,
-                    loading:true,
-                    productsArr:newProducts,
-                    isHideLoadMore:false
-                })
-            }else {
-                console.log('没有数据了')
-                this.setData({
-                    isHideLoadMore:true,
-                    isShowFooter:false,
-                    loading:true
-                })
-            }
-            
-
-        })
+    _loadData:function(params,callback){
+        var that = this
+        switch(params.key){
+            case 'all':
+              product.getProducts({
+                  page:params.page,
+                  size:params.size,
+                  price:params.price
+              },(data)=>{
+                 if(data.length>0){
+                    let newProducts  =that.data.productsArr
+                    let products = that.filterList(newProducts,data)
+                    that.setData({
+                        page:params.page,
+                        loading:true,
+                        productsArr:products,
+                        isHideLoadMore:false
+                    })
+                 }else {
+                    that.setData({
+                        isHideLoadMore:true,
+                        isShowFooter:false,
+                        loading:true
+                    })
+                 }
+              })
+            break;
+            case 'bid':
+            break;
+            case 'cid':
+            break;
+            case 'q':
+            break;
+            case 'hostKey':
+            break;
+        }
+    },
+    filterList:function(products,newData){
+        let newProducts  =products
+        data.forEach(item => {
+            newProducts.push(item)
+        });
+        return newProducts
     },
     onPullDownRefresh:function(){
         console.log('下拉')
@@ -169,10 +223,13 @@ Page({
         var that = this
         this.data.isHideLoadMore =true
         setTimeout(()=>{
-            var newPage = this.data.page+1
-            var q = this.data.q
-            var size = this.data.size
-            this._loadData(q,newPage,size,(data)=>{
+            var params ={}
+            params.page = this.data.page+1
+            params.key = this.data.list_load_type.key
+            params.value = this.data.list_load_type.value
+            params.size = this.data.size
+            params.price = this.data.toggleStatus
+            this._loadData(params,(data)=>{
                 console.log('下拉加载结束..')
             })
         },1500)
@@ -210,14 +267,21 @@ Page({
     //切换状态
     toggleState:function(event){
         let commodity_attr_boxs=[{
+            text:'综合排序',
+            status:false,
+            price:'all'
+        },{
             text:'价格升序',
-            status:false
+            status:false,
+            price:'asc'
         },{
             text:'价格降序',
-            status:false
+            status:false,
+            price:'desc'
         }]
         let status = search.getDataSet(event,'toggle')
         let status_z = this.data.commodity_attr_boxs[status].status
+        let price = this.data.commodity_attr_boxs[status].price
         console.log(status_z)
         if(status_z){
         }else {
@@ -225,6 +289,17 @@ Page({
             //
             this.setData({
                 commodity_attr_boxs:commodity_attr_boxs
+            })
+            product.getProducts({
+                page:this.data.page,
+                size:this.data.size,
+                price:price
+            },(data)=>{
+                this.setData({
+                    productsArr:data,
+                    loading:true,
+                    toggleState:price
+                })
             })
         }
     },
@@ -247,6 +322,6 @@ Page({
             showModalStatus: false
           })
         }.bind(this), 200)
-      }
+    }
 
 })
