@@ -14,7 +14,8 @@ export const getCategorys =async ()=>{
     return data
 }
 
-export const getChildrens =async (_id)=>{
+export const getChildrens =async (params)=>{
+    const count = params.size *(params.page-1)
     const data =await ChildCategory.findOne({
         _id:_id
     }).populate({

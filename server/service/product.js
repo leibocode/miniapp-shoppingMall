@@ -40,12 +40,32 @@ export const getProduct =async(_id)=>{
 export const getSearch = async(params)=>{
     const count = params.size * (params.page-1)
     console.log('keyword的值为'+params.keyword)
-    console.log(params.keyword)
-    const data =await product.find({
-        title:new RegExp(params.keyword,'i')
-    }).limit(params.size)
-      .skip(count)
-      .exec()
+    let data =null
+    switch(params.price){
+        case 'asc':
+            data = await product.find({
+                title:new RegExp(params.keyword,'i')
+            }).limit(params.size)
+            .skip(count)
+            .sort({'price':1})
+            .exec()
+        break;
+        case 'desc':
+            data = await product.find({
+                title:new RegExp(params.keyword,'i')
+            }).limit(params.size)
+            .skip(count)
+            .sort({'price':-1})
+            .exec()
+        break;
+        case 'all':
+            data =await product.find({
+                title:new RegExp(params.keyword,'i')
+            }).limit(params.size)
+            .skip(count)
+            .exec()     
+        break;
+    }
     return data
 }
 

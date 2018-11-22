@@ -11,6 +11,7 @@ const product =new Product()
 Page({
     data:{
         id:0,
+        bid:0,
         sortArr:[],
         page:1,
         loading:false,
@@ -79,7 +80,8 @@ Page({
             search.searchProducts({
                 keyword:hostKey,
                 size:10,
-                page:that.data.page
+                page:that.data.page,
+                price:that.data.toggleStatus
             },(data)=>{
                 let list_type = {
                     key:'',
@@ -98,7 +100,8 @@ Page({
             search.searchProducts({
                 keyword:q,
                 size:10,
-                page:that.data.page
+                page:that.data.page,
+                price:that.data.toggleStatus
             },(data)=>{
                 if(data.length>0){
                     search.addToHistory(q)
@@ -117,11 +120,12 @@ Page({
             })
         }
         else if(bid){//banner
-            this.q =bid
+            console.log(bid)
             list.getProducts({
-                _id:id,
-                size:10,
-                page:that.data.page
+                _id:bid,
+                size:that.data.size,
+                page:that.data.page,
+                price:that.data.toggleStatus
             },(data)=>{
                 let list_type = {
                     key:'',
@@ -132,11 +136,17 @@ Page({
                 that.setData({
                     productsArr:data[0].products,
                     list_load_type:list_type,
-                    loading:true
+                    loading:true,
+                    bid:bid
                 })
             })
         }else if(cid){//类型cid
-            category.getProjectsCategory(cid,(data)=>{
+            category.getProjectsCategory({
+                cid:cid,
+                size:that.data.size,
+                price:that.data.toggleStatus,
+                page:that.data.page
+            },(data)=>{
                 let list_type = {
                     key:'',
                     value:''
@@ -154,7 +164,7 @@ Page({
             product.getProducts({
                 page:that.data.page,
                 size:that.data.size,
-                price:'all'
+                price:that.data.toggleStatus
             },(data)=>{
                 let list_type = {
                     key:'',
@@ -198,18 +208,110 @@ Page({
               })
             break;
             case 'bid':
+                list.getProducts({
+                    _id:params.value,
+                    page:params.page,
+                    size:params.size,
+                    price:params.price
+                },(data)=>{
+                    if(data[0].products.length>0){
+                        let newProducts  =that.data.productsArr
+                        let products = that.filterList(newProducts,data[0].products)
+                        that.setData({
+                            page:params.page,
+                            loading:true,
+                            productsArr:products,
+                            isHideLoadMore:false
+                        })
+                    }else {
+                        that.setData({
+                            isHideLoadMore:true,
+                            isShowFooter:false,
+                            loading:true
+                        })
+                    }
+                })
             break;
             case 'cid':
+            category.getProjectsCategory({
+                cid:params.cid,
+                page:params.page,
+                size:params.size,
+                price:params.price
+            },(data)=>{
+                if(data.length>0){
+                    let newProducts  =that.data.productsArr
+                    let products = that.filterList(newProducts,data)
+                    that.setData({
+                        page:params.page,
+                        loading:true,
+                        productsArr:products,
+                        isHideLoadMore:false
+                    })
+                }else {
+                    that.setData({
+                        isHideLoadMore:true,
+                        isShowFooter:false,
+                        loading:true
+                    })
+                }
+            })
             break;
             case 'q':
+                search.searchProducts({
+                    keyword:params.value,
+                    size:params.size,
+                    page:params.page,
+                    price:params.toggleStatus
+                },(data)=>{
+                    if(data.length>0){
+                        let newProducts  =that.data.productsArr
+                        let products = that.filterList(newProducts,data)
+                        that.setData({
+                            page:params.page,
+                            loading:true,
+                            productsArr:products,
+                            isHideLoadMore:false
+                        })
+                    }else {
+                        that.setData({
+                            isHideLoadMore:true,
+                            isShowFooter:false,
+                            loading:true
+                        })
+                    }
+                })
             break;
             case 'hostKey':
+                search.searchProducts({
+                    keyword:params.value,
+                    size:params.size,
+                    page:params.page,
+                    price:params.price,
+                },(data)=>{
+                    if(data.length>0){
+                        let newProducts  =that.data.productsArr
+                        let products = that.filterList(newProducts,data)
+                        that.setData({
+                            page:params.page,
+                            loading:true,
+                            productsArr:products,
+                            isHideLoadMore:false
+                        })
+                    }else {
+                        that.setData({
+                            isHideLoadMore:true,
+                            isShowFooter:false,
+                            loading:true
+                        })
+                    }
+                })
             break;
         }
     },
     filterList:function(products,newData){
         let newProducts  =products
-        data.forEach(item => {
+        newData.forEach(item => {
             newProducts.push(item)
         });
         return newProducts
@@ -298,7 +400,7 @@ Page({
                 this.setData({
                     productsArr:data,
                     loading:true,
-                    toggleState:price
+                    toggleStatus:price
                 })
             })
         }

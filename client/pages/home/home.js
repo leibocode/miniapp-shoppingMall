@@ -10,7 +10,8 @@ Page({
         isLoadMore:false,
         page:1,
         isHideLoadMore:true,
-        isShowFooter:true
+        isShowFooter:true,
+        price:'all'
     },
     onLoad:function(){
         console.log('加载数据');
@@ -36,7 +37,7 @@ Page({
         })
 
         //
-        model.getProductData({page:this.data.page,size:10},(data)=>{
+        model.getProductData({price:this.data.price,page:this.data.page,size:10},(data)=>{
             that.setData({
                 productsArr:data
             })
@@ -44,8 +45,8 @@ Page({
         })
     },
 
-    _loadProduct:function(page,size,callback){
-        model.getProductData({page:page,size:size},(data)=>{
+    _loadProduct:function(price,page,size,callback){
+        model.getProductData({price:price,page:page,size:size},(data)=>{
             var products =this.data.productsArr
             console.log(products)
             data.forEach((item)=>{
@@ -105,8 +106,8 @@ Page({
         setTimeout(()=>{
            
             var newPage = this.data.page +1
-
-            this._loadProduct(newPage,10,(data)=>{
+            var price = this.data.price
+            this._loadProduct(price,newPage,10,(data)=>{
                 if(data.length>0){
                     that.setData({
                         isHideLoadMore:true,
