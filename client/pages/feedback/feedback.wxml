@@ -1,0 +1,24 @@
+<view class="section">
+    <view class="querylist">
+        <view class="queryitem">
+            <view class="title">
+                <text>Q:</text>
+                <text>当前小程序业务是否完整?</text>
+            </view>
+            <view class="content">
+                <text>A:</text>
+                <text>此小程序的为个人项目,商城业务大半都完成,除却小程序的支付个人实在拿不到权限,下单支付之后的业务也没有完成</text>
+            </view>
+        </view>
+        <view class="queryitem">
+            <view class="title">
+                <text>Q:</text>
+                <text>小程序是否有开源地址</text>
+            </view>
+            <view class="content">
+                <text>A:</text>
+                <text>http://wwww.github.com/leibocode</text>
+            </view>
+        </view>
+    </view>
+</view>

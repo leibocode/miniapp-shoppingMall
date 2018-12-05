@@ -11,7 +11,7 @@
                 </view>
                 <view class="item-icon" wx:if="{{item.showIcon}}">
                    <view class="icon">
-                    
+
                    </view>
                 </view>
               </view>
@@ -28,8 +28,8 @@
        <template is="products" data="{{productsArr:productsArr}}"></template>
     </view>
   </view>
-  <view wx:else>
-    没有对应的商品哦~    
+  <view wx:else class="no-data">
+    没有对应的商品哦~
   </view>
 </view>
 <view class="loadmore" hidden="{{isHideLoadMore}}">

@@ -15,6 +15,7 @@ import { loginAsync, getUserAsync } from '../controller/user'
 import wechatMiddle from '../wechat/middleware'
 import reply from '../wechat/reply'
 import config from '../config/config'
+import request from 'request-promise'
 
 
 @controller('/api/v1/minapp')
@@ -36,6 +37,14 @@ export class MinappController {
         await getUserAsync(ctx,next)
     }
 
+
+    @get('/token')
+    async token(ctx,next){
+        await request({
+            url:''
+        })
+    }
+
     @get('/address')
     async getaddressList(){
         console.log('1111115555')
@@ -51,6 +60,12 @@ export class MinappController {
     async Order(ctx,next){
         console.log(ctx.request.body);
         await createOrder(ctx,next)
+    }
+
+    @post('/token')
+    async token(ctx,next){
+        console.log('token')
+        console.log(ctx.request.body)
     }
 
     @post('/wechat-hear')

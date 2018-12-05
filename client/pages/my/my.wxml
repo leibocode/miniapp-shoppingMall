@@ -33,7 +33,7 @@
       </navigator>
     </view>
     <view class="item no-border-right">
-      <navigator url="/pages/location/location" hover-class="none" class="a">
+      <navigator url="/pages/feedback/feedback" hover-class="none" class="a">
         <wxc-icon type='location' size='{{iconSize}}' color='{{iconColor}}' style='margin:15rpx 0 10rpx 0;'></wxc-icon>
         <text class="txt">常见问题</text>
       </navigator>
@@ -59,7 +59,7 @@
     <view class="item item-bottom" bindtap='makePhoneCall'>
       <navigator url="" hover-class="none" class="a">
         <wxc-icon type='group' size='{{iconSize}}' color='{{iconColor}}' style='margin:15rpx 0 10rpx 0;'></wxc-icon>
-        <contact-button type="default-light" size="30" session-from="weapp" class="txt guest-button">
+        <contact-button type="default-light" size="30" session-from="weapp" class="txt">
           联系客服
         </contact-button>
         <!-- <contact-button type="default-light" size="30" session-from="weapp" class="guest-button"></con -->
@@ -72,7 +72,7 @@
       </navigator>
     </view>
     <view class="item no-border-bottom">
-      <navigator url="/pages/ucenter/feedback/feedback" hover-class="none" class="a">
+      <navigator url="/pages/location/location" hover-class="none" class="a">
         <wxc-icon type='comment' size='{{iconSize}}' color='{{iconColor}}' style='margin:15rpx 0 10rpx 0;'></wxc-icon>
         <text class="txt">意见反馈</text>
       </navigator>

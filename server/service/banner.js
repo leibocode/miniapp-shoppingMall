@@ -53,20 +53,6 @@ export const getBanner =async (params)=>{
             .exec();
         break;
     }
-    const data =await Banner.find({
-        _id:params._id
-    }).populate({
-        path:'products',
-        options:{
-            limit:params.size,
-            skip:count,
-            sort:{
-                'price':-1
-            }
-        }
-    })
-    .exec();
-
     return data 
     
 }

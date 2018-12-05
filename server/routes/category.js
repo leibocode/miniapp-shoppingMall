@@ -20,10 +20,17 @@ export class ProductController{
     @get('/:_id') 
     async getChildrens(ctx,next){
         const { _id } =ctx.params
+        const { size,page,price } =ctx.query
+        let param = {
+            _id,
+            size,
+            page,
+            price
+        }
         if(!_id){
             //容错     
         }
-        const data =await getChildrens(_id)
+        const data =await getChildrens(param)
         ctx.body ={
             success:true,
             data:data

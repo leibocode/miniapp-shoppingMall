@@ -17,9 +17,10 @@ export default class Category extends Base {
         this.request(param)
     }
 
-    getProjectsCategory(_id,callback){
+    getProjectsCategory(param,callback){
         var params={
-            url:`/api/v1/category/${_id} `, 
+            url:`/api/v1/category/${param.cid}`,
+            data:param, 
             sCallback:function(data){
                 data =data.data
                 console.log('毁掉')

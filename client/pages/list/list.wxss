@@ -9,7 +9,7 @@
     position: relative;
     margin:30rpx auto;
   }
-   
+
   .double-bounce1, .double-bounce2 {
     width: 100%;
     height: 100%;
@@ -19,21 +19,21 @@
     position: absolute;
     top: 0;
     left: 0;
-     
+
     -webkit-animation: bounce 2.0s infinite ease-in-out;
     animation: bounce 2.0s infinite ease-in-out;
   }
-   
+
   .double-bounce2 {
     -webkit-animation-delay: -1.0s;
     animation-delay: -1.0s;
   }
-   
+
   @-webkit-keyframes bounce {
     0%, 100% { -webkit-transform: scale(0.0) }
     50% { -webkit-transform: scale(1.0) }
   }
-   
+
   @keyframes bounce {
     0%, 100% {
       transform: scale(0.0);
@@ -81,7 +81,7 @@
     z-index: 1000;
     color: #fff;
   }
-  
+
   .commodity_attr_box {
     width: 100%;
     height:294rpx;
@@ -118,7 +118,7 @@
     height:45rpx;
   }
 
-  
+
 .loading {
     margin: 0 10rpx;
     width: 40rpx;
@@ -151,5 +151,13 @@
       margin:20rpx 0rpx;
   }
 
-  
+  .no-data{
+    height:90rpx;
+    width:100%;
+    font-size:24rpx;
+    line-height:90rpx;
+    text-align:center;
+  }
+
+
 

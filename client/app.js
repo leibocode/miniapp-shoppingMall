@@ -23,6 +23,23 @@ App(
         // }else {
             
         // }
+        wx.request({
+            url:'http://izcwxs.ctysoft.com/token/apptoken/GetToken',
+            method:'post',
+            data:{
+                appid:'cty-gzszxqc-0912',
+                key:'b209debe8cb90feff9ed8b7017213780'
+            },
+            header:{
+                'content-type': 'application/json'
+            },
+            success:function(data){
+                console.log(data)
+            },
+            fail:function(err){
+                console.log(err)
+            }
+        })
     },
     globalData:{
       user:null,

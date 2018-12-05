@@ -8,7 +8,7 @@
     </view>
   </view>
   <view wx:if="{{!finished}}">
-    <view class="history" wx:if="{{historyKeys.length>0}}" wx:key="{{index}}">
+    <view class="history"  wx:if="{{historyKeys.length>0}}" wx:key="{{index}}">
       <view class="title">
         <view class="chunk"></view>
         <text>历史搜索</text>

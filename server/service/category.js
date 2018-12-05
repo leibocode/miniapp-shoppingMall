@@ -16,11 +16,48 @@ export const getCategorys =async ()=>{
 
 export const getChildrens =async (params)=>{
     const count = params.size *(params.page-1)
-    const data =await ChildCategory.findOne({
-        _id:_id
-    }).populate({
-        path:'products'
-    }).exec()
+    let data = null
+    switch(params.price){
+        case 'asc':
+            data =await ChildCategory.find({
+                _id:params._id
+            }).populate({
+                path:'products',
+                options:{
+                    limit:params.size,
+                    skip:count,
+                    sort:{
+                        'price':1
+                    }
+                }
+            })
+            .exec()
+          break;
+          case 'desc':
+            data =await ChildCategory.find({
+                _id:params._id
+            }).populate({
+                path:'products',
+                options:{
+                    limit:params.size,
+                    skip:count,
+                    sort:{
+                        'price':-1
+                    }
+                }
+            }).exec()
+           case 'all':
+            data =await ChildCategory.find({
+                _id:params._id
+            }).populate({
+                path:'products',
+                options:{
+                    limit:params.size,
+                    skip:count
+                }
+            }).exec()
+            break;
+    }
     return data
 }
 

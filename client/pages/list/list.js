@@ -154,7 +154,7 @@ Page({
                 list_type.key = 'cid'
                 list_type.value =cid
                 that.setData({
-                    productsArr:data.products,
+                    productsArr:data[0].products,
                     loading:true,
                     list_load_type:list_type,
                 })
@@ -239,9 +239,9 @@ Page({
                 size:params.size,
                 price:params.price
             },(data)=>{
-                if(data.length>0){
+                if(data[0].products.length>0){
                     let newProducts  =that.data.productsArr
-                    let products = that.filterList(newProducts,data)
+                    let products = that.filterList(newProducts,data[0].products)
                     that.setData({
                         page:params.page,
                         loading:true,

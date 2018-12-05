@@ -29,10 +29,10 @@
 }
 
 .name{
-    font-size:28rpx;
+    font-size:24rpx;
     height:70rpx;
 }
 
 .price{
-    font-size:50rpx;
+    font-size:36rpx;
 }

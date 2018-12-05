@@ -71,10 +71,11 @@ export async function loginAsync(ctx,next) {
         const res = await openidAndSessionKey(code)
         console.log('22')
         console.log(res)
-        const { openid,session_key } = JSON.parse(res)
+        const { openid,session_key,unionid } = JSON.parse(res)
 
         console.log('openod为'+openid)
         console.log('session_key为'+session_key)
+        console.log()
         let user = await User.findOne({
             openid:openid
         }).exec()
