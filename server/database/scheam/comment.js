@@ -1,33 +1,37 @@
 import mongoose from 'mongoose'
 
-const { Schema } =mongoose
+const { Schema } = mongoose
 
-const { ObjectId } =Schema.Types
+const { ObjectId } = Schema.Types
 
-const CommentSchema =new Schema({
-    content:String,
-    product:{
-        type:ObjectId,
-        ref:'Product'
+const CommentSchema = new Schema({
+    content: String,
+    product: {
+        type: ObjectId,
+        ref: 'Product'
     },
-    meta:{
-        updateAt:{
-            type:Date,
-            default:Date.now()
+    user: {
+        type: ObjectId,
+        ref: 'User'
+    },
+    meta: {
+        updateAt: {
+            type: Date,
+            default: Date.now()
         },
-        createdAt:{
-            type:Date,
-            default:Date.now()
+        createdAt: {
+            type: Date,
+            default: Date.now()
         }
     }
 })
 
-CommentSchema.pre('save',function(next){
-    if(this.isNew){
-        this.meta.updateAt = this.meta.createdAt =Date.now()
-    }else {
-        this.meta.updateAt =Date.now()
+CommentSchema.pre('save', function (next) {
+    if (this.isNew) {
+        this.meta.updateAt = this.meta.createdAt = Date.now()
+    } else {
+        this.meta.updateAt = Date.now()
     }
 })
 
-mongoose.model('Comment',CommentSchema)
+mongoose.model('Comment', CommentSchema)

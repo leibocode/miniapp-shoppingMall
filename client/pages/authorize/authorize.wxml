@@ -5,8 +5,5 @@
     </button>
     <view style='width:100%;padding-left:30rpx;font-size: 24rpx;margin-top:50rpx;'>1.  同意当前小程序获取我的微信头像；</view>
     <view style='width:100%;padding-left:30rpx;font-size: 24rpx;margin-top:20rpx;'>2.  同意当前小程序获取我的微信昵称等其他信息；</view>
-    <button type="danger" size='large' btn-style='margin-top:30rpx;' bindclick='rejectLogin'>
-      拒绝授权
-    </button>
   </form>
 </view>

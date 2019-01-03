@@ -13,7 +13,7 @@ export default async (ctx,next) =>{
             ctx.body ='正在为您转到人工服务,当前等到人数3人，请等待...'
         }else if(message.Content==='开发者'){
             ctx.body ={
-                type:link,
+                type:'link',
                 title:"gayhub",
                 description:"我叫雷博,码畜一枚",
                 url:"https://www.github.com/leibocode",
@@ -30,7 +30,7 @@ export default async (ctx,next) =>{
             ctx.body ='小程序'
         }
     }else if(message.MsgType==='image'){
-        
+
     }else if(message.MsgType==='miniprogrampage'){
 
     }

@@ -9,9 +9,7 @@
       "js": "node --harmony"
     },
     "watch": [
-      "server/",
-      "src/views",
-      "veiws"
+
     ],
     "ext": "js json"
 }

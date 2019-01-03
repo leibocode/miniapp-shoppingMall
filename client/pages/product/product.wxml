@@ -24,7 +24,7 @@
                </view>
             </view>
           </picker>
-        </view> 
+        </view>
         <view class="middle-border"></view>
         <view class="add-cart-btn" bindtap="onAddingToCartTap">
            <text>加入购物车</text>
@@ -63,6 +63,17 @@
         </view>
         <view class="product-detail-product" hidden="{{currentTabsIndex!=2}}}">
           <view>七天无理由退货</view>
+        </view>
+        <view class="product-detail-comments" hidden="{{currentTabsIndex!=3}}">
+          xxxx
+          <block wx:for="{{comments}}">
+             <view class="comments-item">
+                <view>
+
+                </view>
+                <view></view>
+             </view>
+          </block>
         </view>
      </view>
    </view>

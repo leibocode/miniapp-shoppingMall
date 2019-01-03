@@ -4,26 +4,13 @@ import config from '../config/config'
 const koajwt = require('koa-jwt')
 const koalogger =require('koa-logger')
 const jsonwebtoken =require('jsonwebtoken')
+const koaStatic = require('koa-static')
 
 const { verify } =require('../lib/verify')
 
 export const addBody =app=>{
     app.use(koaBody())
 }
-
-
-// export const auth = app=>{
-//     app.use((ctx,next)=>{
-//         return next().catch((err)=>{
-//             if(err.status==401){
-//                 ctx.status =401;
-//                 ctx.body ="Protected resource, use Authorization header to get access\n"
-//             }else {
-//                 throw err
-//             }
-//         })
-//     })
-// }
 
 export const jwt = app=>{
     app.use(koajwt({
@@ -47,14 +34,10 @@ export const  verifyToken = app =>{
     app.use(async(ctx,next)=>{
         try {
             const token =ctx.header.authorization
-            console.log("token"+token)
-            console.log(config.secret)
             if(token){
-                console.log('1111')
                 const minjwt = token.split(' ')[1]
                 console.log('jwt'+minjwt);
                 let decoded = await verify(minjwt,'wechat_min_token');
-                console.log(decoded.openid)
                 ctx.user = {
                     openid:decoded.openid,
                     session_key:decoded.session_key
@@ -75,5 +58,7 @@ export const  verifyToken = app =>{
 export const logger =app=>{
     app.use(koalogger())
 }
+
+
 
 

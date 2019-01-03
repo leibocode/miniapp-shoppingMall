@@ -1,5 +1,5 @@
 import Product from '../../models/productModel.js'
-import Cart from '../../models/cartModel.js'  
+import Cart from '../../models/cartModel.js'
 
 let product =new Product()
 let cart =new Cart()
@@ -13,12 +13,12 @@ Page({
         currentTabsIndex:0,
         cartTotalCounts:0,
         properties:[
-            {"name":"产地","detail":"天山"}, 
+            {"name":"产地","detail":"天山"},
             {"name":"保质期","detail":"12个月"},
             {"name":"口味","detail":"你懂的,那是相当的好哇"},
             {"name":"描述","detail":"取材于天山之巅,味道好极了,亲,赶快下单吧"}
         ],
-        tabs:['商品详情','产品参数','售后保障'],
+        tabs:['商品详情','产品参数','售后保障','商品评论'],
         product:null,
         id:0,
         images:null
@@ -28,7 +28,7 @@ Page({
         this.data.id =id;
         this._loadData()
     },
-    
+
     _loadData:function(callback){
         var that = this
         product.getDetailInfo(this.data.id,(data)=>{
@@ -45,7 +45,7 @@ Page({
             console.log(data)
             that.setData({
                 product:data,
-                loading:true, 
+                loading:true,
                 images:detail
             })
             callback && callback()
@@ -122,21 +122,21 @@ Page({
         wx.previewImage({
             urls:imgs
         })
-    }, 
+    },
 
     onPullDownRefresh:function(){
         this._loadData(()=>{
             wx.stopPullDownRefresh()
         });
     },
-    
+
     //跳转到购物车
     onCartTap:function(){
         wx.switchTab({
             url:'/pages/cart/cart'
         })
     },
-    
+
     onShareAppMessage:function(){
         return{
             title:'零食1号',

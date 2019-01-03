@@ -1,35 +1,35 @@
 import mongoose from 'mongoose'
-const Schema  =mongoose.Schema
-const Mixed =Schema.Types.Mixed
-const ObjectId =Schema.Types.ObjectId
+const Schema = mongoose.Schema
+const Mixed = Schema.Types.Mixed
+const ObjectId = Schema.Types.ObjectId
 
 const BannerSchema = new Schema({
-  title:String,
-  img:String,
-  products:[{
-    type:ObjectId,
-    ref:'Product'
-  }],
-  meta:{
-    createdAt: {
-      type: Date,
-      default: Date.now()
-    },
-    updatedAt: {
-      type: Date,
-      default: Date.now()
+    title: String,
+    img: String,
+    products: [{
+        type: ObjectId,
+        ref: 'Product'
+    }],
+    meta: {
+        createdAt: {
+            type: Date,
+            default: Date.now()
+        },
+        updatedAt: {
+            type: Date,
+            default: Date.now()
+        }
     }
-  }
 })
 
-BannerSchema.pre('save',function(next){
-    if(this.isNew){
+BannerSchema.pre('save', function (next) {
+    if (this.isNew) {
         this.meta.createdAt = this.meta.updatedAt = Date.now()
-    }else {
+    } else {
         this.meta.updatedAt = Date.now()
     }
 
     next()
 })
 
-mongoose.model('Banner',BannerSchema)
+mongoose.model('Banner', BannerSchema)

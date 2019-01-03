@@ -1,0 +1,13 @@
+{
+  "name":"minapp-server",
+  "version":"1.0.0",
+  "description":"零食1号小程序API文档",
+  "title":"minapp-server API",
+  "url": "http://localhost:3001/v1",
+  "sampleUrl": "http://localhost:3001/v1",
+  "forceLanguage": "zh-cn",
+  "template": {
+    "withCompare": true,
+    "withGenerator": true
+  }
+}

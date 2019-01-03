@@ -14,13 +14,14 @@ class Server {
         this.useMiddleWares(this.app)
     }
     useMiddleWares(app){
+        //引入的中间件，
        verifyToken(app)
        logger(app)
        addBody(app)
        database(app)
        jwt(app)
        router(app)
-       
+
     }
 
     async start(){

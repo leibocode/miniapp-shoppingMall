@@ -17,7 +17,7 @@ import {
      @get('/:_id')
      async getAddress(ctx,next){
          const { _id } = ctx.params
-         //let ipenid = 
+         //let ipenid =
          const data =await getOne(_id)
          ctx.body ={
              success:true,
@@ -29,7 +29,7 @@ import {
      async getAddressList(ctx,next){
          //kao-jwt
 
-         const { openid } = ctx.user 
+         const { openid } = ctx.user
          const data =await getAll(openid)
          ctx.body = {
              success:true,
@@ -39,15 +39,12 @@ import {
 
      @put('/:_id')
      async setAddressSatte(ctx,next){
-        
+
          const { openid } =ctx.user
          const { _id  } = ctx.params
          console.log(`setAddressState函数${_id}`)
          await setState(openid,_id)
-         
-         ctx.body ={
-             success:true
-         }
+         ctx.status =204
      }
 
     @post('/')
@@ -59,10 +56,7 @@ import {
             data.state =1
         }
         const result =await add(data)
-
-        ctx.body ={
-            success:true
-        }
+        ctx.status = 201
     }
 
     @post('/del')
@@ -79,10 +73,11 @@ import {
         const { openid } =ctx.user
         const { _id  } = ctx.params
         console.log(`_id拿到的id是${_id}`)
-        await deleteAddress(_id)
-        
-        ctx.body ={
-            success:true
+        try {
+            await deleteAddress(_id)
+            ctx.status =204
+        }catch(err){
+
         }
     }
  }
