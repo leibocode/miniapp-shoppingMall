@@ -1,3 +1,4 @@
+import regeneratorRuntime from '../../utils/runtime.js'
 import List from '../../models/listModel'
 import Search from '../../models/searchModel'
 import Category from '../../models/categoryModel' 
@@ -180,7 +181,7 @@ Page({
         }
        
     },
-    _loadData:function(params,callback){
+    async _loadData(params,callback){
         var that = this
         switch(params.key){
             case 'all':

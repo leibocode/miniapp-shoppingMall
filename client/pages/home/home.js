@@ -1,3 +1,4 @@
+import regeneratorRuntime from '../../utils/runtime.js'
 import HomeModel from '../../models/homeModel.js'
 
 var model =new HomeModel()
@@ -18,30 +19,39 @@ Page({
         this._loadData();
     },
 
-    _loadData:function(callback){
-        var that = this
-        //
-        console.log('加载数据---');
-        model.getBannerData(function(data){
-            that.setData({
-                bannerArr:data
-            })
-        })
+    async _loadData(){
+        //var that = this
+        // console.log('加载数据---');
+        // model.getBannerData(function(data){
+        //     that.setData({
+        //         bannerArr:data
+        //     })
+        // })
 
-        //获取主题
-        model.getThemeData((data)=>{
-            that.setData({
-                themeArr:data,
-                 loading:true
-            })
-        })
+        // //获取主题
+        // model.getThemeData((data)=>{
+        //     that.setData({
+        //         themeArr:data,
+        //          loading:true
+        //     })
+        // })
 
-        //
-        model.getProductData({price:this.data.price,page:this.data.page,size:10},(data)=>{
-            that.setData({
-                productsArr:data
-            })
-            callback && callback()
+        // //
+        // model.getProductData({price:this.data.price,page:this.data.page,size:10},(data)=>{
+        //     that.setData({
+        //         productsArr:data
+        //     })
+        //     callback && callback()
+        // })
+        const bannerData = await model.getBannerData()
+        const themeData = await model.getThemeData()
+        const productData = await model.getProductData()
+        
+        this.setData({
+            bannerArr:bannerData,
+            themeArr:themeData,
+            productsArr:productData,
+            loading:true
         })
     },
 
@@ -64,7 +74,7 @@ Page({
     },
 
     //跳转到商品详情
-    onProductItemTap:function(event){
+    onProductItemTap(event){
         var id =model.getDataSet(event,'id')
         wx.navigateTo({
             url:'../product/product?id='+id
@@ -72,7 +82,7 @@ Page({
     },
 
     //banner详情
-    onBannerItemTap:function(event){
+    onBannerItemTap(event){
         var id = model.getDataSet(event,'id')
         console.log(id)
         wx.navigateTo({
