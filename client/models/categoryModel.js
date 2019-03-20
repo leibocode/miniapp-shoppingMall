@@ -5,13 +5,13 @@ export default class Category extends Http {
         super();
     }
     
-    getCategory(callback){
+    getCategory(){
         return this.request({
             url:'/api/v1/category'
         })
     }
 
-    getProjectsCategory(param,callback){
+    getProjectsCategory(param){
         return this.request({
             url:`/api/v1/category/${param.cid}`,
             data:param

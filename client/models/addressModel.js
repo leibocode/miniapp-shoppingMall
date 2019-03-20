@@ -19,14 +19,14 @@ export default class address extends Http {
         })
     }
 
-    setState(id,callback){
+    setState(id){
         return this.request({
             url:`/api/v1/address/${id}`,
             method:'put'
         })
     }
 
-    editAddress(data,callback){
+    editAddress(data){
         return this.request({
             url:`/api/v1/address/${data.id}`,
             data:data,
@@ -34,13 +34,13 @@ export default class address extends Http {
         })
     }
 
-    getAddressById(id,callback){
+    getAddressById(id){
         return this.request({
             url:`/api/v1/address/${id}`
         })
     }
 
-    delAddressById(id,callback){
+    delAddressById(id){
         return this.request({
             url:`/api/v1/address/${id}`,
             method:'delete'

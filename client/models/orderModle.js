@@ -1,71 +1,43 @@
-import Base from '../utils/base'
+import Http from '../utils/http.js'
 
-export default class Order extends Base {
+export default class Order extends Http {
     constructor() {
         super();
         this._storegeKeyName ='newOrder'
     }
 
     //下订单
-    doOrder(param,callback){
-        var that =this
-        var allParam ={
+    doOrder(param){
+        return this.request({
             url:'/api/v1/minapp/order',
             method:'POST',
-            data:param,
-            sCallback:function(data){
-                data =data.data
-                callback && callback(data)
-            }
-        }
-
-        this.request(allParam)
+            data:param
+        })
     }
 
     //唤起微信支付
     execPay(ordername){
-        let allParam ={
-
-        }
 
     }
 
-    getOrder(id,callback){
-        var param ={
-            url:`/api/v1/order/${id}`,
-            method:'GET',
-            sCallback:function(data){
-                data = data.data
-                callback(data)
-            }
-        }
-        
-        this.request(param)
+    getOrder(id){
+        return this.request({
+            url:`/api/v1/order/${id}`
+        })
     }
 
-    getOrders(parmas,callback){
-        var param = {
+    getOrders(parmas){
+        return this.request({
             url:'/api/v1/order',
             method:'GET',
-            data:parmas,
-            sCallback:function(data){
-                data =data.data
-                callback && callback(data)
-            }
-        }
-
-        this.request(param)
+            data:parmas
+        })
     }
 
-    deleteOrder(id,callback){
-        var param ={
+    deleteOrder(id){
+        return this.request({
             url:`/api/v1/order/${id}`,
-            method:'delete',
-            sCallback:function(data){
-                callback && callback(data)
-            }
-        }
-
-        this.request(param)
+            method:'delete'
+        })
     }
 }

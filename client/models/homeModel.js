@@ -5,19 +5,19 @@ export default class Home extends Http {
         super();
     }
 
-    getBannerData(callback){
+    getBannerData(){
         return this.request({
             url:'/api/v1/banner'
         })
     }
 
-    getThemeData(callback){
+    getThemeData(){
         return this.request({
             url:'/api/v1/special'
         })
     }
     /*商品部分商品*/
-    getProductData(getParam,callback){
+    getProductData(getParam){
         return this.request({
             url:'/api/v1/product'
         })

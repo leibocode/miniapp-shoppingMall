@@ -1,4 +1,4 @@
-import Base from '../utils/base'
+import Http from '../utils/http.js'
 export default class search extends Base {
     key ='q'
     max=10
@@ -6,29 +6,18 @@ export default class search extends Base {
         super()
     }
 
-    getHot(callback){
-        let param ={
-            url:'/api/v1/search/hot',
-            sCallback:function(data){
-                data =data.data
-                callback && callback(data)
-            }
-        }
-
-        this.request(param)
+    getHot(){
+        return this.request({
+            url:'/api/v1/search/hot'
+        })
     }
 
-    searchProducts(data,callback){
-        let params ={
+    searchProducts(data){
+        return this.request({
             url:'/api/v1/search',
             method:'POST',
-            data:data,
-            sCallback:function(res){
-                res =res.data
-                callback(res)
-            }
-        }
-        this.request(params)
+            data:data
+        })
     }
 
     deleteHot(){
@@ -37,7 +26,6 @@ export default class search extends Base {
 
     gitHistory(){
         let keywords =wx.getStorageSync(this.key)
-        console.log(keywords)
         return keywords
     }
 

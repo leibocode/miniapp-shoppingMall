@@ -1,21 +1,16 @@
-import Base from '../utils/base'
-export default class Project extends Base {
+import Http from '../utils/http.js'
+export default class Project extends Http {
     constructor() {
         super();
     }
 
-    getDetailInfo(id,callback){
-        var param ={
-            url:`/api/v1/product/${id}`,
-            sCallback:function(data){
-                data =data.data
-                callback && callback(data)
-            }
-        }
-        this.request(param)
+    getDetailInfo(id){
+        return this.request({
+            url:`/api/v1/product/${id}`
+        })
     }
 
-    getProducts(params,callback){
+    getProducts(params){
         var param ={
             url:'/api/v1/product',
             data:params,
