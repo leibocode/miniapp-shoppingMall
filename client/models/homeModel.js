@@ -1,44 +1,26 @@
-import Base  from '../utils/base.js'
+import Http  from '../utils/http.js'
 
-export default class Home extends Base {
+export default class Home extends Http {
     constructor(){
         super();
     }
 
     getBannerData(callback){
-        var that =this
-        var params = {
-            url:'/api/v1/banner',
-            sCallback:function(data){
-                data = data.data
-                callback && callback(data)
-            }
-        }
-        this.request(params)
+        return this.request({
+            url:'/api/v1/banner'
+        })
     }
 
     getThemeData(callback){
-        var params ={
-            url:'/api/v1/special',
-            sCallback:function(data){
-                data =data.data
-                callback && callback(data)
-            }
-        }
-        this.request(params)
+        return this.request({
+            url:'/api/v1/special'
+        })
     }
     /*商品部分商品*/
     getProductData(getParam,callback){
-      var params ={
-        url:'/api/v1/product',
-        data:getParam,
-        sCallback:function(data){
-          data=data.data
-          callback && callback(data)
-        }
-      }
-      this.request(params)
-      
+        return this.request({
+            url:'/api/v1/product'
+        })
     }
 
     

@@ -4,15 +4,10 @@ export default class List extends Base {
         super();
     }
 
-    getProducts(params,callback){
-        var param ={
+    getProducts(params){
+        return this.request({
             url:`/api/v1/banner/${params._id}`,
-            data:params,
-            sCallback:function(data){
-                data =data.data
-                callback && callback(data)
-            }
-        }
-        this.request(param)
+            data:params
+        })
     }
 }

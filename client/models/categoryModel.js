@@ -1,35 +1,21 @@
-import Base from '../utils/base'
+import Http from '../utils/http.js'
 
-export default class Category extends Base {
+export default class Category extends Http {
     constructor(){
         super();
     }
     
     getCategory(callback){
-        var param ={
-            url:'/api/v1/category',
-            sCallback:function(data){
-                data =data.data
-                callback && callback(data)
-            }
-        }
-
-        this.request(param)
+        return this.request({
+            url:'/api/v1/category'
+        })
     }
 
     getProjectsCategory(param,callback){
-        var params={
+        return this.request({
             url:`/api/v1/category/${param.cid}`,
-            data:param, 
-            sCallback:function(data){
-                data =data.data
-                console.log('毁掉')
-                callback && callback(data)
-            }
-        }
-
-        this.request(params)
-        
+            data:param
+        })
     }
 }
 

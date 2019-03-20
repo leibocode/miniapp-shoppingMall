@@ -1,83 +1,49 @@
-import Base from '../utils/base'
+import Http from '../utils/http.js'
 
-export default class address extends Base {
+export default class address extends Http {
     constructor(){
         super();
     }
 
-    getaddressList(callback){
-        var that =this
-        var params ={
-            url: '/api/v1/address',
-            sCallback:function(data){
-                data =data.data
-                callback && callback(data)
-            }
-        }
-        this.request(params)
+    getaddressList(){
+        return this.request({
+            url:'/api/v1/address'
+        })
     }
 
-    postaddress(data,callback){
-        var that =this
-        var params ={
+    postaddress(data){
+        return this.request({
             url:'/api/v1/address',
-            method:'post', 
-            data:data,
-            sCallback:function(res){
-                callback && callback(res) 
-            }
-        }
-        this.request(params)
+            method:'POST',
+            data:data
+        })
     }
 
     setState(id,callback){
-        var that =this
-        var params ={
+        return this.request({
             url:`/api/v1/address/${id}`,
-            method:'put',
-            sCallback:function(res){
-                callback && callback(res)
-            }
-        }
-        
-        this.request(params)
+            method:'put'
+        })
     }
 
     editAddress(data,callback){
-        var that = this
-        var param ={
+        return this.request({
             url:`/api/v1/address/${data.id}`,
             data:data,
-            sCallback:function(data){
-                callback(data)
-            }
-        }
-        this.request(param)
+            method:'PUT'
+        })
     }
 
     getAddressById(id,callback){
-        var that = this
-        var param = {
-            url:`/api/v1/address/${id}`,
-            method:'get',
-            sCallback:function(data){
-                data = data.data
-                callback(data)
-            }
-        }
-        this.request(param)
+        return this.request({
+            url:`/api/v1/address/${id}`
+        })
     }
 
     delAddressById(id,callback){
-        var that = this
-        var param ={
+        return this.request({
             url:`/api/v1/address/${id}`,
-            method:'delete',
-            sCallback:function(data){
-                data = data
-                callback(data)
-            }
-        }
-        this.request(param)
+            method:'delete'
+        })
     }
 }
