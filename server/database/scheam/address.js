@@ -2,7 +2,10 @@ import mongoose, { mongo } from 'mongoose'
 const Schema  =mongoose.Schema
 const Mixed =Schema.Types.Mixed
 const ObjectId =Schema.Types.ObjectId
-
+/**
+ *收获地址集合
+ *
+ */
 const AddressSchema =new Schema({
     provinceId:Number,
     cityId:Number,
@@ -42,7 +45,7 @@ AddressSchema.pre('save',function(next){
     }else{
         this.meta.updateAt =Date.now()
     }
-    
+
     next()
 })
 

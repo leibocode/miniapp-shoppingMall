@@ -4,6 +4,9 @@ const { Schema } = mongoose
 
 const { ObjectId } = Schema.Types
 
+/**
+ * 评论集合
+ */
 const CommentSchema = new Schema({
     content: String,
     product: {

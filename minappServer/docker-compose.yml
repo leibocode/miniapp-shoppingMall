@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  minappserver.api:
+    image: minappserver.api
+    build:
+      context: .
+      dockerfile: minappServer.API\Dockerfile

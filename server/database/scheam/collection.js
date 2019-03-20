@@ -1,13 +1,20 @@
-const mongoose = require('mongoose')
+const mongoose  = require('mongoose')
+const {
+    Schema
+} = mongoose
 
-const { ObjectId } = mongoose.schema.Types
-
+const {
+    ObjectId
+} = Schema.Types
+/**
+ * 收藏集合
+ */
 const CollectionSchema = new mongoose.Schema({
     productId: ObjectId,
     user: {
         type: ObjectId,
         ref: 'User'
-    }
+    },
     meta: {
         createAt: {
             type: Date,

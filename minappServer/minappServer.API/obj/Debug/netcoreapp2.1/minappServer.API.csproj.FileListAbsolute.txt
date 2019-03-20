@@ -1,0 +1,11 @@
+H:\wechat\小程序\minapp-shoppingMall\minappServer\minappServer.API\bin\Debug\netcoreapp2.1\minappServer.API.deps.json
+H:\wechat\小程序\minapp-shoppingMall\minappServer\minappServer.API\bin\Debug\netcoreapp2.1\minappServer.API.runtimeconfig.json
+H:\wechat\小程序\minapp-shoppingMall\minappServer\minappServer.API\bin\Debug\netcoreapp2.1\minappServer.API.runtimeconfig.dev.json
+H:\wechat\小程序\minapp-shoppingMall\minappServer\minappServer.API\bin\Debug\netcoreapp2.1\minappServer.API.dll
+H:\wechat\小程序\minapp-shoppingMall\minappServer\minappServer.API\obj\Debug\netcoreapp2.1\minappServer.API.csprojResolveAssemblyReference.cache
+H:\wechat\小程序\minapp-shoppingMall\minappServer\minappServer.API\obj\Debug\netcoreapp2.1\minappServer.API.csproj.CoreCompileInputs.cache
+H:\wechat\小程序\minapp-shoppingMall\minappServer\minappServer.API\obj\Debug\netcoreapp2.1\minappServer.API.RazorAssemblyInfo.cache
+H:\wechat\小程序\minapp-shoppingMall\minappServer\minappServer.API\obj\Debug\netcoreapp2.1\minappServer.API.RazorAssemblyInfo.cs
+H:\wechat\小程序\minapp-shoppingMall\minappServer\minappServer.API\obj\Debug\netcoreapp2.1\minappServer.API.AssemblyInfoInputs.cache
+H:\wechat\小程序\minapp-shoppingMall\minappServer\minappServer.API\obj\Debug\netcoreapp2.1\minappServer.API.AssemblyInfo.cs
+H:\wechat\小程序\minapp-shoppingMall\minappServer\minappServer.API\obj\Debug\netcoreapp2.1\minappServer.API.RazorTargetAssemblyInfo.cache

@@ -65,15 +65,28 @@
           <view>七天无理由退货</view>
         </view>
         <view class="product-detail-comments" hidden="{{currentTabsIndex!=3}}">
-          xxxx
-          <block wx:for="{{comments}}">
-             <view class="comments-item">
-                <view>
-
-                </view>
-                <view></view>
-             </view>
-          </block>
+          <view class="comment-title">
+            <view class="detail-title-left">评论列表</view>
+            <view wx:if="{{comments.length>0}}">{{comments.length}}条</view>
+            <view  wx:else>0条</view>
+          </view>
+          <view class="comments-boxs">
+            <block wx:for="{{comments}}" wx:key="index" wx:for-item="comment_item">
+              <view class="comment-item">
+                 <view class="comment-item-aevter">
+                   <!-- <image src=""/> -->
+                   <text>leibo</text>
+                 </view>
+                 <view class="comment-item-date"></view>
+                 <view class="comment-item-body"></view>
+                 <view class="comment-imgs">
+                   <block wx:for="{{comments.imgs}}" wx:key="index" wx:for-item="comment_item_imgs">
+                     <image src="comment_item_imgs" />
+                   </block>
+                 </view>
+              </view>
+            </block>
+          </view>
         </view>
      </view>
    </view>

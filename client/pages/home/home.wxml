@@ -34,10 +34,13 @@
   <view class="loadmore__tips">正在加载..</view>
 </view>
 <view class="footer" hidden="{{isShowFooter}}">
-   <view class="footer-text">
+   <!-- <view class="footer-text">
       <text>哇,我的底线被你知道啦！</text>
-   </view>
+   </view> -->
+   <i-divider>哇,我的底线被你知道啦！</i-divider>
 </view>
-<loading hidden="{{loading}}"></loading>
+<!-- <loading hidden="{{loading}}"></loading> -->
+<i-spin fix="{{true}}" hidden="{{loading}}"></i-spin>
+
 
 

@@ -3,6 +3,9 @@ const Schema  =mongoose.Schema
 const Mixed =Schema.Types.Mixed
 const ObjectId =Schema.Types.ObjectId
 
+/**
+ *
+ */
 const ChildCateGorySchema =new Schema({
     name:String,
     products:[{

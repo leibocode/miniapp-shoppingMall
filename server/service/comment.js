@@ -4,7 +4,7 @@ const User = mongoose.model('User')
 const Comment = mongoose.model('Comment')
 const Product = mongoose.model('Product')
 
-export default class commentService {
+export default class CommentService {
     async del(){
         const data = await Comment.findOne({
              _id: id

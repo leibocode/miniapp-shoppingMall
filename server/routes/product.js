@@ -4,10 +4,10 @@ import {
     post,
     del
 } from '../decorator/router'
+import CommentService from '../service/comment'
 
 import { getProduct, getProducts } from '../service/product'
-const commentService = require('../service/comment')
-const service = new commentService()
+const service = new CommentService()
 
 @controller('/api/v1/product')
 export class ProductController {

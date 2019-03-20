@@ -2,7 +2,9 @@ import mongoose, { mongo } from 'mongoose'
 const Schema  =mongoose.Schema
 const Mixed =Schema.Types.Mixed
 const ObjectId =Schema.Types.ObjectId
-
+/**
+ * 订单集合
+ */
 const PaymentSchema =new Schema({
     user:{
         type:ObjectId,
@@ -22,7 +24,7 @@ const PaymentSchema =new Schema({
     success:{
         type:Number,
         default:0
-    }, 
+    },
     meta:{
      createdAt: {
         type: Date,

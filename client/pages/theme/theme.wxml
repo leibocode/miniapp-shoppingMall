@@ -30,7 +30,7 @@
                    <view class="item-content">
                       <image src="{{item.img}}"  mode="aspectFill" class="item-content-img">
                       </image>
-                    
+
                    </view>
                    <view class="item-text">
                      <view>喜欢</view>
@@ -38,12 +38,12 @@
                      <view>查看详情</view>
                    </view>
                 </view>
-              
+
              </view>
          </block>
           <view class="theme-footer">
               <view class="topic">
-                  <view class="theme-item-text">低线到了呀!</view>
+                  <view class="theme-item-text">我也是有底线的呀!</view>
               </view>
           </view>
       </view>

@@ -3,6 +3,9 @@ const Schema  =mongoose.Schema
 const Mixed =Schema.Types.Mixed
 const ObjectId =Schema.Types.ObjectId
 
+/**
+ * 商品类型集合
+ */
 const CategorySchema = new Schema({
   name:String,
   children:[{

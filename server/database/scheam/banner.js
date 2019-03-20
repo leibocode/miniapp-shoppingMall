@@ -3,6 +3,9 @@ const Schema = mongoose.Schema
 const Mixed = Schema.Types.Mixed
 const ObjectId = Schema.Types.ObjectId
 
+/**
+ * 首页轮播集合
+ */
 const BannerSchema = new Schema({
     title: String,
     img: String,

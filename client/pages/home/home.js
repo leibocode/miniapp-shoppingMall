@@ -17,7 +17,7 @@ Page({
         console.log('加载数据');
         this._loadData();
     },
-    
+
     _loadData:function(callback){
         var that = this
         //
@@ -25,7 +25,7 @@ Page({
         model.getBannerData(function(data){
             that.setData({
                 bannerArr:data
-            })   
+            })
         })
 
         //获取主题
@@ -46,6 +46,7 @@ Page({
     },
 
     _loadProduct:function(price,page,size,callback){
+
         model.getProductData({price:price,page:page,size:size},(data)=>{
             var products =this.data.productsArr
             console.log(products)
@@ -78,7 +79,7 @@ Page({
             url:'../list/list?bid='+id
         })
     },
-    
+
     //主题详情
     onThemeItemTap(event){
         var id =model.getDataSet(event,'id')
@@ -90,11 +91,14 @@ Page({
 
     //下拉刷新
     onPullDownRefresh:function(){
-        wx.showNavigationBarLoading()
+        //wx.showNavigationBarLoading()
+        wx.showLoading({
+            title: '加载中'
+        })
         setTimeout(()=>{
             this._loadData()
-            
-            wx.hideNavigationBarLoading()
+            wx.hideLoading()
+            //wx.hideNavigationBarLoading()
             //系统的方式x
             wx.stopPullDownRefresh()
         },1500)
@@ -104,7 +108,7 @@ Page({
         var that =this
         this.data.isHideLoadMore =false
         setTimeout(()=>{
-           
+
             var newPage = this.data.page +1
             var price = this.data.price
             this._loadProduct(price,newPage,10,(data)=>{
@@ -112,7 +116,7 @@ Page({
                     that.setData({
                         isHideLoadMore:true,
                         page:newPage
-                    })   
+                    })
                 }else {
                     console.log('没有数据了...')
                     this.setData({

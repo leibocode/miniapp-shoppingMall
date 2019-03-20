@@ -1,4 +1,8 @@
 {
     "navigationBarTitleText": "零食1号",
-    "enablePullDownRefresh": true
+    "enablePullDownRefresh": true,
+    "usingComponents":{
+        "i-spin":"../../dist/spin/index",
+        "i-divider":"../../dist/divider/index"
+    }
 }

@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  minappserver.api:
+    image: minappserver.api:dev
+    environment:
+      - DOTNET_USE_POLLING_FILE_WATCHER=1
+      - NUGET_PACKAGES=C:\.nuget\packages
+      #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_minappserver.api$
+    volumes:
+      - H:\wechat\小程序\minapp-shoppingMall\minappServer\minappServer.API:C:\app
+      - C:\Users\Administrator\onecoremsvsmon:C:\remote_debugger:ro
+#$nuget_volume_mapping_minappserver.api$
+    entrypoint: C:\\remote_debugger\\x64\\msvsmon.exe /noauth /anyuser /silent /nostatus /noclrwarn /nosecuritywarn /nofirewallwarn /nowowwarn /timeout:2147483646
+    labels:
+      com.microsoft.visualstudio.debuggee.program: "\"C:\\Program Files\\dotnet\\dotnet.exe\""
+      #com.microsoft.visualstudio.debuggee.arguments: " $debuggee_arguments_probing_paths_minappserver.api$ bin\\Debug\\netcoreapp2.1\\minappServer.API.dll"
+      com.microsoft.visualstudio.debuggee.workingdirectory: "C:\\app"
+      com.microsoft.visualstudio.debuggee.killprogram: "C:\\remote_debugger\\x64\\utils\\KillProcess.exe dotnet.exe"
