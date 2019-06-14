@@ -5,7 +5,8 @@ import {
     del
 } from '../decorator/router'
 import CommentService from '../service/comment'
-
+import * as errors from '../lib/errors'
+import Result from '../lib/result'
 import { getProduct, getProducts } from '../service/product'
 const service = new CommentService()
 
@@ -26,10 +27,7 @@ export class ProductController {
         }
 
         const data = await getProducts(params)
-        ctx.body = {
-            success: true,
-            data: data
-        }
+        ctx.body = new Result(errors.ok,data)
     }
 
     @get('/:_id')
@@ -42,11 +40,7 @@ export class ProductController {
             //容错
         }
         const data = await getProduct(_id)
-        ctx.body = {
-            success: true,
-            data: data
-        }
-
+        ctx.body = new Result(errors.ok,data)
     }
 
     @get('/order')

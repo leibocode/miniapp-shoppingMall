@@ -5,6 +5,8 @@ import{
 }from '../decorator/router'
 
 import { getSpecial,getSpecials  } from '../service/special'
+import Result from '../lib/result';
+import * as errors from '../lib/errors'
 
 @controller('/api/v1/special')
 export class ProductController{
@@ -12,10 +14,7 @@ export class ProductController{
     async getSpecials(ctx,next){
         
         const data =await getSpecials()
-        ctx.body ={
-            success:true,
-            data:data
-        }
+        ctx.body = new Result(errors.ok,data)
     }
 
     @get('/:_id') 
@@ -25,10 +24,7 @@ export class ProductController{
             //容错     
         }
         const data =await getSpecial(_id)
-        ctx.body ={
-            success:true,
-            data:data
-        }
+        ctx.body = new Result(errors.ok,data)
         
     }
 }

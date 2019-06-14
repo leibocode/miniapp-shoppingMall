@@ -6,7 +6,8 @@ import {
     required,
     del
 } from '../decorator/router'
-
+import * as errors from '../lib/errors'
+import Result from '../lib/result'
 import { getOrders,getOrder,delOrder } from '../service/order'
 
 @controller('/api/v1/order')
@@ -25,11 +26,7 @@ export class OrderController {
             newSize
         }
         const data =await getOrders(params)
-        
-        ctx.body ={
-            success:true,
-            data:data
-        }
+        ctx.body = new Result(errors.ok,data)
     }
 
     @get('/:_id')
@@ -38,22 +35,14 @@ export class OrderController {
         const { openid } = ctx.user
         console.log(_id)
         const data =await getOrder(openid,_id)
-        ctx.body ={
-            success:true,
-            data:data
-        }
+        ctx.body = new Result(errors.ok,data)
     }
 
     @del('/:_id')
     async delOrder(ctx,next){
         const { _id } = ctx.params
         const { openid } = ctx.user
-        console.log('参数')
-        console.log(_id)
         await delOrder(openid,_id)
-
-        ctx.body ={
-            success:true
-        }
+        ctx.status = 204
     }
 }

@@ -4,6 +4,8 @@ import {
     deleteAddress,
     add,setState
 } from '../service/address'
+import * as errors from '../lib/errors'
+import Result from '../lib/result'
  const {
      controller,
      get,
@@ -19,10 +21,7 @@ import {
          const { _id } = ctx.params
          //let ipenid =
          const data =await getOne(_id)
-         ctx.body ={
-             success:true,
-             data:data
-         }
+         ctx.body = new Result(errors.ok,data)
      }
 
      @get('/')
@@ -31,10 +30,7 @@ import {
 
          const { openid } = ctx.user
          const data =await getAll(openid)
-         ctx.body = {
-             success:true,
-             data:data
-         }
+         ctx.body = new Result(errors.ok,data)
      }
 
      @put('/:_id')
@@ -42,7 +38,6 @@ import {
 
          const { openid } =ctx.user
          const { _id  } = ctx.params
-         console.log(`setAddressState函数${_id}`)
          await setState(openid,_id)
          ctx.status =204
      }
@@ -63,16 +58,13 @@ import {
     async deleteAddress(ctx,next){
         let { id } =ctx.request.body
         await del(id)
-        ctx.body ={
-            success:true
-        }
+        ctx.status = 201
     }
 
     @del('/:_id')
     async deleteAddress(ctx,next){
         const { openid } =ctx.user
         const { _id  } = ctx.params
-        console.log(`_id拿到的id是${_id}`)
         try {
             await deleteAddress(_id)
             ctx.status =204
