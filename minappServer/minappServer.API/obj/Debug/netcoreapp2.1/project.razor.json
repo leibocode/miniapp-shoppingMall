@@ -1,7 +1,5 @@
 {
-  "ProjectFilePath": "g:\\wechat\\minapp\\minapp-shoppingMall\\minappServer\\minappServer.API\\minappServer.API.csproj",
-  "TargetFramework": "netcoreapp2.1",
-  "TagHelpers": [],
+  "FilePath": "g:\\wechat\\minapp\\miniapp-shoppingMall\\minappServer\\minappServer.API\\minappServer.API.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-2.1",
     "LanguageVersion": "2.1",
@@ -10,5 +8,11 @@
         "ExtensionName": "MVC-2.1"
       }
     ]
-  }
+  },
+  "ProjectWorkspaceState": {
+    "TagHelpers": [],
+    "CSharpLanguageVersion": 703
+  },
+  "RootNamespace": "minappServer.API",
+  "Documents": []
 }
