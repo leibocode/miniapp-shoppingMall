@@ -133,6 +133,8 @@ function filterProductName(list){
   })
 }
 
+
+
 export {
   formatMessage,
   parseXML,

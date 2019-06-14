@@ -1,4 +1,4 @@
-import{
+import {
     controller,
     get,
     post
@@ -12,7 +12,6 @@ import * as errors from '../lib/errors'
 export class ProductController{
     @get('/')
     async getSpecials(ctx,next){
-        
         const data =await getSpecials()
         ctx.body = new Result(errors.ok,data)
     }
