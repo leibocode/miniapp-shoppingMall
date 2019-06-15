@@ -1,5 +1,5 @@
 <import src="../../template/products/products-tpl.wxml"/>
-<view class="container home-container" hidden="{{!loading}}">
+<view class="container home-container" wx:if="{{!loading}}">
   <swiper indicator-dots="true" autoplay="true" class="swiper">
     <block wx:for="{{bannerArr}}" wx:key="index">
       <swiper-item class="banner-item" data-id="{{item._id}}" bindtap="onBannerItemTap">
@@ -40,7 +40,7 @@
    <i-divider>哇,我的底线被你知道啦！</i-divider>
 </view>
 <!-- <loading hidden="{{loading}}"></loading> -->
-<i-spin fix="{{true}}" hidden="{{loading}}"></i-spin>
+<i-spin fix="{{true}}" wx:if="{{loading}}"></i-spin>
 
 
 

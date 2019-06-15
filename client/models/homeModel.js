@@ -1,6 +1,6 @@
-import Http  from '../utils/http.js'
+import HTTP from '../utils/http.js'
 
-export default class Home extends Http {
+export default class Home extends HTTP {
     constructor(){
         super();
     }
@@ -19,7 +19,7 @@ export default class Home extends Http {
     /*商品部分商品*/
     getProductData(getParam){
         return this.request({
-            url:'/api/v1/product'
+            url:`/api/v1/product?page=${getParam.page}&size=${getParam.size}&price=${getParam.price}`
         })
     }
 

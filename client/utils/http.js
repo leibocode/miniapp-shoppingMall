@@ -1,6 +1,4 @@
-import {
-    config
-} from '../config.js'
+import config from './config'
 
 const tips = {
     500:'抱歉,出现以后错误',
@@ -17,18 +15,18 @@ export default class Http {
         })
     }
     _request(url,resolve,reject,data,method){
-        let url =''
         wx.request({
-            url:url,
+            url:config.dev +url,
             method:method,
             data:data,
             headers:{
                 'content-type':'application/json'
             },
             success:(res)=>{
-                let code = res.statusCode.toString('2')
-                if(code.statusCode('2')){
-                    resolve(res.data)
+                let code = res.statusCode.toString()
+                console.log(res)
+                if (code.startsWith('2') && res.data.code ===0){
+                    resolve(res.data.data)
                 }else {
                     reject()
                     const error_code = res.data.error_code

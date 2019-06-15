@@ -1,5 +1,5 @@
 import Http from '../utils/http.js'
-export default class search extends Base {
+export default class search extends Http {
     key ='q'
     max=10
     constructor(){

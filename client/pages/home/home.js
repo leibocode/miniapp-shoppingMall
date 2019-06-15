@@ -5,14 +5,15 @@ var model =new HomeModel()
 Page({
     data:{
         bannerArr:null,
-        loading:false,
+        loading:true,
         themeArr:null,
         productsArr:null,
         isLoadMore:false,
         page:1,
         isHideLoadMore:true,
         isShowFooter:true,
-        price:'all'
+        price:'all',
+        size:10
     },
     onLoad:function(){
         console.log('加载数据');
@@ -20,46 +21,28 @@ Page({
     },
 
     async _loadData(){
-        //var that = this
-        // console.log('加载数据---');
-        // model.getBannerData(function(data){
-        //     that.setData({
-        //         bannerArr:data
-        //     })
-        // })
-
-        // //获取主题
-        // model.getThemeData((data)=>{
-        //     that.setData({
-        //         themeArr:data,
-        //          loading:true
-        //     })
-        // })
-
-        // //
-        // model.getProductData({price:this.data.price,page:this.data.page,size:10},(data)=>{
-        //     that.setData({
-        //         productsArr:data
-        //     })
-        //     callback && callback()
-        // })
+        let params = {
+            page:this.data.page,
+            size:this.data.size,
+            price:this.data.price
+        }
         const bannerData = await model.getBannerData()
         const themeData = await model.getThemeData()
-        const productData = await model.getProductData()
-        
-        this.setData({
-            bannerArr:bannerData,
-            themeArr:themeData,
-            productsArr:productData,
-            loading:true
-        })
+        const productData = await model.getProductData(params)
+        if(bannerData.length>0 && themeData.length>0 && productData.length>0){
+            this.setData({
+                bannerArr:bannerData,
+                themeArr:themeData,
+                productsArr:productData,
+                loading:false
+            })
+        }
     },
 
     _loadProduct:function(price,page,size,callback){
-
-        model.getProductData({price:price,page:page,size:size},(data)=>{
+        
+        model.getProductData({price:price,page:page,size:size}).then((data=>{
             var products =this.data.productsArr
-            console.log(products)
             data.forEach((item)=>{
                 if(item.img.indexOf('http')==-1){
                   item.img = 'http://www.hehe168.com/'+item.img
@@ -69,8 +52,7 @@ Page({
             this.setData({
                 productsArr:products
             })
-            callback && callback(data)
-        })
+        }))
     },
 
     //跳转到商品详情
@@ -128,7 +110,6 @@ Page({
                         page:newPage
                     })
                 }else {
-                    console.log('没有数据了...')
                     this.setData({
                         isHideLoadMore:true,
                         isShowFooter:false
