@@ -65,16 +65,23 @@ Page({
         if(id){
             console.log('进入id')
             this.q =id
+            list.getProducts().then()
             list.getProducts({
                 _id:id,
                 size:10,
                 page:that.data.page
-            },(data)=>{
-                console.log(data)
-                console.log(data.products);
+            }).then((data)=>{
+                let list_type = {
+                    key:'',
+                    value:''
+                }
+                list_type.key = 'bid'
+                list_type.value =bid
                 that.setData({
-                    productsArr:data.products,
-                    loading:true
+                    productsArr:data[0].products,
+                    list_load_type:list_type,
+                    loading:true,
+                    bid:bid
                 })
             })
         }else if(hostKey){
@@ -83,7 +90,7 @@ Page({
                 size:10,
                 page:that.data.page,
                 price:that.data.toggleStatus
-            },(data)=>{
+            }).then((data)=>{
                 let list_type = {
                     key:'',
                     value:''
@@ -103,7 +110,7 @@ Page({
                 size:10,
                 page:that.data.page,
                 price:that.data.toggleStatus
-            },(data)=>{
+            }).then((data)=>{
                 if(data.length>0){
                     search.addToHistory(q)
                 }

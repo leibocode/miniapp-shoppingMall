@@ -1,3 +1,4 @@
+import regeneratorRuntime from '../../utils/runtime.js'
 import Address from '../../models/addressModel'
 
 const address =new Address()
@@ -18,7 +19,7 @@ Page({
     //获取的地址信息
     _loadData:function(){
         let that = this
-        address.getaddressList((data)=>{
+        address.getaddressList().then((data)=>{
             that.setData({
                 addressList:data
             })
@@ -27,7 +28,6 @@ Page({
 
     selectTap:function(event){
         let that =this
-        console.log('切换状态')
         let id =address.getDataSet(event,'id')
         console.log(id)
         address.setState(id,(data)=>{

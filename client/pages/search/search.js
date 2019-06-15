@@ -1,3 +1,4 @@
+import regeneratorRuntime from '../../utils/runtime.js'
 import Search  from '../../models/searchModel'
 
 const search =new Search()
@@ -32,8 +33,7 @@ Page({
         }
        
 
-        search.getHot((data)=>{
-            console.log(data)
+        search.getHot().then((data)=>{
             this.setData({
                 hotKeys:data
             })
@@ -89,21 +89,6 @@ Page({
         wx.navigateTo({
             url:'../list/list?q='+q
         })
-        console.log(q)
-        // search.searchProducts({
-        //     keyword:q,
-        //     size:10,
-        //     page:that.data.page
-        // },(data)=>{
-        //     if(data.length>0){
-        //         search.addToHistory(q)
-        //     }
-        //     that.setData({
-        //         productsArr:data,
-        //         q:q,
-        //         loadingCenter:false
-        //     })
-        // })
     },
     onPullDownRefresh:function(){
 

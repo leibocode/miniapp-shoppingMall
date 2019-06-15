@@ -1,3 +1,4 @@
+import regeneratorRuntime from '../../utils/runtime.js'
 import Order from '../../models/orderModle'
 
 const order =new Order()
@@ -50,7 +51,7 @@ Page({
         order.getOrders({
             page:that.data.page,
             size:that.data.size
-        },(data)=>{
+        }).then((data)=>{
             console.log(data.length)
             if(data.length>0){
                 // for(let i =0;i<data.length;i++){
@@ -94,7 +95,6 @@ Page({
                     })
                 }
             }
-
         })
     },
 

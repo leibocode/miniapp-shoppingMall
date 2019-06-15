@@ -1,3 +1,4 @@
+import regeneratorRuntime from '../../utils/runtime.js'
 import Product from '../../models/productModel.js'
 import Cart from '../../models/cartModel.js'
 
@@ -29,26 +30,21 @@ Page({
         this._loadData()
     },
 
-    _loadData:function(callback){
+    async _loadData(callback){
         var that = this
-        product.getDetailInfo(this.data.id,(data)=>{
-             var detail =[]
-             data.detailImgs.forEach((item)=>{
-                console.log('11')
-                if(item.indexOf('http')==-1){
-                    console.log('优质')
-                    var  url = 'http://www.enanji.com' +item
-                    console.log(url)
-                    detail.push(url)
-                }
-            })
-            console.log(data)
-            that.setData({
-                product:data,
-                loading:true,
-                images:detail
-            })
-            callback && callback()
+        product.getDetailInfo(this.data.id).then((data)=>{
+            var detail =[]
+            data.detailImgs.forEach((item)=>{
+               if(item.indexOf('http')==-1){
+                   var  url = 'http://www.enanji.com' +item
+                   detail.push(url)
+               }
+           })
+           that.setData({
+               product:data,
+               loading:true,
+               images:detail
+           })
         })
     },
     //选择购买数目

@@ -1,3 +1,4 @@
+import regeneratorRuntime from '../../utils/runtime.js'
 import Address from '../../models/addressModel'
 
 const commonCityData =require('../../utils/city.js')
@@ -22,7 +23,7 @@ Page({
         let that = this
         this.initCityData(1)
         if(id){
-            addressModel.getAddressById(id,(data)=>{
+            addressModel.getAddressById(id).then((data)=>{
                 let addressData = data
                 addressData.id = id
                 addressData.linkMan = data.name
@@ -116,14 +117,13 @@ Page({
             addressText:address,
             mobile: mobile,
             code: code,
-        },(data)=>{
+        }).then((data)=>{
             console.log()
             if(data.success){
                wx.navigateBack({})
             }else {
                 
             }
-            
         })
 
     },
@@ -172,7 +172,7 @@ Page({
             success:function(res){
                 if(res.confirm){
                     //确定删除，调用后但接口
-                    addressModel.delAddressById(id,(data)=>{
+                    addressModel.delAddressById(id).then((data)=>{
                         console.log(data)
                         if(data.success){
                             wx.navigateBack({})

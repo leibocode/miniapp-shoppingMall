@@ -19,6 +19,8 @@ const decryptUserAsync =async(code,userInfo)=>{
     }).exec()
     let pc =new WXBizDataCrypt(session_key)
     let data =pc.decryptData(u.encryptedData,u.iv)
+    console.log('data')
+    console.log(data)
     let _userData = u.userInfo
     if(!user){
        

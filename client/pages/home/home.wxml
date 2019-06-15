@@ -29,17 +29,10 @@
    </view>
 </view>
 </view>
-<view class="loadmore" hidden="{{isHideLoadMore}}">
-  <view class="loading"></view>
-  <view class="loadmore__tips">正在加载..</view>
+<!-- <i-load-more tip="哇,我的底线被你知道啦！" loading="{{ mored }}" /> -->
+<view wx:if="{{more}}">
+   <i-load-more />
 </view>
-<view class="footer" hidden="{{isShowFooter}}">
-   <!-- <view class="footer-text">
-      <text>哇,我的底线被你知道啦！</text>
-   </view> -->
-   <i-divider>哇,我的底线被你知道啦！</i-divider>
-</view>
-<!-- <loading hidden="{{loading}}"></loading> -->
 <i-spin fix="{{true}}" wx:if="{{loading}}"></i-spin>
 
 

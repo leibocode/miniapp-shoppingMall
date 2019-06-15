@@ -1,3 +1,4 @@
+import regeneratorRuntime from '../../utils/runtime.js'
 import ThemeModel from '../../models/themeModel.js'
 let theme =new ThemeModel()
 
@@ -9,15 +10,14 @@ Page({
     },
     onLoad:function(options){
         var id =options.id
-        console.log(id)
         this.setData({
             id:id
         })
         this._loadData()
     },
-    _loadData:function(){
+    async _loadData(){
         let that =this
-        theme.getThemeDataById(this.data.id,(data)=>{
+        theme.getThemeDataById(this.data.id).then((data)=>{
             let filterData =[]
             data[0].products.forEach((item)=>{
                 let url ='http://www.hehe168.com'+item.img

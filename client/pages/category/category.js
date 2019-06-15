@@ -1,4 +1,5 @@
-import Category from '../../models/categoryModel'
+import regeneratorRuntime from '../../utils/runtime.js'
+ import Category from '../../models/categoryModel'
 
 const category =new Category()
 
@@ -10,17 +11,15 @@ Page({
     onLoad:function(){
         this._loadData()
     },
-    _loadData:function(){
-        var that =this
-        category.getCategory((data)=>{
-            that.setData({
-                categoryArr:data,
-                loading:true,
-                categoryInfo:{
-                    title:data[0].name,
-                    cate:data[0].children
-                }
-            })
+    async _loadData(){
+        let data = await category.getCategory();
+        this.setData({
+            categoryArr:data,
+            loading:true,
+            categoryInfo:{
+                title:data[0].name,
+                cate:data[0].children
+            }
         })
     },
     //

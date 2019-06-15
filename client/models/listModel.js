@@ -1,5 +1,5 @@
-import Base from '../utils/base'
-export default class List extends Base {
+import Http from '../utils/http'
+export default class List extends Http {
     constructor(){
         super();
     }

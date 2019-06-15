@@ -1,3 +1,4 @@
+import regeneratorRuntime from '../../utils/runtime.js'
 import Order from '../../models/orderModle'
 
 const order =new Order()
@@ -16,7 +17,7 @@ Page({
     onShow:function(){
         let that = this
         
-        order.getOrder(that.data.orderId,(data)=>{
+        order.getOrder(that.data.orderId).then((data)=>{
             that.setData({
                 orderDetail:data
             })

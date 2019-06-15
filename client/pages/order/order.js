@@ -1,3 +1,4 @@
+import regeneratorRuntime from '../../utils/runtime.js'
 import Cart from '../../models/cartModel'
 import Order from '../../models/orderModle'
 import Address from '../../models/addressModel'
@@ -79,16 +80,15 @@ Page({
         }
 
         let formId = event.detail.formId
-        console.log(formId);
         order.doOrder({
             formId:formId,
             total:that.data.account,
             product:that.filterProduct(),
             address_id:that.data.curAddressData[0]._id
-        },(data)=>{
+        }).then((data)=>{
             //跳转到
             wx.hideLoading();
-            
+
             wx.navigateTo({
                 url:'../order-list/order-list'
             })
@@ -112,9 +112,7 @@ Page({
     },
     _initShippingAddress:function(){
         let that =this
-        address.getaddressList((data)=>{
-            console.log('111'+data);
-            console.log(data)
+        address.getaddressList().then((data)=>{
             if(data.length>0){
                 var isNeedLogistics =1
                 that.setData({

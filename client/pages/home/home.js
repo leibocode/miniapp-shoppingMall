@@ -10,13 +10,12 @@ Page({
         productsArr:null,
         isLoadMore:false,
         page:1,
-        isHideLoadMore:true,
-        isShowFooter:true,
+        more:false,
+        mored:false,
         price:'all',
         size:10
     },
     onLoad:function(){
-        console.log('加载数据');
         this._loadData();
     },
 
@@ -97,8 +96,7 @@ Page({
     },
 
     onReachBottom:function(){
-        var that =this
-        this.data.isHideLoadMore =false
+        this.data.more = true
         setTimeout(()=>{
 
             var newPage = this.data.page +1
@@ -106,13 +104,13 @@ Page({
             this._loadProduct(price,newPage,10,(data)=>{
                 if(data.length>0){
                     that.setData({
-                        isHideLoadMore:true,
+                        more:false,
                         page:newPage
                     })
                 }else {
                     this.setData({
-                        isHideLoadMore:true,
-                        isShowFooter:false
+                        more:false,
+                        mored:true
                     })
                 }
             })
