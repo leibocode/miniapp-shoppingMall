@@ -11,7 +11,7 @@ namespace minappServer.Repositories.Entities
             products = new List<string>();
         }
         public string Title { get; set; }
-        public string img { get; set; }
+        public string Img { get; set; }
         public List<String> products { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using minappServer.Repositories.Dtos;
+using minappServer.Repositories.Entities;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -9,12 +10,12 @@ namespace minappServerD.Repositories.Data
 	/// <summary>
     /// MongoDb上下文
     /// </summary>
-    public class MongoContext
+    public class ShoppingMongoContext
     {
         private IMongoDatabase _database;
         private AppSetting _appSetting;
         
-        public MongoContext(IOptionsSnapshot<AppSetting> setting)
+        public ShoppingMongoContext(IOptionsSnapshot<AppSetting> setting)
         {
             _appSetting = setting.Value;
             var client = new MongoClient(_appSetting.MongoConnectionString);
@@ -25,6 +26,7 @@ namespace minappServerD.Repositories.Data
 
         }
 
+        //检查所有的表是否创建
         private void CheckAndCreateCollection(string collectionName)
         {
             var collectionList = _database.ListCollections().ToList();
@@ -40,7 +42,23 @@ namespace minappServerD.Repositories.Data
             }
         }
 
-        public IMongoCollection<>
+        public IMongoCollection<Banner> Banner
+        {
+            get
+            {
+                CheckAndCreateCollection("banner");
+                return _database.GetCollection<Banner>("banner");
+            }
+        }
 
+        public IMongoCollection<Category> Category
+        {
+            get {
+                CheckAndCreateCollection("category");
+                return _database.GetCollection<Category>("category");
+            }
+        }
+
+        
     }
 }
