@@ -123,19 +123,12 @@ Page({
             success:function(res){
                 if(res.confirm){
                     wx.showLoading()
-                    order.deleteOrder(id,(data)=>{
-
-                        console.log(data)
+                    order.deleteOrder(id).then((data)=>{
                         that.onShow()
                         wx.hideLoading()
                     })
                 }else {
                     wx.showLoading()
-                    // wx.showModal({
-                    //     title:'错误',
-                    //     content:'后端hold不住了,'
-                        
-                    // })
                 }
             }
         })

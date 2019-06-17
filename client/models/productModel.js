@@ -11,15 +11,11 @@ export default class Project extends Http {
     }
 
     getProducts(params){
-        var param ={
+        return this.request({
             url:'/api/v1/product',
             data:params,
-            sCallback:function(data){
-                data =data.data
-                callback && callback(data)
-            }
-        }
-        this.request(param) 
+            method:'POST'
+        })
     }
     
 

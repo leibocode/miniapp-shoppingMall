@@ -63,9 +63,7 @@ Page({
         let bid =options.bid
         let hostKey =options.hostKey
         if(id){
-            console.log('进入id')
             this.q =id
-            list.getProducts().then()
             list.getProducts({
                 _id:id,
                 size:10,
@@ -134,7 +132,7 @@ Page({
                 size:that.data.size,
                 page:that.data.page,
                 price:that.data.toggleStatus
-            },(data)=>{
+            }).then((data)=>{
                 let list_type = {
                     key:'',
                     value:''
@@ -154,7 +152,7 @@ Page({
                 size:that.data.size,
                 price:that.data.toggleStatus,
                 page:that.data.page
-            },(data)=>{
+            }).then((data)=>{
                 let list_type = {
                     key:'',
                     value:''
@@ -173,17 +171,8 @@ Page({
                 page:that.data.page,
                 size:that.data.size,
                 price:that.data.toggleStatus
-            },(data)=>{
-                let list_type = {
-                    key:'',
-                    value:''
-                }
-                list_type.key = 'all'
-                this.setData({
-                    productsArr:data,
-                    loading:true,
-                    list_load_type:list_type
-                })
+            }).then(()=>{
+
             })
         }
        
@@ -196,8 +185,8 @@ Page({
                   page:params.page,
                   size:params.size,
                   price:params.price
-              },(data)=>{
-                 if(data.length>0){
+              }).then((data)=>{
+                if(data.length>0){
                     let newProducts  =that.data.productsArr
                     let products = that.filterList(newProducts,data)
                     that.setData({
@@ -221,7 +210,7 @@ Page({
                     page:params.page,
                     size:params.size,
                     price:params.price
-                },(data)=>{
+                }).then((data)=>{
                     if(data[0].products.length>0){
                         let newProducts  =that.data.productsArr
                         let products = that.filterList(newProducts,data[0].products)
@@ -246,7 +235,7 @@ Page({
                 page:params.page,
                 size:params.size,
                 price:params.price
-            },(data)=>{
+            }).then((data)=>{
                 if(data[0].products.length>0){
                     let newProducts  =that.data.productsArr
                     let products = that.filterList(newProducts,data[0].products)
@@ -271,7 +260,7 @@ Page({
                     size:params.size,
                     page:params.page,
                     price:params.toggleStatus
-                },(data)=>{
+                }).then((data)=>{
                     if(data.length>0){
                         let newProducts  =that.data.productsArr
                         let products = that.filterList(newProducts,data)
@@ -296,7 +285,7 @@ Page({
                     size:params.size,
                     page:params.page,
                     price:params.price,
-                },(data)=>{
+                }).then((data)=>{
                     if(data.length>0){
                         let newProducts  =that.data.productsArr
                         let products = that.filterList(newProducts,data)
